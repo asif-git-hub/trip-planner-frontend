@@ -457,3 +457,11 @@ nav {
   letter-spacing: 1px;
 }
 
+@media screen and (max-width: 800px){
+
+  .about-section {
+    width: 90%;
+  }
+  
+}
+

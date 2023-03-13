@@ -8,7 +8,9 @@
     "eject": "react-scripts eject",
     "start": "react-scripts start",
     "start:prod": "webpack-dev-server --open --config webpack.frontend.config.js",
-    "build:prod": "webpack --config webpack.frontend.config.js"
+    "build:prod": "webpack --config webpack.frontend.config.js",
+    "build:netlify": "webpack --config webpack.frontend.config.js && echo '/* /index.html 200' | cat >build/_redirects "
+
   },
   "author": "Asif Alam",
   "license": "ISC",

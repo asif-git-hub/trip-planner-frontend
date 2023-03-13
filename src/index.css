@@ -218,6 +218,14 @@ ul {
   margin-top: 0.5rem;
 }
 
+@media screen and (max-width: 800px) {
+
+  .form {
+    width: 90%
+  }
+  
+}
+
 /* Loading */
 
 .loading-screen {
@@ -283,6 +291,14 @@ ul {
   transition: var(--transition);
   text-transform: capitalize;
   display: inline-block;
+}
+
+@media screen and (max-width: 800px) {
+  
+  .response-container {
+    width: 90%
+  }
+  
 }
 
 /* Checkbox */
@@ -439,5 +455,13 @@ nav {
   line-height: 2rem;
   font-weight: 400;
   letter-spacing: 1px;
+}
+
+@media screen and (max-width: 800px){
+
+  .about-section {
+    width: 90%;
+  }
+  
 }
 

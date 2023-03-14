@@ -22,8 +22,8 @@ function App() {
           <Route path="/contact" element={<Contact></Contact>} />
           <Route path="*" element={<NotFoundError></NotFoundError>} />
         </Routes>
-        <Footer></Footer>
       </Router>
+      <Footer></Footer>
     </div>
 
   );

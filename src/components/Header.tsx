@@ -9,7 +9,7 @@ export function Header() {
       </h2>
       <p>
         by
-        BiteSizeAdventures
+        BiteSizeAdventure
       </p>
 
     </div>

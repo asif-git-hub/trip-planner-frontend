@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { MyForm } from "../components/Form";
 import { Header } from "../components/Header";
 import { Loading } from "../components/Loading";
@@ -23,12 +23,18 @@ export function Home() {
     const [suggestions, setSuggestions] = useState([""])
     const [isButtonDisabled, setIsButtonDisabled] = useState(false)
 
+    const responseBoxRef = useRef<HTMLInputElement>(null);
+
     if (errored) {
 
         return (
             <TechnicalError></TechnicalError>
         )
     }
+
+    useEffect(() => {
+        responseBoxRef.current?.scrollIntoView({ block: "center", behavior: "smooth" });
+    }, [response])
 
     if (!loading) {
 
@@ -53,8 +59,8 @@ export function Home() {
 
                 {
                     (response)?
-
-                    <div>
+                    
+                    <div ref={responseBoxRef}>
                         <ResponseBox response={response}></ResponseBox>
                         <button className="btn" onClick={() => {
                             navigator.clipboard.writeText(response);

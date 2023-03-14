@@ -33,7 +33,7 @@ export function Home() {
     }
 
     useEffect(() => {
-        responseBoxRef.current?.scrollIntoView({ block: "center", behavior: "smooth" });
+        responseBoxRef.current?.scrollIntoView({ block: "start", behavior: "smooth" });
     }, [response])
 
     if (!loading) {
@@ -55,12 +55,13 @@ export function Home() {
                     setIsButtonDisabled={setIsButtonDisabled}
                 ></MyForm>
 
-            <button className="btn" type="submit" onClick={() => {window.location.reload();}}>Start Over</button>
-
                 {
                     (response)?
                     
                     <div ref={responseBoxRef}>
+
+                        <button className="btn" type="submit" onClick={() => {window.location.reload();}}>Start Over</button>
+
                         <ResponseBox response={response}></ResponseBox>
                         <button className="btn" onClick={() => {
                             navigator.clipboard.writeText(response);

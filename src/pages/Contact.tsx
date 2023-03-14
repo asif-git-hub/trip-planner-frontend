@@ -7,7 +7,7 @@ export function Contact() {
         <div className="contact">
             <br></br>
             <h3>Contact form coming soon</h3>
-            <p>In the meantime, reach out to us on <a href={`mailto:${email}`}>globe.trotters.agency@gmail.com</a> </p> 
+            <p>In the meantime, reach out to us on <a href={`mailto:${email}`}>{email}</a> </p> 
         </div>
     )
 }

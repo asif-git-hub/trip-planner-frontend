@@ -462,9 +462,27 @@ nav {
   letter-spacing: 1px;
 }
 
-@media screen and (max-width: 800px){
+@media screen and (max-width: 800px) {
 
   .about-section {
+    width: 90%;
+  }
+  
+}
+
+.contact {
+  max-width: var(--maxWidth);
+  display: flex;
+  gap: 1rem;
+  /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
+  margin: 2rem auto;
+  width: 60vw;
+  padding: 20px;
+}
+
+@media screen and (max-width: 800px) {
+
+  .contact {
     width: 90%;
   }
   

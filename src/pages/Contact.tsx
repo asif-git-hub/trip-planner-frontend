@@ -7,10 +7,12 @@ export function Contact() {
         <div className="contact">
             <br></br>
             <h3>Contact form coming soon</h3>
-
-            <p>In the meantime, reach out to us on <i><em>{email}</em></i></p> 
-
-            <p>Email us for a personalized itinerary and feedbacks on the app  </p>
+            <br></br>
+            <p>We are dedicated to providing you with a comprehensive travel planning experience, 
+                serving as your one-stop-shop for all your travel needs. 
+                If you require more personalized and detailed travel itineraries, please don't hesitate to contact us at 
+                {email}  
+            </p>
 
         </div>
     )

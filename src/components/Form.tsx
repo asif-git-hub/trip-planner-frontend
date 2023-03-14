@@ -24,7 +24,6 @@ type MyFormType = {
   setSuggestions: Dispatch<SetStateAction<Array<string>>>
   isButtonDisabled: boolean
   setIsButtonDisabled: Dispatch<React.SetStateAction<boolean>>
-
 }
 
 export function MyForm({
@@ -36,7 +35,7 @@ export function MyForm({
   suggestions, 
   setSuggestions,
   isButtonDisabled,
-  setIsButtonDisabled
+  setIsButtonDisabled,
 }: MyFormType) {
 
 
@@ -83,7 +82,7 @@ export function MyForm({
       const httpClient = new HttpClient()
 
       const res = await httpClient.get(url)
-
+      
       if (res) {
         setResponse(res.data)
         setLoading(false);
@@ -93,6 +92,7 @@ export function MyForm({
       // Catch all exceptions
       setErrored(true)
       setLoading(false)
+      
     } finally {
       setIsButtonDisabled(true)
     }

@@ -5,6 +5,7 @@ type ResponseType = {
 }
 
 export function ResponseBox({response}: ResponseType) {
+    
     return (
         
         <div className="response-container">

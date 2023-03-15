@@ -1,0 +1,6 @@
+# a path:
+/*
+  # headers for that path:
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline';

@@ -1,17 +1,20 @@
 import React, { Dispatch, SetStateAction} from "react";
 import { HttpClient } from "../clients/http.client";
 import { destinations } from "../shared/data/supported.destinations";
+import { options } from "../data/options";
+import { Option } from "./Option";
 
 //TODO: delete later
 function delay(delay: number) {
   return new Promise( res => setTimeout(res, delay) );
 }
 
-type DataType = {
+export type DataType = {
   destination: string,
   days: string
   includeCafes: boolean,
-  includeRestaurants: boolean
+  includeRestaurants: boolean,
+  includeMuseums: boolean
 }
 
 type MyFormType = {
@@ -41,7 +44,9 @@ export function MyForm({
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 
-    if (e.target.name === "includeCafes" || e.target.name === "includeRestaurants") {
+    if (e.target.name === "includeCafes" 
+      || e.target.name === "includeRestaurants"
+      || e.target.name === "includeMuseums") {
 
       if (e.target.value === "on") {
         setData({ ...data, [e.target.name]: !data[e.target.name] });
@@ -77,7 +82,7 @@ export function MyForm({
       setLoading(true)
 
       const baseUrl = `https://o000xa0i24.execute-api.ap-southeast-2.amazonaws.com/prod/itinerary`
-      const url = `${baseUrl}?destination=${data.destination}&days=${data.days}&includeCafes=${data.includeCafes}&includeRestaurants=${data.includeRestaurants}`
+      const url = `${baseUrl}?destination=${data.destination}&days=${data.days}&includeCafes=${data.includeCafes}&includeRestaurants=${data.includeRestaurants}&includeMuseums=${data.includeMuseums}`
       
       const httpClient = new HttpClient()
 
@@ -142,25 +147,18 @@ export function MyForm({
                   />
           </label>
 
-          <label>Cafes 
-              <input className="checkbox form-row"
-                  id="includeCafes"
-                  type="checkbox"
-                  name="includeCafes"
-                  checked={data.includeCafes}
-                  onChange={handleChange} 
-                  />
-          </label>
+          {
+            options.map((option, id) => {
 
-          <label>Restaurants 
-              <input className="checkbox form-row"
-                  id="includeRestaurants"
-                  type="checkbox"
-                  name="includeRestaurants"
-                  checked={data.includeRestaurants}
-                  onChange={handleChange} 
-                  />
-          </label>
+              return (
+                <Option key={id} id={id} label={option.label} 
+                name={option.name} 
+                checked={data[option.name]}
+                handleChange={handleChange}/>
+              )
+
+            })
+          }
 
         </div>   
 

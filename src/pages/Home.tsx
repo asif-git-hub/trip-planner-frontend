@@ -15,7 +15,8 @@ export function Home() {
         destination: "",
         days: "",
         includeCafes: false,
-        includeRestaurants: false
+        includeRestaurants: false,
+        includeMuseums: false
       });
 
     const [response, setResponse] = useState("")

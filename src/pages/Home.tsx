@@ -39,47 +39,47 @@ export function Home() {
 
     if (!loading) {
 
-        return (
+        if (!response) {
 
-            <div className="home">
-                <Header></Header>
+            return (
+                <div className="home">
+                    <Header></Header>
 
-                <MyForm 
-                    data={data} 
-                    setData={setData} 
-                    setLoading={setLoading}
-                    setResponse={setResponse}
-                    setErrored={setErrored}
-                    suggestions={suggestions}
-                    setSuggestions={setSuggestions}
-                    isButtonDisabled={isButtonDisabled}
-                    setIsButtonDisabled={setIsButtonDisabled}
-                ></MyForm>
+                    <MyForm 
+                        data={data} 
+                        setData={setData} 
+                        setLoading={setLoading}
+                        setResponse={setResponse}
+                        setErrored={setErrored}
+                        suggestions={suggestions}
+                        setSuggestions={setSuggestions}
+                        isButtonDisabled={isButtonDisabled}
+                        setIsButtonDisabled={setIsButtonDisabled}
+                    ></MyForm>
+                </div>
+            )
+        } else {
 
-                {
-                    (response)?
-                    
-                    <div ref={responseBoxRef}>
+            return (
+                <div ref={responseBoxRef}>
 
-                        <button className="btn" type="submit" onClick={() => {window.location.reload();}}>Start Over</button>
+                    <button className="btn" type="submit" onClick={() => {window.location.reload();}}>Start Over</button>
 
-                        <ResponseBox response={response}></ResponseBox>
-                        <button className="btn" onClick={() => {
-                            navigator.clipboard.writeText(response);
-                                setCopyButtonText("Copied")
-                                setTimeout(() => setCopyButtonText("Copy Plan"), 1000)
-                                }
-                            }>
-                            {copyButtonText}
-                        </button>
-                    </div>
-                    :
-                    ""
-                }
-                
-            </div>
+                    <ResponseBox response={response}></ResponseBox>
 
-        )
+                    <button className="btn" onClick={() => {
+                        navigator.clipboard.writeText(response);
+                            setCopyButtonText("Copied")
+                            setTimeout(() => setCopyButtonText("Copy Plan"), 1000)
+                            }
+                        }>
+                        {copyButtonText}
+                    </button>
+                </div>
+            )
+
+        }
+
     } else {
 
         return (

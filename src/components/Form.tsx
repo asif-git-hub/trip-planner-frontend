@@ -74,9 +74,6 @@ export function MyForm({
 
     e.preventDefault()
 
-    console.log("Submitting data");
-    console.log(data)
-
     try {
    
       setLoading(true)

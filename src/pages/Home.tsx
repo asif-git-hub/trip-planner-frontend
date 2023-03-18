@@ -20,7 +20,6 @@ export function Home() {
       });
 
     const [response, setResponse] = useState("")
-    const [copyButtonText, setCopyButtonText] = useState("Copy Plan")
     const [suggestions, setSuggestions] = useState([""])
     const [isButtonDisabled, setIsButtonDisabled] = useState(false)
 

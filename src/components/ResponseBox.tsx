@@ -1,22 +1,22 @@
 import React from "react"
-import { DailyActivitiesType } from "../types/response.types";
 import { DailyActivitiesList } from "./DailyActivitiesList";
+import { DailyActivitiesType } from '../types/response.types';
 
 type ResponsePropType = {
-    days: string,
     response: string
 }
 
-export function ResponseBox({days, response}: ResponsePropType) {
+export function ResponseBox({response}: ResponsePropType) {
     
-    const itinerary: DailyActivitiesType[] = JSON.parse(response);
+    const itineraryData: DailyActivitiesType[] = JSON.parse(response);
 
     return (
         
         <div className="response-container">
 
             {
-                itinerary.map((dailyActivities, id) => {
+                
+                itineraryData.map((dailyActivities, id) => {
 
                     return (
                         <DailyActivitiesList 
@@ -26,6 +26,7 @@ export function ResponseBox({days, response}: ResponsePropType) {
                         ></DailyActivitiesList>
                     )
                 })
+
             }
 
         </div>

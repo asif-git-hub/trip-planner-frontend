@@ -65,7 +65,7 @@ export function Home() {
 
                     <button className="btn" type="submit" onClick={() => {window.location.reload();}}>Start Over</button>
 
-                    <ResponseBox days={data.days} response={response}></ResponseBox>
+                    <ResponseBox response={response}></ResponseBox>
 
                     <button className="btn" onClick={() => {
                         navigator.clipboard.writeText(response);

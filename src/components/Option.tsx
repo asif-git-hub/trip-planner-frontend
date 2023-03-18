@@ -11,8 +11,9 @@ type OptionProps = {
 export function Option({id, label, name, checked, handleChange}: OptionProps) {
 
     return (
+        <div className="option">
             <label>{label} 
-                <input className="checkbox form-row"
+                <input className="checkbox"
                     key={id}
                     id={name}
                     type="checkbox"
@@ -21,6 +22,7 @@ export function Option({id, label, name, checked, handleChange}: OptionProps) {
                     onChange={handleChange} 
                     />
             </label>
+        </div>
 
     )
 

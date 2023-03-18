@@ -61,7 +61,7 @@ export function Home() {
         } else {
 
             return (
-                <div ref={responseBoxRef}>
+                <div className="response-window" ref={responseBoxRef}>
 
                     <button className="btn" type="submit" onClick={() => {window.location.reload();}}>Start Over</button>
 

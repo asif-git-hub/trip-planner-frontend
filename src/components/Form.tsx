@@ -78,7 +78,7 @@ export function MyForm({
    
       setLoading(true)
 
-      const baseUrl = `https://o000xa0i24.execute-api.ap-southeast-2.amazonaws.com/prod/itinerary`
+      const baseUrl = `https://l5jeqqprnuq5rtydc52rire4oq0dnvvq.lambda-url.ap-southeast-2.on.aws`
       const url = `${baseUrl}?destination=${data.destination}&days=${data.days}&includeCafes=${data.includeCafes}&includeRestaurants=${data.includeRestaurants}&includeMuseums=${data.includeMuseums}`
       
       const httpClient = new HttpClient()

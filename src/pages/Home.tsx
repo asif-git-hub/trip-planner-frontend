@@ -20,7 +20,6 @@ export function Home() {
       });
 
     const [response, setResponse] = useState("")
-    const [copyButtonText, setCopyButtonText] = useState("Copy Plan")
     const [suggestions, setSuggestions] = useState([""])
     const [isButtonDisabled, setIsButtonDisabled] = useState(false)
 
@@ -67,14 +66,6 @@ export function Home() {
 
                     <ResponseBox response={response}></ResponseBox>
 
-                    <button className="btn" onClick={() => {
-                        navigator.clipboard.writeText(response);
-                            setCopyButtonText("Copied")
-                            setTimeout(() => setCopyButtonText("Copy Plan"), 1000)
-                            }
-                        }>
-                        {copyButtonText}
-                    </button>
                 </div>
             )
 

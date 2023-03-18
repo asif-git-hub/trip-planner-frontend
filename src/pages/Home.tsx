@@ -67,14 +67,6 @@ export function Home() {
 
                     <ResponseBox response={response}></ResponseBox>
 
-                    <button className="btn" onClick={() => {
-                        navigator.clipboard.writeText(response);
-                            setCopyButtonText("Copied")
-                            setTimeout(() => setCopyButtonText("Copy Plan"), 1000)
-                            }
-                        }>
-                        {copyButtonText}
-                    </button>
                 </div>
             )
 

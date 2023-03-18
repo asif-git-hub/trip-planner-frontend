@@ -84,9 +84,9 @@ export function MyForm({
       const httpClient = new HttpClient()
 
       const res = await httpClient.get(url)
-      
+
       if (res) {
-        setResponse(res.data)
+        setResponse(JSON.stringify(res.data))
         setLoading(false);
       }
 

@@ -26,16 +26,16 @@ export function Home() {
 
     const responseBoxRef = useRef<HTMLInputElement>(null);
 
+    useEffect(() => {
+        responseBoxRef.current?.scrollIntoView({ block: "start", behavior: "smooth" });
+    }, [response])
+
     if (errored) {
 
         return (
             <TechnicalError></TechnicalError>
         )
     }
-
-    useEffect(() => {
-        responseBoxRef.current?.scrollIntoView({ block: "start", behavior: "smooth" });
-    }, [response])
 
     if (!loading) {
 

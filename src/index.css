@@ -176,6 +176,7 @@ ul {
   box-shadow: var(--shadow-2);
   padding: 2rem 2.5rem;
   margin: 3rem auto;
+  text-align: center;
 }
 
 .form-label {
@@ -264,17 +265,23 @@ ul {
 
 /* Response */
 
+.response-window {
+  text-align: center;
+}
+
 .response-container {
   box-shadow: rgba(28, 28, 28, 0.16) 0px 1px 4px;
   background: var(--white);
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
   gap: 2rem;
   margin: 1rem auto;
   width: 45vw;
   max-width: var(--max-width);
   padding: 15px;
+  text-align: left;
 }
 
 .response-container p {
@@ -301,10 +308,30 @@ ul {
   
 }
 
+/* */
+
+.activty-container {
+  background: var(--primary-100);
+  margin: 1rem auto;
+  padding: 15px;
+  border-radius: var(--borderRadius);
+}
+
+.activty-container p {
+  text-align: left;
+}
+
+.day-container {
+  background: var(--grey-200);
+  margin: 1rem auto;
+  padding: 15px;
+  border-radius: var(--borderRadius);
+}
+
 /* Checkbox */
 
 .checkbox {
-  transform: scale(1.5);
+  transform: scale(1.4);
   margin: 20px;
   font-size: 18px;
   margin: 30px 10px;
@@ -317,6 +344,12 @@ ul {
   box-sizing: border-box;
   align-items: center;
 }
+
+.option {
+  text-align: center;
+  display: inline-block;
+}
+
 
 
 /* Footer */
@@ -441,6 +474,10 @@ nav {
 
 /* About */
 
+#about {
+  text-align: center;
+}
+
 .about-section {
   max-width: var(--maxWidth);
   background: var(--white);
@@ -486,5 +523,11 @@ nav {
     width: 90%;
   }
   
+}
+
+/* Blog */
+
+.blog-container {
+  text-align: center;
 }
 

@@ -2,7 +2,7 @@ import React from "react";
 
 export function Blog() {
     return (
-        <div className="blog-section">
+        <div className="blog-container">
             <p>
                 <br></br>
                 Coming soon

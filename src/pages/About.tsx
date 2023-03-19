@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom';
+import aboutImg from "../assets/about.png"
 
 export const About = () => {
     return (
@@ -9,26 +10,29 @@ export const About = () => {
             Hello, fellow travel enthusiasts!
         </h2>
         </div>  
-        <div className='about-section'>
-          <div className='about-img'>
-            {/* <img src={aboutImg} className='about-photo' alt='awesome beach' /> */}
+        <div className='about-img'>
+            <img src={aboutImg} className='about-photo' alt='popular travel spots in Europe' />
           </div>
+        <div className='about-section'>
           <article className='about-text'>
             <p>
-                I am delighted to introduce our new travel planner!
-                <br />
-                <br />
-                As passionate travellers ourselves, we understand that visiting a new city can be both exciting and overwhelming. <br />
-                With so many sights to see, restaurants to try, and experiences to have, it's easy to feel lost in the planning process. <br />
-                <br />
-                That's why we've developed a travel planner that streamlines the entire process, allowing you to enjoy your trip without any stress. <br />
-                Our user-friendly app generates a personalized itinerary based on your destination and the length of your stay. <br />
-                It includes must-see attractions, hidden gems, top-rated restaurants, and local events - everything you need to make your trip unforgettable.<br />
-                <br />
-                As travel enthusiasts ourselves, we believe everyone should have access to the best travel planning tools available. 
-                That's why our app is entirely free of charge.
-                <br />
-                So, why wait? Start planning your next adventure with our travel planner and create memories that will last a lifetime!
+            Looking for an efficient way to plan your next trip? 
+            <br></br>
+            Look no further than our automatic travel planner app! Our app is a simple, instant and automatic travel itinerary creator designed for destinations all around the world. 
+            Whether you're planning a romantic getaway or a family vacation, our app can help you create the perfect itinerary in just a few clicks.
+            <br></br>
+            <br></br>
+            With our app, you can easily explore top-rated attractions, restaurants, and hotels at your destination. 
+            Our intelligent algorithm analyzes your preferences and suggests personalized recommendations based on your interests and budget. 
+            Say goodbye to hours of research and planning, and hello to a stress-free and enjoyable travel experience.
+            <br></br>
+            Our travel planner app is designed to optimize your itinerary based on your preferred travel style and time constraints. 
+            <br></br>
+            <br></br>
+            With our app, you can be rest assured that your trip will be well-planned and hassle-free. 
+            Start using our automatic travel planner app today to create the perfect itinerary for your next adventure.
+            <br></br>
+            <br></br>
             </p>
           </article>
         </div>

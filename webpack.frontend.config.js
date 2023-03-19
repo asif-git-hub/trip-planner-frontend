@@ -25,23 +25,22 @@ module.exports = {
   module: {
     rules: [
         {
-            test: /\.(ts|tsx)$/,
-            loader: 'ts-loader'
+          test: /\.(ts|tsx)$/,
+          loader: 'ts-loader'
         },
         {
-            enforce: "pre",
-            test: /\.js$/,
-            loader: "source-map-loader",
+          enforce: "pre",
+          test: /\.js$/,
+          loader: "source-map-loader",
         },
         {
-            test: /\.css$/,
-            use: ['style-loader', 'css-loader'],
+          test: /\.css$/,
+          use: ['style-loader', 'css-loader'],
         },
         {
-            test: /\.svg$/,
-            loader: 'url-loader'
-        }
-        
+          test: /\.(jpe?g|png|gif|eot|ttf|svg)(\?[a-z0-9=.]+)?$/,
+          loader: 'url-loader'
+        },     
     ],
   },
   plugins: [

@@ -4,7 +4,7 @@ export function Header() {
     return (
     <div className='section-title'>
       <h2>
-        Trip Planner
+        Insta Travel Planner
         
       </h2>
       <p>

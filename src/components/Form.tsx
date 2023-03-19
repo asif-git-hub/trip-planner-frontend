@@ -144,18 +144,22 @@ export function MyForm({
                   />
           </label>
 
-          {
-            options.map((option, id) => {
+          <div className="options-container"> 
 
-              return (
-                <Option key={id} id={id} label={option.label} 
-                name={option.name} 
-                checked={data[option.name]}
-                handleChange={handleChange}/>
-              )
+            {
+              options.map((option, id) => {
 
-            })
-          }
+                return (
+                    <Option key={id} id={id} label={option.label} 
+                    name={option.name} 
+                    checked={data[option.name]}
+                    handleChange={handleChange}/>
+                )
+
+              })
+            }
+
+          </div>
 
         </div>   
 

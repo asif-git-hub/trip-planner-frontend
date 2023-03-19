@@ -14,7 +14,6 @@ export function Option({id, label, name, checked, handleChange}: OptionProps) {
         <div className="option">
             <label>{label} 
                 <input className="checkbox"
-                    key={id}
                     id={name}
                     type="checkbox"
                     name={name}

@@ -330,6 +330,16 @@ ul {
 
 /* Checkbox */
 
+.option label {
+  display: inline-block;
+  padding-right: 10px;
+  white-space: nowrap;
+}
+
+.option input {
+  vertical-align: middle;
+}
+
 .checkbox {
   transform: scale(1.4);
   margin: 20px;
@@ -349,7 +359,6 @@ ul {
   text-align: center;
   display: inline-block;
 }
-
 
 
 /* Footer */
@@ -497,6 +506,10 @@ nav {
   line-height: 2rem;
   font-weight: 400;
   letter-spacing: 1px;
+}
+
+.about-photo {
+  width: 60vw;
 }
 
 @media screen and (max-width: 800px) {

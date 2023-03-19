@@ -29,7 +29,7 @@ export const About = () => {
             Our travel planner app is designed to optimize your itinerary based on your preferred travel style and time constraints. 
             <br></br>
             <br></br>
-            With our app, you can rest assured that your trip will be well-planned and hassle-free. 
+            With our app, you can be rest assured that your trip will be well-planned and hassle-free. 
             Start using our automatic travel planner app today to create the perfect itinerary for your next adventure.
             <br></br>
             <br></br>

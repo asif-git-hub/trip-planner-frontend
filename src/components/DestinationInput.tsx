@@ -17,7 +17,7 @@ export function DestinationInput({data, setData}: DestinationFormPropType) {
     const autocompleteOptions = useMemo(
       () => ({
         fields: ["name"],
-        types: ["(cities)"],
+        types: ["(regions)"],
       }),
       []
     )

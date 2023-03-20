@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const { DefinePlugin } = require("webpack");
 
 
 module.exports = {
@@ -50,6 +51,10 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: "./src/index.css",
+    }),
+    new DefinePlugin({
+      'process.env.REACT_APP_GOOGLE_API_KEY': process.env.REACT_APP_GOOGLE_API_KEY,
+      'process.env.REACT_APP_ITINERARY_RETRIEVER_API': process.env.REACT_APP_ITINERARY_RETRIEVER_API
     })
   ],
 };

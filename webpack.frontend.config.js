@@ -53,8 +53,10 @@ module.exports = {
       filename: "./src/index.css",
     }),
     new DefinePlugin({
-      'REACT_APP_GOOGLE_API_KEY': JSON.stringify(process.env.REACT_APP_GOOGLE_API_KEY),
-      'REACT_APP_ITINERARY_RETRIEVER_API': JSON.stringify(process.env.REACT_APP_ITINERARY_RETRIEVER_API)
+      "process.env": {
+        'REACT_APP_GOOGLE_API_KEY': JSON.stringify(process.env.REACT_APP_GOOGLE_API_KEY),
+        'REACT_APP_ITINERARY_RETRIEVER_API': JSON.stringify(process.env.REACT_APP_ITINERARY_RETRIEVER_API)
+      }
     })
   ],
 };

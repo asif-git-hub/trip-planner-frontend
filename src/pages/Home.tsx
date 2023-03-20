@@ -20,8 +20,6 @@ export function Home() {
       });
 
     const [response, setResponse] = useState("")
-    const [suggestions, setSuggestions] = useState([""])
-    const [isButtonDisabled, setIsButtonDisabled] = useState(false)
 
     const responseBoxRef = useRef<HTMLInputElement>(null);
 
@@ -50,10 +48,6 @@ export function Home() {
                         setLoading={setLoading}
                         setResponse={setResponse}
                         setErrored={setErrored}
-                        suggestions={suggestions}
-                        setSuggestions={setSuggestions}
-                        isButtonDisabled={isButtonDisabled}
-                        setIsButtonDisabled={setIsButtonDisabled}
                     ></MyForm>
                 </div>
             )

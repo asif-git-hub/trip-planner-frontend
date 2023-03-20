@@ -81,6 +81,7 @@ export function DestinationInput({data, setData}: DestinationFormPropType) {
               type="text"
               name="destination"
               autoComplete="off"
+              autoFocus
               required={true}
               placeholder="Enter a city (For example, Munich, Germany)"
               onChange={handleDestinationInput}

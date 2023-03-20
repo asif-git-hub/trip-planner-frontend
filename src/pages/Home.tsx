@@ -69,7 +69,7 @@ export function Home() {
 
         return (
             <div>
-                <Loading></Loading>
+                <Loading destination={data.destination}></Loading>
             </div>
         )
     }

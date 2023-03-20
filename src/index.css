@@ -109,6 +109,7 @@ h4 {
 }
 
 h5 {
+  text-transform: none;
   font-size: 1.25rem;
 }
 
@@ -256,6 +257,9 @@ ul {
 .loading {
   margin: 0 auto;
 }
+
+/* Progress bar */
+
 
 /* title */
 

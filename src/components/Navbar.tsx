@@ -26,8 +26,11 @@ export default function Navbar() {
   return (
     <nav>
     <div className='nav-center'>
+
       <div className='nav-header'>
+        <a href="/">
         <img src={logo} className='logo' alt='logo' />
+        </a>
         <button className='nav-toggle' onClick={toggleLinks}>
           <FaBars />
         </button>

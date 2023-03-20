@@ -1,13 +1,9 @@
-import React, { Dispatch, SetStateAction} from "react";
+import React, { Dispatch, useState} from "react";
 import { HttpClient } from "../clients/http.client";
-import { destinations } from "../shared/data/supported.destinations";
 import { options } from "../data/options";
 import { Option } from "./Option";
-
-//TODO: delete later
-function delay(delay: number) {
-  return new Promise( res => setTimeout(res, delay) );
-}
+import { DestinationInput } from "./DestinationInput";
+import { getEnvVar } from "../utils/common.utils";
 
 export type DataType = {
   destination: string,
@@ -23,10 +19,6 @@ type MyFormType = {
   setLoading: Dispatch<React.SetStateAction<boolean>>
   setResponse: Dispatch<React.SetStateAction<string>>
   setErrored: Dispatch<React.SetStateAction<boolean>>
-  suggestions: Array<string>
-  setSuggestions: Dispatch<SetStateAction<Array<string>>>
-  isButtonDisabled: boolean
-  setIsButtonDisabled: Dispatch<React.SetStateAction<boolean>>
 }
 
 export function MyForm({
@@ -35,12 +27,12 @@ export function MyForm({
   setLoading, 
   setResponse, 
   setErrored, 
-  suggestions, 
-  setSuggestions,
-  isButtonDisabled,
-  setIsButtonDisabled,
 }: MyFormType) {
 
+  const [formError, setFormError] = useState({
+    isInvalid: false,
+    message: ""
+  })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 
@@ -52,52 +44,68 @@ export function MyForm({
         setData({ ...data, [e.target.name]: !data[e.target.name] });
       }
 
-    } else {
+    } 
 
-      if (e.target.name === "destination" && e.target.value.length > 2) {
-
-        const filteredDestinations = destinations.filter((destination) => {
-          return destination.includes(e.target.value)
-        });
-
-        setSuggestions(filteredDestinations)
-        
-      }
-
-      setData({ ...data, [e.target.name]: e.target.value });
-
+    if (e.target.name === "days") {
+      setData({ ...data, ["days"]: e.target.value });
     }
 
   };
 
-  const handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
+  function validateInput() {
 
-    e.preventDefault()
+    let isFormValid = true;
+    
+    if (!data.destination || data.destination === "") {
+  
+      isFormValid = false;
+      setFormError({
+        isInvalid: true, 
+        message: "Please pick a destination from the list"})
+      } 
 
-    try {
-   
-      setLoading(true)
-
-      const baseUrl = `https://l5jeqqprnuq5rtydc52rire4oq0dnvvq.lambda-url.ap-southeast-2.on.aws`
-      const url = `${baseUrl}?destination=${data.destination}&days=${data.days}&includeCafes=${data.includeCafes}&includeRestaurants=${data.includeRestaurants}&includeMuseums=${data.includeMuseums}`
-      
-      const httpClient = new HttpClient()
-
-      const res = await httpClient.get(url)
-
-      if (res) {
-        setResponse(JSON.stringify(res.data))
-        setLoading(false);
+    if (!data.days || data.days === "") {
+      isFormValid = false;
+      setFormError({
+        isInvalid: true, 
+        message: "Number of days must be between 1 and 6"})
       }
 
-    } catch (e) {
-      // Catch all exceptions
-      setErrored(true)
-      setLoading(false)
-      
-    } finally {
-      setIsButtonDisabled(true)
+    return isFormValid;
+
+  }
+
+  const handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
+
+    e.preventDefault();
+    const isFormValid = validateInput();
+
+    if(isFormValid) {
+
+      try {
+   
+        setLoading(true)
+  
+        const baseUrl = getEnvVar("REACT_APP_ITINERARY_RETRIEVER_API")
+        const url = `${baseUrl}?destination=${data.destination}&days=${data.days}&includeCafes=${data.includeCafes}&includeRestaurants=${data.includeRestaurants}&includeMuseums=${data.includeMuseums}`
+        
+        const httpClient = new HttpClient()
+  
+        const res = await httpClient.get(url)
+  
+        if (res) {
+          setResponse(JSON.stringify(res.data))
+          setLoading(false);
+        }
+  
+      } catch (e) {
+        // Catch all exceptions
+        setErrored(true)
+        setLoading(false)
+        
+      }
     }
+    
 
   };
 
@@ -108,28 +116,7 @@ export function MyForm({
 
         <div className="input-grid-section">
 
-          <label>
-              <input 
-                  className="form-input form-row"
-                  list="destinations"
-                  id="destination"
-                  type="text"
-                  name="destination"
-                  value={data.destination}
-                  required={true}
-                  placeholder="Enter city or country (Munich, Germany)"
-                  autoComplete="true"
-                  pattern={suggestions.join(",").replaceAll(",", "|")}
-                  onChange={handleChange} 
-                  />
-                  <datalist className="datalist" id="destinations">
-                    {
-                      destinations.map((country, id) => {
-                        return (<option key={id}>{country}</option>)
-                      })
-                    }
-                  </datalist>
-          </label>
+          <DestinationInput data={data} setData={setData}></DestinationInput>
 
           <label>
               <input className="form-input form-row"
@@ -143,6 +130,15 @@ export function MyForm({
                   onChange={handleChange} 
                   />
           </label>
+
+          {
+            formError.isInvalid? 
+            <div>
+              <p>{formError.message}</p>
+            </div>
+              :
+              ""
+          }
 
           <div className="options-container"> 
 
@@ -163,7 +159,7 @@ export function MyForm({
 
         </div>   
 
-        <button className={isButtonDisabled? "btn-disabled": "btn"} type="submit" disabled={isButtonDisabled}>Start Planning</button>
+        <button className={"btn"} type="submit" >Start Planning</button>
       </form>
 
       </div>

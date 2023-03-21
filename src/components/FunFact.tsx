@@ -1,9 +1,11 @@
 import React, { useState, useEffect  } from "react";
 import { funfacts } from "../shared/data/funfacts";
-import {FaQuestion, FaQuoteRight} from "react-icons/fa"
+import { FaQuoteRight, FaQuoteLeft } from 'react-icons/fa';
+import { shuffleArray } from "../utils/common.utils";
 export function FunFact() {
 
-    const [facts, setFacts] = useState(funfacts);
+    
+    const [facts] = useState(shuffleArray(funfacts));
     const [index, setIndex] = useState(0);
 
     useEffect(() => {
@@ -44,7 +46,7 @@ export function FunFact() {
 
                         return (
                             <article key={id} className={position}>
-                                <p>Did you know <FaQuestion></FaQuestion></p>
+                                <FaQuoteLeft className="quote-icon"></FaQuoteLeft>
                                 <p>{fact}</p>
                                 <FaQuoteRight className="quote-icon"></FaQuoteRight>
                             </article>

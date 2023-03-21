@@ -553,15 +553,17 @@ nav {
 
 /* Icons */
 .quote-icon {
+  margin: 3px;
   font-size: 2rem;
   color: var(--clr-grey-3)
 }
+
 
 /* Fun Fact */
 
 .facts {
   width: 90vw;
-  margin: 5rem auto;
+  margin: 3em auto;
   max-width: var(--max-width);
 }
 
@@ -588,6 +590,7 @@ article {
 
 article.activeFact {
   opacity: 1;
+  padding: 3px;
   transform: translateX(0);
 }
 

@@ -438,7 +438,6 @@ nav {
   margin-right: 1.5rem;
 }
 
-
 @media screen and (min-width: 800px) {
   .nav-center {
     max-width: 1170px;
@@ -563,7 +562,7 @@ nav {
 
 .facts {
   width: 90vw;
-  margin: 3em auto;
+  margin: 1em auto;
   max-width: var(--max-width);
 }
 
@@ -572,15 +571,16 @@ nav {
   margin-top: 4px;
   width: 80vw;
   height: 300px;
-  max-width: 800px;
+  max-width: var(--max-width);
   display: flex;
   overflow: hidden;
   position: relative;
   width: 60vw;
   text-align: center;
+  align-items: center;
 }
 
-article {
+.moving-container {
   position: absolute;
   margin: 4px;
   background: var(--light-mint);
@@ -588,50 +588,27 @@ article {
   transition: var(--fact-transition);
 }
 
-article.activeFact {
+.activeFact {
   opacity: 1;
   padding: 3px;
   transform: translateX(0);
 }
 
-article.nextFact {
+.nextFact {
   opacity: 0;
   transform: translateX(100%);
 }
 
-article.lastFact {
+.lastFact {
   opacity: 0;
   transform: translateX(-100%);
 }
 
-/* Cloud */
+@media screen and (max-width: 800px) {
 
-.cloud{ 
-  margin-top:70px;
-  width:350px;
-  height:120px;
-  background:#ECEFF1;
-  box-shadow: 10px 10px rgba(0,0,0,0.2);
-  border-radius:100px;
+  .facts-container {
+    width: 90%;
+  }
+  
 }
-.cloud::after, .cloud::before{
-   content:"";
-   position:relative;
-   display:inline-block;
-   background:inherit;
-   border-radius:inherit;
-}
-.cloud::after{
-   width:100px;
-   height:100px;
-   top:-220px;
-   left:50px;
-}
-.cloud::before{
-   width:180px;
-   height:180px;
-   top: -70px;
-   left:130px;
-}
-
 

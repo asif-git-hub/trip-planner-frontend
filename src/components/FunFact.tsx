@@ -45,11 +45,11 @@ export function FunFact() {
                         }
 
                         return (
-                            <article key={id} className={position}>
+                            <div key={id} className={`moving-container ${position}`}>
                                 <FaQuoteLeft className="quote-icon"></FaQuoteLeft>
                                 <p>{fact}</p>
                                 <FaQuoteRight className="quote-icon"></FaQuoteRight>
-                            </article>
+                            </div>
                         );
                     })
                 }

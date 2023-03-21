@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ProgressBar } from "./ProgressBar";
+import { FunFact } from "./FunFact";
 
 type LoadingTypeProp = {
     destination: string
@@ -34,6 +35,7 @@ export function Loading({destination}: LoadingTypeProp) {
                 <p>This may take up to 1 minute</p>
             </div>
             <ProgressBar value={value}></ProgressBar>
+            <FunFact></FunFact>
         </div>
     )
 }

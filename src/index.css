@@ -18,8 +18,6 @@
   --primary-800: #282566;
   --primary-900: #141233;
   --primary-5: hsl(205, 78%, 60%);
-  --primaryColor: #476a2e;
-  --primaryDarkColor: #c02c03;
 
   /* grey */
   --grey-50: #f8fafc;
@@ -33,6 +31,10 @@
   --grey-800: #1e293b;
   --grey-900: #0f172a;
   /* rest of the colors */
+
+  --lavendar-blush: #fff0f5;
+  --light-mint: #c8e2d2;
+
   --black: #222;
   --white: #fff;
   --red-light: #f8d7da;
@@ -50,11 +52,13 @@
   --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   --borderRadius: 0.25rem;
+  --fact-border-radius: 0.3rem;
   --letterSpacing: 1px;
   --transition: 0.3s ease-in-out all;
   --max-width: 1120px;
   --fixed-width: 600px;
   --spacing: 0.1rem;
+  --fact-transition: 0.3s linear all;
 
   /* box shadow*/
   --shadow-1: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
@@ -237,7 +241,6 @@ ul {
 
 .loading-textbox {
   margin: 30px;
-  padding: 40px
 }
 
 @keyframes spinner {
@@ -547,4 +550,85 @@ nav {
 .blog-container {
   text-align: center;
 }
+
+/* Icons */
+.quote-icon {
+  font-size: 2rem;
+  color: var(--clr-grey-3)
+}
+
+/* Fun Fact */
+
+.facts {
+  width: 90vw;
+  margin: 5rem auto;
+  max-width: var(--max-width);
+}
+
+.facts-container {
+  margin: 0 auto;
+  margin-top: 4px;
+  width: 80vw;
+  height: 300px;
+  max-width: 800px;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  width: 60vw;
+  text-align: center;
+}
+
+article {
+  position: absolute;
+  margin: 4px;
+  background: var(--light-mint);
+  border-radius: var(--fact-border-radius);
+  transition: var(--fact-transition);
+}
+
+article.activeFact {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+article.nextFact {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+article.lastFact {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+/* Cloud */
+
+.cloud{ 
+  margin-top:70px;
+  width:350px;
+  height:120px;
+  background:#ECEFF1;
+  box-shadow: 10px 10px rgba(0,0,0,0.2);
+  border-radius:100px;
+}
+.cloud::after, .cloud::before{
+   content:"";
+   position:relative;
+   display:inline-block;
+   background:inherit;
+   border-radius:inherit;
+}
+.cloud::after{
+   width:100px;
+   height:100px;
+   top:-220px;
+   left:50px;
+}
+.cloud::before{
+   width:180px;
+   height:180px;
+   top: -70px;
+   left:130px;
+}
+
 

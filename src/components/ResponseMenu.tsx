@@ -1,5 +1,4 @@
 import React, { Dispatch, MouseEvent, SetStateAction } from "react"
-import { useState } from "react"
 
 type ResponseMenuPropType = {
   containerToDisplay: string
@@ -10,6 +9,7 @@ export function ResponseMenu({
   containerToDisplay,
   setContainerToDisplay,
 }: ResponseMenuPropType) {
+
   function handleMenuToggle(e: MouseEvent<HTMLElement>) {
     setContainerToDisplay(e.currentTarget.id)
   }

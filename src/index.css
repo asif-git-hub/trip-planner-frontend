@@ -34,6 +34,7 @@
 
   --lavendar-blush: #fff0f5;
   --light-mint: #c8e2d2;
+  --dark-teal: #008080;
 
   --black: #222;
   --white: #fff;
@@ -52,6 +53,7 @@
   --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   --borderRadius: 0.25rem;
+  --response-menu-button-radius: 0.75rem;
   --fact-border-radius: 0.3rem;
   --letterSpacing: 1px;
   --transition: 0.3s ease-in-out all;
@@ -86,8 +88,7 @@ p {
 h1,
 h2,
 h3,
-h4,
-h5 {
+h4 {
   margin: 0;
   margin-bottom: 0.75rem;
   font-weight: 400;
@@ -216,6 +217,7 @@ ul {
   letter-spacing: var(--letterSpacing);
   text-transform: capitalize;
 }
+
 /* extra styles */
 .form .form-label {
   text-align: left;
@@ -306,6 +308,57 @@ ul {
 
 @media screen and (max-width: 800px) {
   .response-container {
+    width: 90%;
+  }
+}
+
+/* Response Menu */
+
+.response-menu-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: var(--max-width);
+}
+
+.response-menu {
+  color: var(--clr-grey-3);
+  width: 45vw;
+  max-width: var(--max-width);
+  font-size: 1rem;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: var(--spacing);
+  display: block;
+  transition: var(--transition);
+}
+
+.response-menu-item {
+  cursor: pointer;
+  margin: 0.25rem;
+  border-radius: var(--response-menu-button-radius);
+  box-shadow: var(--shadow-1);
+  border: transparent;
+  padding: 0.5rem 1rem;
+  background-color: var(--grey-200);
+  letter-spacing: var(--spacing);
+  font-size: 1rem;
+  text-transform: uppercase;
+  display: inline-block;
+  color: var(--clr-grey-3);
+  transition: var(--transition);
+}
+
+.response-menu-selected {
+  background: var(--clr-primary-8);
+  color: var(--primary-600);
+  background-color: var(--dark-teal);
+  color: var(--white);
+  padding: 1rem 1rem;
+}
+
+@media screen and (max-width: 800px) {
+  .response-menu-container .response-menu {
     width: 90%;
   }
 }

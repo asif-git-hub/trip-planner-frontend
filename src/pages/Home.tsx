@@ -1,9 +1,10 @@
-import React, { useEffect, useRef, useState } from "react"
+import React, { useRef, useState } from "react"
 import { MyForm } from "../components/Form"
 import { Header } from "../components/Header"
 import { Loading } from "../components/Loading"
 import { ResponseBox } from "../components/ResponseBox"
 import { TechnicalError } from "./Error"
+import { ResponseMenu } from "../components/ResponseMenu"
 
 export function Home() {
   const [loading, setLoading] = useState(false)
@@ -19,6 +20,8 @@ export function Home() {
   })
 
   const [itinerary, setItinerary] = useState("")
+  const [containerToDisplay, setContainerToDisplay] =
+    useState("itinerary-button")
 
   const responseBoxRef = useRef<HTMLInputElement>(null)
 
@@ -44,17 +47,17 @@ export function Home() {
     } else {
       return (
         <div className="response-window" ref={responseBoxRef}>
-          <button
-            className="btn"
-            type="submit"
-            onClick={() => {
-              window.location.reload()
-            }}
-          >
-            Start Over
-          </button>
 
-          <ResponseBox response={itinerary}></ResponseBox>
+          <ResponseMenu
+            containerToDisplay={containerToDisplay}
+            setContainerToDisplay={setContainerToDisplay}
+          ></ResponseMenu>
+          
+          <ResponseBox
+            containerToDisplay={containerToDisplay}
+            response={itinerary}
+          ></ResponseBox>
+
         </div>
       )
     }

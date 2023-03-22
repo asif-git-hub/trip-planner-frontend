@@ -1,77 +1,68 @@
-import React, { useEffect, useRef, useState } from "react";
-import { MyForm } from "../components/Form";
-import { Header } from "../components/Header";
-import { Loading } from "../components/Loading";
-import { ResponseBox } from "../components/ResponseBox";
-import { TechnicalError } from "./Error";
+import React, { useEffect, useRef, useState } from "react"
+import { MyForm } from "../components/Form"
+import { Header } from "../components/Header"
+import { Loading } from "../components/Loading"
+import { ResponseBox } from "../components/ResponseBox"
+import { TechnicalError } from "./Error"
 
 export function Home() {
+  const [loading, setLoading] = useState(false)
+  const [errored, setErrored] = useState(false)
 
-    const [loading, setLoading] = useState(false)
-    const [errored, setErrored] = useState(false)
+  // data to be sent
+  const [data, setData] = useState({
+    destination: "",
+    days: "",
+    includeCafes: false,
+    includeRestaurants: false,
+    includeMuseums: false,
+  })
 
-    // data to be sent
-    const [data, setData] = useState({
-        destination: "",
-        days: "",
-        includeCafes: false,
-        includeRestaurants: false,
-        includeMuseums: false
-      });
+  const [itinerary, setItinerary] = useState("")
 
-    const [response, setResponse] = useState("")
+  const responseBoxRef = useRef<HTMLInputElement>(null)
 
-    const responseBoxRef = useRef<HTMLInputElement>(null);
+  if (errored) {
+    return <TechnicalError></TechnicalError>
+  }
 
-    useEffect(() => {
-        responseBoxRef.current?.scrollIntoView({ block: "start", behavior: "smooth" });
-    }, [response])
+  if (!loading) {
+    if (!itinerary) {
+      return (
+        <div className="home">
+          <Header></Header>
 
-    if (errored) {
-
-        return (
-            <TechnicalError></TechnicalError>
-        )
-    }
-
-    if (!loading) {
-
-        if (!response) {
-
-            return (
-                <div className="home">
-                    <Header></Header>
-
-                    <MyForm 
-                        data={data} 
-                        setData={setData} 
-                        setLoading={setLoading}
-                        setResponse={setResponse}
-                        setErrored={setErrored}
-                    ></MyForm>
-                </div>
-            )
-        } else {
-
-            return (
-                <div className="response-window" ref={responseBoxRef}>
-
-                    <button className="btn" type="submit" onClick={() => {window.location.reload();}}>Start Over</button>
-
-                    <ResponseBox response={response}></ResponseBox>
-
-                </div>
-            )
-
-        }
-
+          <MyForm
+            data={data}
+            setData={setData}
+            setLoading={setLoading}
+            setResponse={setItinerary}
+            setErrored={setErrored}
+          ></MyForm>
+        </div>
+      )
     } else {
+      return (
+        <div className="response-window" ref={responseBoxRef}>
+          <button
+            className="btn"
+            type="submit"
+            onClick={() => {
+              window.location.reload()
+            }}
+          >
+            Start Over
+          </button>
 
-        return (
-            <div>
-                <Loading destination={data.destination}></Loading>
-            </div>
-        )
+          <ResponseBox response={itinerary}></ResponseBox>
+        </div>
+      )
     }
-
+  } else {
+    return (
+      <div>
+        <Loading destination={data.destination}></Loading>
+      </div>
+    )
+  }
 }

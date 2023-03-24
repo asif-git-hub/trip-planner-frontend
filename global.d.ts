@@ -1,6 +1,8 @@
 declare module "*.svg" {
-  const value: import("react-native").ImageSourcePropType
-  export default value
+  import { FC, SVGProps } from "react"
+  export const ReactComponent: FC<SVGProps<SVGSVGElement>>
+  const src: string
+  export default src
 }
 
 declare module "*.png"

@@ -1,15 +1,18 @@
 import { Dispatch, useEffect, useMemo, useRef } from "react"
-import useScript from "../hooks/use.script"
 import { DataType } from "./Form"
 import React from "react"
-import { getEnvVar } from "../utils/common.utils"
 
 type DestinationFormPropType = {
+  googleScript: string
   data: DataType
   setData: Dispatch<React.SetStateAction<DataType>>
 }
 
-export function DestinationInput({ data, setData }: DestinationFormPropType) {
+export function DestinationInput({
+  googleScript,
+  data,
+  setData,
+}: DestinationFormPropType) {
   const autoCompleteRef = useRef<google.maps.places.Autocomplete>()
   const destinationInputRef = useRef<HTMLInputElement>(null)
 
@@ -21,13 +24,6 @@ export function DestinationInput({ data, setData }: DestinationFormPropType) {
     []
   )
 
-  const GOOGLE_API_KEY = getEnvVar("REACT_APP_GOOGLE_API_KEY")
-
-  const scriptStatus = useScript(
-    // By default, Google Places will attempt to guess your language based on your country.
-    `https://maps.googleapis.com/maps/api/js?language=en&key=${GOOGLE_API_KEY}&libraries=places&callback=Function.prototype`
-  )
-
   const handleDestinationInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     // Only set
     setData({ ...data, [e.target.name]: "" })
@@ -37,7 +33,7 @@ export function DestinationInput({ data, setData }: DestinationFormPropType) {
     // Conditions to ensure that no multiple instances of the
     if (
       autoCompleteRef.current ||
-      scriptStatus === "loading" ||
+      googleScript === "loading" ||
       !destinationInputRef.current ||
       !window.google ||
       !window.google.maps ||
@@ -46,7 +42,7 @@ export function DestinationInput({ data, setData }: DestinationFormPropType) {
       return
     }
 
-    if (scriptStatus === "error") {
+    if (googleScript === "error") {
       // Report error
       return
     }
@@ -65,7 +61,7 @@ export function DestinationInput({ data, setData }: DestinationFormPropType) {
       const place = autoCompleteRef.current?.getPlace()
       setData((data) => ({ ...data, ["destination"]: place?.name as string }))
     })
-  }, [scriptStatus, autocompleteOptions, handleDestinationInput])
+  }, [googleScript, autocompleteOptions, handleDestinationInput])
 
   return (
     <label>

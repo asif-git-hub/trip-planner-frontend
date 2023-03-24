@@ -102,7 +102,6 @@ export function MyForm({
             type: "cafe",
           },
           (results: google.maps.places.PlaceResult[] | null, status) => {
-            console.log(results)
             if (
               status === google.maps.places.PlacesServiceStatus.OK &&
               results &&
@@ -119,7 +118,6 @@ export function MyForm({
             type: "restaurant",
           },
           (results: google.maps.places.PlaceResult[] | null, status) => {
-            console.log(results)
             if (
               status === google.maps.places.PlacesServiceStatus.OK &&
               results &&

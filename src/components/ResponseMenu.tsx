@@ -9,7 +9,6 @@ export function ResponseMenu({
   containerToDisplay,
   setContainerToDisplay,
 }: ResponseMenuPropType) {
-
   function handleMenuToggle(e: MouseEvent<HTMLElement>) {
     setContainerToDisplay(e.currentTarget.id)
   }

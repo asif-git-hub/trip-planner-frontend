@@ -20,6 +20,9 @@ export function Home() {
   })
 
   const [itinerary, setItinerary] = useState("")
+  const [cafeRecommendations, setCafeRecommendations] = useState("")
+  const [restaurantRecommendations, setRestaurantRecommendations] = useState("")
+
   const [containerToDisplay, setContainerToDisplay] =
     useState("itinerary-button")
 
@@ -30,7 +33,7 @@ export function Home() {
   }
 
   if (!loading) {
-    if (!itinerary) {
+    if (!itinerary && !cafeRecommendations && cafeRecommendations === "") {
       return (
         <div className="home">
           <Header></Header>
@@ -39,7 +42,9 @@ export function Home() {
             data={data}
             setData={setData}
             setLoading={setLoading}
-            setResponse={setItinerary}
+            setItinerary={setItinerary}
+            setCafeRecommendations={setCafeRecommendations}
+            setRestaurantRecommendations={setRestaurantRecommendations}
             setErrored={setErrored}
           ></MyForm>
         </div>
@@ -47,17 +52,17 @@ export function Home() {
     } else {
       return (
         <div className="response-window" ref={responseBoxRef}>
-
           <ResponseMenu
             containerToDisplay={containerToDisplay}
             setContainerToDisplay={setContainerToDisplay}
           ></ResponseMenu>
-          
+
           <ResponseBox
             containerToDisplay={containerToDisplay}
-            response={itinerary}
+            itinerary={itinerary}
+            cafes={cafeRecommendations}
+            restaurants={restaurantRecommendations}
           ></ResponseBox>
-
         </div>
       )
     }

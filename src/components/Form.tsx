@@ -1,9 +1,8 @@
 import React, { Dispatch, useState } from "react"
-import { HttpClient } from "../clients/http.client"
-import { options } from "../data/options"
-import { Option } from "./Option"
 import { DestinationInput } from "./DestinationInput"
+import { DataAggregator } from "../data/data.aggregator"
 import { getEnvVar } from "../utils/common.utils"
+import useScript from "../hooks/use.script"
 
 export type DataType = {
   destination: string
@@ -17,7 +16,9 @@ type MyFormType = {
   data: DataType
   setData: Dispatch<React.SetStateAction<DataType>>
   setLoading: Dispatch<React.SetStateAction<boolean>>
-  setResponse: Dispatch<React.SetStateAction<string>>
+  setItinerary: Dispatch<React.SetStateAction<string>>
+  setCafeRecommendations: Dispatch<React.SetStateAction<string>>
+  setRestaurantRecommendations: Dispatch<React.SetStateAction<string>>
   setErrored: Dispatch<React.SetStateAction<boolean>>
 }
 
@@ -25,7 +26,9 @@ export function MyForm({
   data,
   setData,
   setLoading,
-  setResponse,
+  setItinerary,
+  setCafeRecommendations,
+  setRestaurantRecommendations,
   setErrored,
 }: MyFormType) {
   const [formError, setFormError] = useState({
@@ -33,17 +36,16 @@ export function MyForm({
     message: "",
   })
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (
-      e.target.name === "includeCafes" ||
-      e.target.name === "includeRestaurants" ||
-      e.target.name === "includeMuseums"
-    ) {
-      if (e.target.value === "on") {
-        setData({ ...data, [e.target.name]: !data[e.target.name] })
-      }
-    }
+  const GOOGLE_API_KEY = getEnvVar("REACT_APP_GOOGLE_API_KEY")
 
+  const scriptStatus = useScript(
+    // By default, Google Places will attempt to guess your language based on your country.
+    `https://maps.googleapis.com/maps/api/js?language=en&key=${GOOGLE_API_KEY}&libraries=places&callback=Function.prototype`
+  )
+
+  const dataAggregator = new DataAggregator()
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.name === "days") {
       setData({ ...data, ["days"]: e.target.value })
     }
@@ -79,15 +81,57 @@ export function MyForm({
       try {
         setLoading(true)
 
-        const baseUrl = getEnvVar("REACT_APP_ITINERARY_RETRIEVER_API")
-        const url = `${baseUrl}?destination=${data.destination}&days=${data.days}&includeCafes=${data.includeCafes}&includeRestaurants=${data.includeRestaurants}&includeMuseums=${data.includeMuseums}`
+        const itinerary = await dataAggregator.getItinerary(
+          data.destination,
+          data.days
+        )
 
-        const httpClient = new HttpClient()
+        // Get Food options
 
-        const res = await httpClient.get(url)
+        const map = new window.google.maps.Map(
+          document.createElement("map") as HTMLElement,
+          {
+            zoom: 15,
+          }
+        )
+        const placesService = new window.google.maps.places.PlacesService(map)
 
-        if (res) {
-          setResponse(JSON.stringify(res.data))
+        placesService.textSearch(
+          {
+            query: `Top rated and most popular breakfast cafes in ${data.destination}`,
+            type: "cafe",
+          },
+          (results: google.maps.places.PlaceResult[] | null, status) => {
+            console.log(results)
+            if (
+              status === google.maps.places.PlacesServiceStatus.OK &&
+              results &&
+              results.length > 0
+            ) {
+              setCafeRecommendations(JSON.stringify(results))
+            }
+          }
+        )
+
+        placesService.textSearch(
+          {
+            query: `Top rated and most popular restaurants in ${data.destination}`,
+            type: "restaurant",
+          },
+          (results: google.maps.places.PlaceResult[] | null, status) => {
+            console.log(results)
+            if (
+              status === google.maps.places.PlacesServiceStatus.OK &&
+              results &&
+              results.length > 0
+            ) {
+              setRestaurantRecommendations(JSON.stringify(results))
+            }
+          }
+        )
+
+        if (itinerary) {
+          setItinerary(JSON.stringify(itinerary))
           setLoading(false)
         }
       } catch (e) {
@@ -102,7 +146,11 @@ export function MyForm({
     <div>
       <form className="form" onSubmit={handleSubmit}>
         <div className="input-grid-section">
-          <DestinationInput data={data} setData={setData}></DestinationInput>
+          <DestinationInput
+            googleScript={scriptStatus}
+            data={data}
+            setData={setData}
+          ></DestinationInput>
 
           <label>
             <input
@@ -125,21 +173,6 @@ export function MyForm({
           ) : (
             ""
           )}
-
-          <div className="options-container">
-            {options.map((option, id) => {
-              return (
-                <Option
-                  key={id}
-                  id={id}
-                  label={option.label}
-                  name={option.name}
-                  checked={data[option.name]}
-                  handleChange={handleChange}
-                />
-              )
-            })}
-          </div>
         </div>
 
         <button className={"btn"} type="submit">

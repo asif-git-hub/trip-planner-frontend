@@ -13,10 +13,7 @@ export function Home() {
   // data to be sent
   const [data, setData] = useState({
     destination: "",
-    days: "",
-    includeCafes: false,
-    includeRestaurants: false,
-    includeMuseums: false,
+    days: ""
   })
 
   const [itinerary, setItinerary] = useState("")

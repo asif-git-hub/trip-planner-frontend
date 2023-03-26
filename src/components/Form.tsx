@@ -7,9 +7,6 @@ import useScript from "../hooks/use.script"
 export type DataType = {
   destination: string
   days: string
-  includeCafes: boolean
-  includeRestaurants: boolean
-  includeMuseums: boolean
 }
 
 type MyFormType = {
@@ -47,7 +44,7 @@ export function MyForm({
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.name === "days") {
-      setData({ ...data, ["days"]: e.target.value })
+      setData({ ...data, days: e.target.value })
     }
   }
 
@@ -157,9 +154,9 @@ export function MyForm({
               type="number"
               name="days"
               required={true}
-              placeholder="How many days (maximum 6 days)"
+              placeholder="How many days (maximum 7 days)"
               min={1}
-              max={6}
+              max={7}
               onChange={handleChange}
             />
           </label>

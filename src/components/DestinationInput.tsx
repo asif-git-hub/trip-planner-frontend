@@ -59,7 +59,7 @@ export function DestinationInput({
 
       // Retrieve the selected location with the `getPlace` method.
       const place = autoCompleteRef.current?.getPlace()
-      setData((data) => ({ ...data, ["destination"]: place?.name as string }))
+      setData((data) => ({ ...data, destination: place?.name as string }))
     })
   }, [googleScript, autocompleteOptions, handleDestinationInput])
 

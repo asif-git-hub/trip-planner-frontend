@@ -5,6 +5,7 @@ import { FoodRecommendationList } from "./FoodRecommendationList"
 
 type ResponsePropType = {
   containerToDisplay: string
+  destination: string
   itinerary: string
   cafes: string
   restaurants: string
@@ -12,6 +13,7 @@ type ResponsePropType = {
 
 export function ResponseBox({
   containerToDisplay,
+  destination,
   itinerary,
   cafes,
   restaurants,
@@ -36,6 +38,7 @@ export function ResponseBox({
               <DailyActivitiesList
                 key={id}
                 day={dailyActivities.day}
+                destination={destination}
                 activities={dailyActivities.activities}
               ></DailyActivitiesList>
             )

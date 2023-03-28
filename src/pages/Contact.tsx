@@ -9,7 +9,7 @@ export function Contact() {
       <br></br>
       <p>
         We are dedicated to providing you with a comprehensive travel planning
-        experience, serving as your one-stop-shop for all your travel needs. If 
+        experience, serving as your one-stop-shop for all your travel needs. If
         you have any feedbacks, we would be delighted to hear from you.
         <br></br>
         <i>{email}</i>

@@ -692,3 +692,13 @@ nav {
     width: 90%;
   }
 }
+
+/* Map */
+#map {
+  height: 180px;
+}
+
+.leaflet-container {
+  height: 500px;
+  width: 500px;
+}

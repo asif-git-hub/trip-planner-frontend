@@ -1,6 +1,6 @@
 import { getEnvVar } from "../utils/common.utils"
 import { HttpClient } from "../clients/http.client"
-import { AxiosHeaders } from 'axios';
+import { AxiosHeaders } from "axios"
 
 export class DataAggregator {
   private itineraryBaseUrl = getEnvVar("REACT_APP_ITINERARY_RETRIEVER_API")
@@ -15,18 +15,19 @@ export class DataAggregator {
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Request-Methods": "OPTIONS,GET",
       "Access-Control-Allow-Headers": "Content-Type",
-    });
+    })
 
     const response = await this.httpClient.get(url, headers)
 
     return response.data
   }
 
-  async getGeocode(location: string) {
-
-    const url = `${this.geocodeBaseUrl}?format=json&q=${location}&accept-language=en&limit=1&email=${this.personalEmail}`
+  async getGeocode(destination: string): Promise<NominatimResult[]> {
+    const url = `${this.geocodeBaseUrl}?format=json&q=${destination}&accept-language=en&limit=1&email=${this.personalEmail}`
     const response = await this.httpClient.get(url)
 
     return response.data
   }
+
+  async getItineraryWithGeocode(destination: string, days: string) {}
 }

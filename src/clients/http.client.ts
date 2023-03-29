@@ -6,7 +6,7 @@ export class HttpClient {
     const response = await axios({
       method: "get",
       url,
-      headers
+      headers,
     })
 
     return response

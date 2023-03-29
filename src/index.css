@@ -694,11 +694,7 @@ nav {
 }
 
 /* Map */
-#map {
-  height: 180px;
-}
-
-.leaflet-container {
-  height: 500px;
-  width: 500px;
+.google-map-code iframe {
+  height: 450px;
+  border: 0;
 }

@@ -1,8 +1,16 @@
 import React from "react"
 import { DailyActivitiesType } from "../types/response.types"
 import { ActivityDetails } from "./ActivityDetails"
+import { createMapQuery } from "../utils/google.utils"
 
-export function DailyActivitiesList({ day, activities }: DailyActivitiesType) {
+type DailyActivitiesListPropType = DailyActivitiesType & { destination: string }
+
+export function DailyActivitiesList({
+  day,
+  destination,
+  activities,
+}: DailyActivitiesListPropType) {
+  let mapsUrl = createMapQuery(activities, destination.replace(/ /g, "+").replace(",", ""))
   return (
     <div className="activitieslist-container">
       <div className="day-container">
@@ -11,13 +19,29 @@ export function DailyActivitiesList({ day, activities }: DailyActivitiesType) {
 
       {activities.map((activity, id) => {
         return (
-          <ActivityDetails
-            key={id}
-            location={activity.location}
-            description={activity.description}
-          ></ActivityDetails>
+          <div>
+            <ActivityDetails
+              key={id}
+              location={activity.location}
+              description={activity.description}
+            ></ActivityDetails>
+          </div>
         )
       })}
+
+      <div className="google-map-code">
+        <iframe
+          src={mapsUrl}
+          className="google-map"
+          loading="lazy"
+          title={`Day ${day} activities for ${destination}`}
+          referrerPolicy="no-referrer-when-downgrade"
+          width="100%"
+          height="100%"
+          aria-hidden="false"
+          tabIndex={0}
+        ></iframe>
+      </div>
     </div>
   )
 }

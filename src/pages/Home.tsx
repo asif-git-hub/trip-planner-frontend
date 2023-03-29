@@ -13,7 +13,7 @@ export function Home() {
   // data to be sent
   const [data, setData] = useState({
     destination: "",
-    days: ""
+    days: "",
   })
 
   const [itinerary, setItinerary] = useState("")
@@ -56,6 +56,7 @@ export function Home() {
 
           <ResponseBox
             containerToDisplay={containerToDisplay}
+            destination={data.destination}
             itinerary={itinerary}
             cafes={cafeRecommendations}
             restaurants={restaurantRecommendations}

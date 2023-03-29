@@ -692,3 +692,9 @@ nav {
     width: 90%;
   }
 }
+
+/* Map */
+.google-map-code iframe {
+  height: 450px;
+  border: 0;
+}

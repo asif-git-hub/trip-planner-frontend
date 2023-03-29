@@ -4,8 +4,8 @@ import { AxiosHeaders } from "axios"
 
 export class DataAggregator {
   private itineraryBaseUrl = getEnvVar("REACT_APP_ITINERARY_RETRIEVER_API")
-  private geocodeBaseUrl = getEnvVar("REACT_APP_GEOCODE_URL")
-  private personalEmail = getEnvVar("REACT_APP_EMAIL")
+  // private geocodeBaseUrl = getEnvVar("REACT_APP_GEOCODE_URL")
+  // private personalEmail = getEnvVar("REACT_APP_EMAIL")
   private httpClient = new HttpClient()
 
   async getItinerary(destination: string, days: string) {
@@ -22,12 +22,12 @@ export class DataAggregator {
     return response.data
   }
 
-  async getGeocode(destination: string): Promise<NominatimResult[]> {
-    const url = `${this.geocodeBaseUrl}?format=json&q=${destination}&accept-language=en&limit=1&email=${this.personalEmail}`
-    const response = await this.httpClient.get(url)
+  // async getGeocode(destination: string): Promise<NominatimResult[]> {
+  //   const url = `${this.geocodeBaseUrl}?format=json&q=${destination}&accept-language=en&limit=1&email=${this.personalEmail}`
+  //   const response = await this.httpClient.get(url)
 
-    return response.data
-  }
+  //   return response.data
+  // }
 
   async getItineraryWithGeocode(destination: string, days: string) {}
 }

@@ -40,6 +40,7 @@ export function ResponseBox({
                 day={dailyActivities.day}
                 destination={destination}
                 activities={dailyActivities.activities}
+                city={dailyActivities.city}
               ></DailyActivitiesList>
             )
           })

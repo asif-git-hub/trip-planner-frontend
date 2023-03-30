@@ -1,5 +1,6 @@
 export type DailyActivitiesType = {
   day: number
+  city?: string
   activities: ActivityType[]
 }
 

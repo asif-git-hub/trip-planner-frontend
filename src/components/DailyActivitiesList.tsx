@@ -10,7 +10,10 @@ export function DailyActivitiesList({
   destination,
   activities,
 }: DailyActivitiesListPropType) {
-  let mapsUrl = createMapQuery(activities, destination.replace(/ /g, "+").replace(",", ""))
+  let mapsUrl = createMapQuery(
+    activities,
+    destination.replace(/ /g, "+").replace(",", "")
+  )
   return (
     <div className="activitieslist-container">
       <div className="day-container">

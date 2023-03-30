@@ -1,11 +1,11 @@
 import { Dispatch, useEffect, useMemo, useRef } from "react"
-import { DataType } from "./Form"
 import React from "react"
+import { ItineraryRequestType } from "../types/request.types"
 
 type DestinationFormPropType = {
   googleScript: string
-  data: DataType
-  setData: Dispatch<React.SetStateAction<DataType>>
+  data: ItineraryRequestType
+  setData: Dispatch<React.SetStateAction<ItineraryRequestType>>
 }
 
 export function DestinationInput({
@@ -25,7 +25,7 @@ export function DestinationInput({
   )
 
   const handleDestinationInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // Only set
+    // Dont allow users to input
     setData({ ...data, [e.target.name]: "" })
   }
 

@@ -5,13 +5,14 @@ import { Loading } from "../components/Loading"
 import { ResponseBox } from "../components/ResponseBox"
 import { TechnicalError } from "./Error"
 import { ResponseMenu } from "../components/ResponseMenu"
+import { ItineraryRequestType } from "../types/request.types"
 
 export function Home() {
   const [loading, setLoading] = useState(false)
   const [errored, setErrored] = useState(false)
 
   // data to be sent
-  const [data, setData] = useState({
+  const [data, setData] = useState<ItineraryRequestType>({
     destination: "",
     days: "",
   })

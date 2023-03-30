@@ -3,15 +3,11 @@ import { DestinationInput } from "./DestinationInput"
 import { DataAggregator } from "../data/data.aggregator"
 import { getEnvVar } from "../utils/common.utils"
 import useScript from "../hooks/use.script"
-
-export type DataType = {
-  destination: string
-  days: string
-}
+import { ItineraryRequestType } from "../types/request.types"
 
 type MyFormType = {
-  data: DataType
-  setData: Dispatch<React.SetStateAction<DataType>>
+  data: ItineraryRequestType
+  setData: Dispatch<React.SetStateAction<ItineraryRequestType>>
   setLoading: Dispatch<React.SetStateAction<boolean>>
   setItinerary: Dispatch<React.SetStateAction<string>>
   setCafeRecommendations: Dispatch<React.SetStateAction<string>>

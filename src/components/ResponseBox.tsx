@@ -35,7 +35,8 @@ export function ResponseBox({
       {containerToDisplay === "itinerary-button"
         ? itineraryData.map((dailyActivities, id) => {
             return (
-              <DailyActivitiesList key={id}
+              <DailyActivitiesList
+                key={id}
                 day={dailyActivities.day}
                 destination={destination}
                 activities={dailyActivities.activities}

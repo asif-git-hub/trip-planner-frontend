@@ -1,4 +1,4 @@
 export type ItineraryRequestType = {
-    destination: string,
-    days: string
+  destination: string
+  days: string
 }

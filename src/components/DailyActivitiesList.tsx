@@ -1,5 +1,5 @@
 import React from "react"
-import { DailyActivitiesType, ItineraryData } from '../types/response.types';
+import { DailyActivitiesType, ItineraryData } from "../types/response.types"
 import { ActivityDetails } from "./ActivityDetails"
 import { createMapQuery } from "../utils/google.utils"
 
@@ -9,7 +9,7 @@ export function DailyActivitiesList({
   day,
   destination,
   activities,
-  city
+  city,
 }: DailyActivitiesListPropType) {
   let mapsUrl = createMapQuery(
     activities,
@@ -18,7 +18,10 @@ export function DailyActivitiesList({
   return (
     <div className="activitieslist-container">
       <div className="day-container">
-        <h2>Day {day}{city? `: ${city}`: ""}</h2>
+        <h2>
+          Day {day}
+          {city ? `: ${city}` : ""}
+        </h2>
       </div>
 
       {activities.map((activity, id) => {

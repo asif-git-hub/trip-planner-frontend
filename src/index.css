@@ -57,6 +57,7 @@
   --response-menu-button-radius: 0.75rem;
   --fact-border-radius: 0.3rem;
   --letterSpacing: 1px;
+  --home-page-picture-height: 60vh;
   --transition: 0.3s ease-in-out all;
   --max-width: 1120px;
   --fixed-width: 600px;
@@ -132,14 +133,35 @@ ul {
   padding: 0;
 }
 
-.home {
-  padding-bottom: 150px;
+.block {
+  min-height: var(--home-page-picture-height);
 }
 
-.img {
+.home-background {
+  background: #cad2e1;
+}
+
+.intro-container {
+  position: relative;
+  margin: 0 auto;
+  margin-top: -350px;
+}
+
+.intro-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
+  height: 230px;
+}
+
+.home-img {
+  width: 100%;
+  height: var(--home-page-picture-height);
   display: block;
   object-fit: cover;
+  opacity: 40%;
 }
 
 /* buttons */
@@ -189,6 +211,14 @@ ul {
   margin-top: 3rem;
   margin: 3rem auto;
   text-align: center;
+  position: relative;
+}
+
+.form::before {
+  content: "";
+  top: 0;
+  left: 0;
+  position: absolute;
 }
 
 .form-label {
@@ -558,9 +588,19 @@ nav {
 
 .section-title {
   font-size: 1rem;
+  color: var(--clr-primary-8);
   letter-spacing: var(--mainSpacing);
   text-align: center;
+  position: relative;
   margin: 4rem 0 4rem 0;
+}
+
+.section-title::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 230px;
 }
 
 /* About */

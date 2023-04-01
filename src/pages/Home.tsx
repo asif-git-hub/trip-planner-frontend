@@ -6,6 +6,7 @@ import { ResponseBox } from "../components/ResponseBox"
 import { TechnicalError } from "./Error"
 import { ResponseMenu } from "../components/ResponseMenu"
 import { ItineraryRequestType } from "../types/request.types"
+import homeImg from "../assets/great-ocean-road.png"
 
 export function Home() {
   const [loading, setLoading] = useState(false)
@@ -34,17 +35,28 @@ export function Home() {
     if (!itinerary && !cafeRecommendations && cafeRecommendations === "") {
       return (
         <div className="home">
-          <Header></Header>
+          <div className="block home-background">
+            <img
+              src={homeImg}
+              className="home-img"
+              alt="popular travel spots in Europe"
+            />
+          </div>
+          <div className="block">
+            <div className="intro-container">
+              <Header></Header>
 
-          <MyForm
-            data={data}
-            setData={setData}
-            setLoading={setLoading}
-            setItinerary={setItinerary}
-            setCafeRecommendations={setCafeRecommendations}
-            setRestaurantRecommendations={setRestaurantRecommendations}
-            setErrored={setErrored}
-          ></MyForm>
+              <MyForm
+                data={data}
+                setData={setData}
+                setLoading={setLoading}
+                setItinerary={setItinerary}
+                setCafeRecommendations={setCafeRecommendations}
+                setRestaurantRecommendations={setRestaurantRecommendations}
+                setErrored={setErrored}
+              ></MyForm>
+            </div>
+          </div>
         </div>
       )
     } else {

@@ -17,7 +17,7 @@
   --primary-700: #3c3799;
   --primary-800: #282566;
   --primary-900: #141233;
-  --primary-5: hsl(205, 78%, 60%);
+  --clr-primary-5: hsl(205, 78%, 60%);
 
   /* grey */
   --grey-50: #f8fafc;
@@ -164,7 +164,75 @@ ul {
   opacity: 40%;
 }
 
+/* Preset Trips */
+
+.preset-trips-container {
+  width: 90vw;
+  max-width: var(--fixed-width);
+  margin: 5rem auto;
+}
+
+.preset-trips-heading {
+  text-align: center;
+}
+
+.single-trip {
+  background: var(--clr-white);
+  border-radius: var(--radius);
+  margin: 2rem 0;
+  box-shadow: var(--light-shadow);
+  transition: var(--transition);
+}
+
+.single-trip:hover {
+  box-shadow: var(--dark-shadow);
+}
+
+.single-trip img {
+  width: 100%;
+  height: 20rem;
+  object-fit: cover;
+  border-top-right-radius: var(--radius);
+  border-top-left-radius: var(--radius);
+}
+
+.single-trip p {
+  padding-top: 1rem;
+  padding-right: 2rem;
+  padding-left: 2rem;
+  color: var(--grey-500);
+}
+
+.single-trip .read-more {
+  background: transparent;
+  border-color: transparent;
+  text-transform: capitalize;
+  color: var(--clr-primary-5);
+  font-size: 1rem;
+  cursor: pointer;
+  padding-left: 0.25rem;
+}
+
+.trip-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 0.5rem;
+  padding-right: 2rem;
+  padding-left: 2rem;
+}
+
+.trip-info h5 {
+  margin-bottom: 0;
+  text-align: center;
+}
+
 /* buttons */
+
+.submit-trip-button {
+  text-align: center;
+  justify-content: center;
+}
 
 .btn {
   cursor: pointer;
@@ -180,6 +248,7 @@ ul {
   text-transform: capitalize;
   display: inline-block;
 }
+
 .btn:hover {
   background: var(--primary-700);
   box-shadow: var(--shadow-3);
@@ -197,6 +266,16 @@ ul {
   margin: 1rem 1rem;
   text-transform: capitalize;
   display: inline-block;
+}
+
+/* Underline */
+
+.underline {
+  width: 18rem;
+  height: 0.25rem;
+  background: var(--clr-primary-5);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* form */
@@ -729,6 +808,9 @@ nav {
 
 @media screen and (max-width: 800px) {
   .facts-container {
+    width: 90%;
+  }
+  .preset-trips-container {
     width: 90%;
   }
 }

@@ -1,4 +1,4 @@
-import React, { Dispatch, useState } from "react"
+import React, { Dispatch, SetStateAction, useState } from "react"
 import { DestinationInput } from "./DestinationInput"
 import { DataAggregator } from "../data/data.aggregator"
 import { getEnvVar } from "../utils/common.utils"
@@ -7,12 +7,12 @@ import { ItineraryRequestType } from "../types/request.types"
 
 type MyFormType = {
   data: ItineraryRequestType
-  setData: Dispatch<React.SetStateAction<ItineraryRequestType>>
-  setLoading: Dispatch<React.SetStateAction<boolean>>
-  setItinerary: Dispatch<React.SetStateAction<string>>
-  setCafeRecommendations: Dispatch<React.SetStateAction<string>>
-  setRestaurantRecommendations: Dispatch<React.SetStateAction<string>>
-  setErrored: Dispatch<React.SetStateAction<boolean>>
+  setData: Dispatch<SetStateAction<ItineraryRequestType>>
+  setLoading: Dispatch<SetStateAction<boolean>>
+  setItinerary: Dispatch<SetStateAction<string>>
+  setCafeRecommendations: Dispatch<SetStateAction<string>>
+  setRestaurantRecommendations: Dispatch<SetStateAction<string>>
+  setErrored: Dispatch<SetStateAction<boolean>>
 }
 
 export function MyForm({

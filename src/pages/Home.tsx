@@ -7,6 +7,7 @@ import { TechnicalError } from "./Error"
 import { ResponseMenu } from "../components/ResponseMenu"
 import { ItineraryRequestType } from "../types/request.types"
 import homeImg from "../assets/great-ocean-road.png"
+import { PresetTrips } from "../components/PresetTrips"
 
 export function Home() {
   const [loading, setLoading] = useState(false)
@@ -39,7 +40,7 @@ export function Home() {
             <img
               src={homeImg}
               className="home-img"
-              alt="popular travel spots in Europe"
+              alt="great ocean road in Melbourne Australia"
             />
           </div>
           <div className="block">
@@ -55,6 +56,14 @@ export function Home() {
                 setRestaurantRecommendations={setRestaurantRecommendations}
                 setErrored={setErrored}
               ></MyForm>
+
+              <PresetTrips setData={setData} 
+              setLoading={setLoading} 
+              setErrored={setErrored}
+              setItinerary={setItinerary}
+              setCafeRecommendations={setCafeRecommendations}
+              setRestaurantRecommendations={setRestaurantRecommendations}
+              ></PresetTrips>
             </div>
           </div>
         </div>

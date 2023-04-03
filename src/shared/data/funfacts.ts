@@ -13,6 +13,9 @@ export const funfacts = [
   "The world's highest waterfall, Angel Falls, is located in Venezuela and drops a total of 979 meters (3,212 feet).",
   "Australia is both a continent and a country, and is the only country in the world to occupy an entire continent.",
   "The Netherlands is one of the world's largest exporters of flowers, with tulips being the most famous. The country even has a flower park, Keukenhof, that displays over 7 million tulips each year.",
+  "The happiest language in the world is Spanish - containing the largest number of positive words.",
+  "In Italy, there's a fountain that flows red wine24 hours a day. Anybody can drink from the wine fountain, but it is primarily to quench the thirst of those taking the Camino di San Tommaso pilgrimage.",
   "Estonia is considered one of the most tech-savvy countries in the world, and has the highest number of startups per capita in Europe.",
+  "Portugal is known to have the highest number of sunshine hours in Europe. With some parts having almost 300 sunny days a year, you can enjoy over 3000 sunshine hours per year.",
   "Belgium is known for its waffles, but did you know that there are two types of Belgian waffles - Brussels waffles and Liege waffles?",
 ]

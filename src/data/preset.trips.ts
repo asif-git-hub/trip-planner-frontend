@@ -7,7 +7,7 @@ export const presetTrips = [
       "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?crop=entropy&cs=srgb&fm=jpg&ixid=Mnw0MjUwMjd8MHwxfHNlYXJjaHwxfHxTeWRuZXklMjBBdXN0cmFsaWF8ZW58MHx8fHwxNjgwMzQxNTI1&ixlib=rb-4.0.3&q=85",
     profile: "https://unsplash.com/fr/@danfreemanphoto",
     photographer: "Dan Freeman",
-    alt: "Opera house in Sydney Australia",
+    alt: "Eagle view of the Opera house in Sydney Australia as a ferry goes over the river",
   },
   {
     destination: "Paris, France",
@@ -27,7 +27,7 @@ export const presetTrips = [
       "https://images.unsplash.com/photo-1548092304-e0205cb0031b?crop=entropy&cs=srgb&fm=jpg&ixid=Mnw0MjUwMjd8MHwxfHNlYXJjaHwxfHxicnVzc2Vsc3xlbnwwfHx8fDE2ODAzNDI1MDU&ixlib=rb-4.0.3&q=85",
     profile: "https://unsplash.com/@sleblanc01",
     photographer: "Stephanie LeBlanc",
-    alt: "Old town buildings in Brussels",
+    alt: "Buildings in Grand Place, Grote Markt in Brussels",
   },
   {
     destination: "Munich, Germany",
@@ -37,7 +37,7 @@ export const presetTrips = [
       "https://images.unsplash.com/photo-1577462281852-279bf4986f7b?crop=entropy&cs=srgb&fm=jpg&ixid=Mnw0MjUwMjd8MHwxfHNlYXJjaHw0fHxNdW5pY2h8ZW58MHx8fHwxNjgwNDQ0NDM5&ixlib=rb-4.0.3&q=85",
     profile: "https://unsplash.com/@danielsessler",
     photographer: "danielsessler",
-    alt: "Munich old town center",
+    alt: "Cathedral Church of Our Lady in Munich at night",
   },
   {
     destination: "London, United Kingdom",
@@ -47,6 +47,6 @@ export const presetTrips = [
       "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw0MjUwMjd8MHwxfHNlYXJjaHwxfHxMb25kb258ZW58MHx8fHwxNjgwNDQ1MzUx&ixlib=rb-4.0.3&q=80&w=1080",
     profile: "https://unsplash.com/@bendavisual",
     photographer: "Benjamin Davies",
-    alt: "Eagle eye view of London",
+    alt: "Eagle eye view of London with the tower bridge",
   },
 ]

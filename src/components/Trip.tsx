@@ -31,7 +31,7 @@ export function Trip({
   setErrored,
   setItinerary,
   setRestaurantRecommendations,
-  setCafeRecommendations
+  setCafeRecommendations,
 }: TripPropsType) {
   const [readMore, setReadMore] = useState(false)
 
@@ -39,69 +39,67 @@ export function Trip({
     setData({
       days: days.toString(),
       destination,
-    });
+    })
 
     try {
-        setLoading(true)
+      setLoading(true)
 
-        const dataAggregator = new DataAggregator();
-        const itinerary = await dataAggregator.getItinerary(
-          destination,
-          days.toString()
-        );
+      const dataAggregator = new DataAggregator()
+      const itinerary = await dataAggregator.getItinerary(
+        destination,
+        days.toString()
+      )
 
-                // Get Food options
+      // Get Food options
 
-                const map = new window.google.maps.Map(
-                    document.createElement("map") as HTMLElement,
-                    {
-                      zoom: 15,
-                    }
-                  )
-                  const placesService = new window.google.maps.places.PlacesService(map)
-          
-                  placesService.textSearch(
-                    {
-                      query: `Top rated and most popular breakfast cafes in ${destination}`,
-                      type: "cafe",
-                    },
-                    (results: google.maps.places.PlaceResult[] | null, status) => {
-                      if (
-                        status === google.maps.places.PlacesServiceStatus.OK &&
-                        results &&
-                        results.length > 0
-                      ) {
-                        setCafeRecommendations(JSON.stringify(results))
-                      }
-                    }
-                  )
-          
-                  placesService.textSearch(
-                    {
-                      query: `Top rated and most popular restaurants in ${destination}`,
-                      type: "restaurant",
-                    },
-                    (results: google.maps.places.PlaceResult[] | null, status) => {
-                      if (
-                        status === google.maps.places.PlacesServiceStatus.OK &&
-                        results &&
-                        results.length > 0
-                      ) {
-                        setRestaurantRecommendations(JSON.stringify(results))
-                      }
-                    }
-                  )
-          
-                  if (itinerary) {
-                    setItinerary(JSON.stringify(itinerary))
-                    setLoading(false)
-                  }
+      const map = new window.google.maps.Map(
+        document.createElement("map") as HTMLElement,
+        {
+          zoom: 15,
+        }
+      )
+      const placesService = new window.google.maps.places.PlacesService(map)
 
-    } catch (e) {
+      placesService.textSearch(
+        {
+          query: `Top rated and most popular breakfast cafes in ${destination}`,
+          type: "cafe",
+        },
+        (results: google.maps.places.PlaceResult[] | null, status) => {
+          if (
+            status === google.maps.places.PlacesServiceStatus.OK &&
+            results &&
+            results.length > 0
+          ) {
+            setCafeRecommendations(JSON.stringify(results))
+          }
+        }
+      )
+
+      placesService.textSearch(
+        {
+          query: `Top rated and most popular restaurants in ${destination}`,
+          type: "restaurant",
+        },
+        (results: google.maps.places.PlaceResult[] | null, status) => {
+          if (
+            status === google.maps.places.PlacesServiceStatus.OK &&
+            results &&
+            results.length > 0
+          ) {
+            setRestaurantRecommendations(JSON.stringify(results))
+          }
+        }
+      )
+
+      if (itinerary) {
+        setItinerary(JSON.stringify(itinerary))
         setLoading(false)
-        setErrored(true)
-    } 
-
+      }
+    } catch (e) {
+      setLoading(false)
+      setErrored(true)
+    }
   }
   return (
     <div className="single-trip">
@@ -119,10 +117,9 @@ export function Trip({
       </p>
       <div className="submit-trip-button">
         <button className="btn" onClick={handleSubmission}>
-            Start Planning
+          Start Planning
         </button>
       </div>
-
     </div>
   )
 }

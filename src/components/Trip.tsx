@@ -108,8 +108,9 @@ export function Trip({
       <img src={image} alt={alt} loading="lazy"></img>
       <div className="unsplash-credit">
         <p>
-          photo by <a href={`${profile}?${unsplashreferral}`}>{photographer}</a>{" "}
-          on <a href={`https://unsplash.com/?${unsplashreferral}`}>unsplash</a>
+          <a href={image} target="_blank">photo</a> by{" "}
+          <a href={`${profile}?${unsplashreferral}`} target="_blank">{photographer}</a> on{" "}
+          <a href={`https://unsplash.com/?${unsplashreferral}`} target="_blank">unsplash</a>
         </p>
       </div>
       <div className="trip-info">

@@ -12,7 +12,14 @@ type PresetTripsPropType = {
   setRestaurantRecommendations: Dispatch<SetStateAction<string>>
 }
 
-export function PresetTrips({ setData, setLoading, setErrored, setItinerary, setCafeRecommendations, setRestaurantRecommendations }: PresetTripsPropType) {
+export function PresetTrips({
+  setData,
+  setLoading,
+  setErrored,
+  setItinerary,
+  setCafeRecommendations,
+  setRestaurantRecommendations,
+}: PresetTripsPropType) {
   return (
     <div className="preset-trips-container">
       <div className="preset-trips-heading">
@@ -21,18 +28,20 @@ export function PresetTrips({ setData, setLoading, setErrored, setItinerary, set
       <div className="underline"></div>
       <div className="trips-container">
         {presetTrips.map((trip, id) => {
-            return <Trip key={id} 
-            {...trip} 
-            setData={setData} 
-            setLoading={setLoading} 
-            setErrored={setErrored}
-            setItinerary={setItinerary}
-            setCafeRecommendations={setCafeRecommendations}
-            setRestaurantRecommendations={setRestaurantRecommendations}
+          return (
+            <Trip
+              key={id}
+              {...trip}
+              setData={setData}
+              setLoading={setLoading}
+              setErrored={setErrored}
+              setItinerary={setItinerary}
+              setCafeRecommendations={setCafeRecommendations}
+              setRestaurantRecommendations={setRestaurantRecommendations}
             ></Trip>
+          )
         })}
       </div>
-
     </div>
   )
 }

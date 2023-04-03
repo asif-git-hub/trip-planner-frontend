@@ -57,12 +57,13 @@ export function Home() {
                 setErrored={setErrored}
               ></MyForm>
 
-              <PresetTrips setData={setData} 
-              setLoading={setLoading} 
-              setErrored={setErrored}
-              setItinerary={setItinerary}
-              setCafeRecommendations={setCafeRecommendations}
-              setRestaurantRecommendations={setRestaurantRecommendations}
+              <PresetTrips
+                setData={setData}
+                setLoading={setLoading}
+                setErrored={setErrored}
+                setItinerary={setItinerary}
+                setCafeRecommendations={setCafeRecommendations}
+                setRestaurantRecommendations={setRestaurantRecommendations}
               ></PresetTrips>
             </div>
           </div>

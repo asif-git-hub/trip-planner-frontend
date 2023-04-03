@@ -18,6 +18,8 @@ type TripPropsType = {
   setRestaurantRecommendations: Dispatch<SetStateAction<string>>
 }
 
+const unsplashreferral = "utm_source=bitesizeadventure.com&utm_medium=referral";
+
 export function Trip({
   destination,
   days,
@@ -104,6 +106,9 @@ export function Trip({
   return (
     <div className="single-trip">
       <img src={image} alt={alt} loading="lazy"></img>
+      <div className="unsplash-credit">
+        <p>photo by <a href={`${profile}?${unsplashreferral}`}>{photographer}</a> on <a href={`https://unsplash.com/?${unsplashreferral}`}>unsplash</a></p>
+      </div>
       <div className="trip-info">
         <h5>
           Best of {destination} in {days} days

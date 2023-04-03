@@ -46,7 +46,7 @@
 
   /* fonts  */
 
-  --small-text: 0.875rem;
+  --small-text: 0.6rem;
   --extra-small-text: 0.7em;
   /* rest of the vars */
   --backgroundColor: var(--grey-50);
@@ -56,6 +56,7 @@
   --borderRadius: 0.25rem;
   --response-menu-button-radius: 0.75rem;
   --fact-border-radius: 0.3rem;
+  --preset-trips-radius: 0.25rem;
   --letterSpacing: 1px;
   --home-page-picture-height: 60vh;
   --transition: 0.3s ease-in-out all;
@@ -192,8 +193,8 @@ ul {
   width: 100%;
   height: 20rem;
   object-fit: cover;
-  border-top-right-radius: var(--radius);
-  border-top-left-radius: var(--radius);
+  border-top-right-radius: var(--preset-trips-radius);
+  border-top-left-radius: var(--preset-trips-radius);
 }
 
 .single-trip p {
@@ -819,4 +820,13 @@ nav {
 .google-map-code iframe {
   height: 450px;
   border: 0;
+}
+
+/* Unsplash */
+.unsplash-credit p {
+  font-size: var(--small-text);
+  text-align: right;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-bottom: 0;
 }

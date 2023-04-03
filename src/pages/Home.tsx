@@ -1,13 +1,12 @@
-import React, { useRef, useState } from "react"
+import React, { useState } from "react"
 import { MyForm } from "../components/Form"
 import { Header } from "../components/Header"
 import { Loading } from "../components/Loading"
-import { ResponseBox } from "../components/ResponseBox"
 import { TechnicalError } from "./Error"
-import { ResponseMenu } from "../components/ResponseMenu"
 import { ItineraryRequestType } from "../types/request.types"
 import homeImg from "../assets/great-ocean-road.png"
 import { PresetTrips } from "../components/PresetTrips"
+import { Result } from "./Result"
 
 export function Home() {
   const [loading, setLoading] = useState(false)
@@ -25,8 +24,6 @@ export function Home() {
 
   const [containerToDisplay, setContainerToDisplay] =
     useState("itinerary-button")
-
-  const responseBoxRef = useRef<HTMLInputElement>(null)
 
   if (errored) {
     return <TechnicalError></TechnicalError>
@@ -70,22 +67,14 @@ export function Home() {
         </div>
       )
     } else {
-      return (
-        <div className="response-window" ref={responseBoxRef}>
-          <ResponseMenu
-            containerToDisplay={containerToDisplay}
-            setContainerToDisplay={setContainerToDisplay}
-          ></ResponseMenu>
-
-          <ResponseBox
-            containerToDisplay={containerToDisplay}
-            destination={data.destination}
-            itinerary={itinerary}
-            cafes={cafeRecommendations}
-            restaurants={restaurantRecommendations}
-          ></ResponseBox>
-        </div>
-      )
+      return <Result
+      containerToDisplay={containerToDisplay}
+      data={data}
+      itinerary={itinerary}
+      cafeRecommendations={cafeRecommendations}
+      restaurantRecommendations={restaurantRecommendations}
+      setContainerToDisplay={setContainerToDisplay}
+      ></Result>
     }
   } else {
     return (

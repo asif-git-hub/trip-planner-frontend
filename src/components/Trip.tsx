@@ -14,8 +14,6 @@ type TripPropsType = {
   setLoading: Dispatch<SetStateAction<boolean>>
   setErrored: Dispatch<SetStateAction<boolean>>
   setItinerary: Dispatch<SetStateAction<string>>
-  setCafeRecommendations: Dispatch<SetStateAction<string>>
-  setRestaurantRecommendations: Dispatch<SetStateAction<string>>
 }
 
 const unsplashreferral = "utm_source=bitesizeadventure.com&utm_medium=referral"
@@ -32,8 +30,6 @@ export function Trip({
   setLoading,
   setErrored,
   setItinerary,
-  setRestaurantRecommendations,
-  setCafeRecommendations,
 }: TripPropsType) {
   const [readMore, setReadMore] = useState(false)
 
@@ -50,48 +46,6 @@ export function Trip({
       const itinerary = await dataAggregator.getItinerary(
         destination,
         days.toString()
-      )
-
-      // Get Food options
-
-      const map = new window.google.maps.Map(
-        document.createElement("map") as HTMLElement,
-        {
-          zoom: 15,
-        }
-      )
-      const placesService = new window.google.maps.places.PlacesService(map)
-
-      placesService.textSearch(
-        {
-          query: `Top rated and most popular breakfast cafes in ${destination}`,
-          type: "cafe",
-        },
-        (results: google.maps.places.PlaceResult[] | null, status) => {
-          if (
-            status === google.maps.places.PlacesServiceStatus.OK &&
-            results &&
-            results.length > 0
-          ) {
-            setCafeRecommendations(JSON.stringify(results))
-          }
-        }
-      )
-
-      placesService.textSearch(
-        {
-          query: `Top rated and most popular restaurants in ${destination}`,
-          type: "restaurant",
-        },
-        (results: google.maps.places.PlaceResult[] | null, status) => {
-          if (
-            status === google.maps.places.PlacesServiceStatus.OK &&
-            results &&
-            results.length > 0
-          ) {
-            setRestaurantRecommendations(JSON.stringify(results))
-          }
-        }
       )
 
       if (itinerary) {
@@ -112,11 +66,19 @@ export function Trip({
             photo
           </a>{" "}
           by{" "}
-          <a href={`${profile}?${unsplashreferral}`} target="_blank" rel="noreferrer">
+          <a
+            href={`${profile}?${unsplashreferral}`}
+            target="_blank"
+            rel="noreferrer"
+          >
             {photographer}
           </a>{" "}
           on{" "}
-          <a href={`https://unsplash.com/?${unsplashreferral}`} target="_blank" rel="noreferrer">
+          <a
+            href={`https://unsplash.com/?${unsplashreferral}`}
+            target="_blank"
+            rel="noreferrer"
+          >
             unsplash
           </a>
         </p>

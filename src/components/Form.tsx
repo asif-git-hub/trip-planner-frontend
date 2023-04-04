@@ -10,8 +10,6 @@ type MyFormType = {
   setData: Dispatch<SetStateAction<ItineraryRequestType>>
   setLoading: Dispatch<SetStateAction<boolean>>
   setItinerary: Dispatch<SetStateAction<string>>
-  setCafeRecommendations: Dispatch<SetStateAction<string>>
-  setRestaurantRecommendations: Dispatch<SetStateAction<string>>
   setErrored: Dispatch<SetStateAction<boolean>>
 }
 
@@ -20,8 +18,6 @@ export function MyForm({
   setData,
   setLoading,
   setItinerary,
-  setCafeRecommendations,
-  setRestaurantRecommendations,
   setErrored,
 }: MyFormType) {
   const [formError, setFormError] = useState({
@@ -77,48 +73,6 @@ export function MyForm({
         const itinerary = await dataAggregator.getItinerary(
           data.destination,
           data.days
-        )
-
-        // Get Food options
-
-        const map = new window.google.maps.Map(
-          document.createElement("map") as HTMLElement,
-          {
-            zoom: 15,
-          }
-        )
-        const placesService = new window.google.maps.places.PlacesService(map)
-
-        placesService.textSearch(
-          {
-            query: `Top rated and most popular breakfast cafes in ${data.destination}`,
-            type: "cafe",
-          },
-          (results: google.maps.places.PlaceResult[] | null, status) => {
-            if (
-              status === google.maps.places.PlacesServiceStatus.OK &&
-              results &&
-              results.length > 0
-            ) {
-              setCafeRecommendations(JSON.stringify(results))
-            }
-          }
-        )
-
-        placesService.textSearch(
-          {
-            query: `Top rated and most popular restaurants in ${data.destination}`,
-            type: "restaurant",
-          },
-          (results: google.maps.places.PlaceResult[] | null, status) => {
-            if (
-              status === google.maps.places.PlacesServiceStatus.OK &&
-              results &&
-              results.length > 0
-            ) {
-              setRestaurantRecommendations(JSON.stringify(results))
-            }
-          }
         )
 
         if (itinerary) {

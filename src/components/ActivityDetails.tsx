@@ -1,7 +1,12 @@
 import React from "react"
 import { ActivityType } from "../types/response.types"
 
-export function ActivityDetails({ location, description }: ActivityType) {
+type ActivityDetailsPropType = Omit<ActivityType, "geocode">
+
+export function ActivityDetails({
+  location,
+  description,
+}: ActivityDetailsPropType) {
   return (
     <div className="activty-container">
       <p>

@@ -7,6 +7,10 @@ export type DailyActivitiesType = {
 export type ActivityType = {
   location: string
   description: string
+  geocode: {
+    longitude: number
+    latitude: number
+  }
 }
 
 export type ItineraryData = {

@@ -35,7 +35,7 @@
   --lavendar-blush: #fff0f5;
   --light-mint: #c8e2d2;
   --dark-teal: #008080;
-  --egg-shell: #ffc300;
+  --egg-shell: #f6d052;
   --mint: #daf7a6;
   --black: #222;
   --white: #fff;
@@ -269,6 +269,31 @@ ul {
   display: inline-block;
 }
 
+.round-btn {
+  background-color: #48abe0;
+  color: white;
+  border: none;
+  padding: 5px;
+  margin-right: 10px;
+  margin-left: 10px;
+  font-size: 31px;
+  height: 50px;
+  width: 50px;
+  box-shadow: 0 2px 4px darkslategray;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 50%;
+}
+
+.meal-btn:hover {
+  background-color: #65b9e6;
+}
+
+.meal-btn:active {
+  box-shadow: 0 0 2px darkslategray;
+  transform: translateY(2px);
+}
+
 /* Underline */
 
 .underline {
@@ -422,6 +447,12 @@ ul {
   display: inline-block;
 }
 
+/* Meal Container */
+
+.meal-links-container {
+  text-align: center;
+}
+
 /* Response Menu */
 
 .response-menu-container {
@@ -483,7 +514,8 @@ ul {
 }
 
 .day-container {
-  background: var(--grey-200);
+  background: var(--egg-shell);
+  color: white;
   margin: 1rem auto;
   padding: 15px;
   border-radius: var(--borderRadius);

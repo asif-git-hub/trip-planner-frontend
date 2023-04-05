@@ -1,12 +1,21 @@
 import React from "react"
 
-export function Header() {
+type HeaderPropType = {
+  heading: string
+  description?: string
+}
+
+export function Header({ heading, description }: HeaderPropType) {
   return (
     <div className="section-title">
-      <h2>Travel Planner</h2>
-      <p>
-        <strong>Instant itinerary creator | Powered by AI</strong>
-      </p>
+      <h2>{heading}</h2>
+      {description ? (
+        <p>
+          <strong>{description}</strong>
+        </p>
+      ) : (
+        ""
+      )}
     </div>
   )
 }

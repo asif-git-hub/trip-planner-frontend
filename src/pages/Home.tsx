@@ -19,6 +19,7 @@ export function Home() {
   })
 
   const [itinerary, setItinerary] = useState("")
+  const [photoData, setPhotoData] = useState("")
 
   if (errored) {
     return <TechnicalError></TechnicalError>
@@ -28,16 +29,19 @@ export function Home() {
     if (!itinerary) {
       return (
         <div className="home">
-          <div className="block home-background">
+          <div className="block img-background">
             <img
               src={homeImg}
-              className="home-img"
+              className="background-img"
               alt="great ocean road in Melbourne Australia"
             />
           </div>
           <div className="block">
-            <div className="intro-container">
-              <Header></Header>
+            <div className="content-container">
+              <Header
+                heading="Travel Planner"
+                description="Instant itinerary creator | Powered by AI"
+              ></Header>
 
               <MyForm
                 data={data}
@@ -45,6 +49,7 @@ export function Home() {
                 setLoading={setLoading}
                 setItinerary={setItinerary}
                 setErrored={setErrored}
+                setPhotoData={setPhotoData}
               ></MyForm>
 
               <PresetTrips
@@ -52,13 +57,20 @@ export function Home() {
                 setLoading={setLoading}
                 setErrored={setErrored}
                 setItinerary={setItinerary}
+                setPhotoData={setPhotoData}
               ></PresetTrips>
             </div>
           </div>
         </div>
       )
     } else {
-      return <Result data={data} itinerary={itinerary}></Result>
+      return (
+        <Result
+          data={data}
+          itinerary={itinerary}
+          photoData={photoData}
+        ></Result>
+      )
     }
   } else {
     return (

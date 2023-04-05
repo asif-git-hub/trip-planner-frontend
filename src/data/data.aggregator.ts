@@ -1,6 +1,7 @@
 import { getEnvVar } from "../utils/common.utils"
 import { HttpClient } from "../clients/http.client"
 import { AxiosHeaders } from "axios"
+import { PhotoApi } from "../api/photo.api"
 
 export class DataAggregator {
   private itineraryBaseUrl = getEnvVar("REACT_APP_ITINERARY_RETRIEVER_API")
@@ -22,12 +23,24 @@ export class DataAggregator {
     return response.data
   }
 
+  async getAllData(destination: string, days: string) {
+    const photoApi = new PhotoApi()
+
+    const [itinerary, photo] = await Promise.allSettled([
+      this.getItinerary(destination, days),
+      photoApi.getPhoto(destination),
+    ])
+
+    //
+    if (itinerary.status === "rejected") {
+      throw new Error("")
+    }
+  }
+
   // async getGeocode(destination: string): Promise<NominatimResult[]> {
   //   const url = `${this.geocodeBaseUrl}?format=json&q=${destination}&accept-language=en&limit=1&email=${this.personalEmail}`
   //   const response = await this.httpClient.get(url)
 
   //   return response.data
   // }
-
-  async getItineraryWithGeocode(destination: string, days: string) {}
 }

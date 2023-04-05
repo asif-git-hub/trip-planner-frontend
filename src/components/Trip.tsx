@@ -52,7 +52,8 @@ export function Trip({
         throw new Error("Unable to resolve itinerary")
       }
       //
-
+      console.log(itineraryResult)
+      console.log(photoResult)
       if (itineraryResult.status === "fulfilled") {
         setItinerary(JSON.stringify(itineraryResult.value))
         if (photoResult.status === "fulfilled") {

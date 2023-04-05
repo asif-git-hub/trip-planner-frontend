@@ -48,6 +48,9 @@ export function Trip({
         photoApi.getPhoto(destination),
       ])
 
+      console.log(itineraryResult)
+      console.log(photoResult)
+
       if (itineraryResult.status === "rejected") {
         throw new Error("Unable to resolve itinerary")
       }

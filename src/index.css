@@ -428,6 +428,7 @@ ul {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
+  position: relative;
   /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
   gap: 2rem;
   margin: 1rem auto;
@@ -435,6 +436,7 @@ ul {
   max-width: var(--max-width);
   padding: 15px;
   text-align: left;
+  z-index: 4;
 }
 
 .response-container p {

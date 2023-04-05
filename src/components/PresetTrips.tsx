@@ -8,6 +8,7 @@ type PresetTripsPropType = {
   setLoading: Dispatch<SetStateAction<boolean>>
   setErrored: Dispatch<SetStateAction<boolean>>
   setItinerary: Dispatch<SetStateAction<string>>
+  setPhotoData: Dispatch<SetStateAction<string>>
 }
 
 export function PresetTrips({
@@ -15,6 +16,7 @@ export function PresetTrips({
   setLoading,
   setErrored,
   setItinerary,
+  setPhotoData
 }: PresetTripsPropType) {
   return (
     <div className="preset-trips-container">
@@ -32,6 +34,7 @@ export function PresetTrips({
               setLoading={setLoading}
               setErrored={setErrored}
               setItinerary={setItinerary}
+              setPhotoData={setPhotoData}
             ></Trip>
           )
         })}

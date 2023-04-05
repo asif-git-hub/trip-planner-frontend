@@ -4,6 +4,7 @@ import { DataAggregator } from "../data/data.aggregator"
 import { getEnvVar } from "../utils/common.utils"
 import useScript from "../hooks/use.script"
 import { ItineraryRequestType } from "../types/request.types"
+import { PhotoApi } from "../api/photo.api"
 
 type MyFormType = {
   data: ItineraryRequestType
@@ -11,6 +12,7 @@ type MyFormType = {
   setLoading: Dispatch<SetStateAction<boolean>>
   setItinerary: Dispatch<SetStateAction<string>>
   setErrored: Dispatch<SetStateAction<boolean>>
+  setPhotoData: Dispatch<SetStateAction<string>>
 }
 
 export function MyForm({
@@ -19,6 +21,7 @@ export function MyForm({
   setLoading,
   setItinerary,
   setErrored,
+  setPhotoData,
 }: MyFormType) {
   const [formError, setFormError] = useState({
     isInvalid: false,
@@ -70,13 +73,23 @@ export function MyForm({
       try {
         setLoading(true)
 
-        const itinerary = await dataAggregator.getItinerary(
-          data.destination,
-          data.days
-        )
+        //
+        const photoApi = new PhotoApi()
 
-        if (itinerary) {
-          setItinerary(JSON.stringify(itinerary))
+        const [itineraryResult, photoResult] = await Promise.allSettled([
+          dataAggregator.getItinerary(data.destination, data.days),
+          photoApi.getPhoto(data.destination),
+        ])
+
+        if (itineraryResult.status === "rejected") {
+          throw new Error("Unable to resolve itinerary")
+        }
+        //
+        if (itineraryResult.status === "fulfilled") {
+          setItinerary(JSON.stringify(itineraryResult.value))
+          if (photoResult.status === "fulfilled") {
+            setPhotoData(JSON.stringify(photoResult.value))
+          }
           setLoading(false)
         }
       } catch (e) {

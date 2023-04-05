@@ -1,35 +1,32 @@
 import React, { Dispatch, SetStateAction, useState } from "react"
 import { ItineraryRequestType } from "../types/request.types"
 import { DataAggregator } from "../data/data.aggregator"
+import { PhotoApi } from "../api/photo.api"
 
 type TripPropsType = {
   destination: string
   days: number
   description: string
   image: string
-  profile: string
-  photographer: string
   alt: string
   setData: Dispatch<SetStateAction<ItineraryRequestType>>
   setLoading: Dispatch<SetStateAction<boolean>>
   setErrored: Dispatch<SetStateAction<boolean>>
   setItinerary: Dispatch<SetStateAction<string>>
+  setPhotoData: Dispatch<SetStateAction<string>>
 }
-
-const unsplashreferral = "utm_source=bitesizeadventure.com&utm_medium=referral"
 
 export function Trip({
   destination,
   days,
   description,
   image,
-  profile,
-  photographer,
   alt,
   setData,
   setLoading,
   setErrored,
   setItinerary,
+  setPhotoData,
 }: TripPropsType) {
   const [readMore, setReadMore] = useState(false)
 
@@ -43,13 +40,24 @@ export function Trip({
       setLoading(true)
 
       const dataAggregator = new DataAggregator()
-      const itinerary = await dataAggregator.getItinerary(
-        destination,
-        days.toString()
-      )
+      //
+      const photoApi = new PhotoApi()
 
-      if (itinerary) {
-        setItinerary(JSON.stringify(itinerary))
+      const [itineraryResult, photoResult] = await Promise.allSettled([
+        dataAggregator.getItinerary(destination, days.toString()),
+        photoApi.getPhoto(destination),
+      ])
+
+      if (itineraryResult.status === "rejected") {
+        throw new Error("Unable to resolve itinerary")
+      }
+      //
+
+      if (itineraryResult.status === "fulfilled") {
+        setItinerary(JSON.stringify(itineraryResult.value))
+        if (photoResult.status === "fulfilled") {
+          setPhotoData(JSON.stringify(photoResult.value))
+        }
         setLoading(false)
       }
     } catch (e) {
@@ -59,29 +67,8 @@ export function Trip({
   }
   return (
     <div className="single-trip">
-      <img src={image} alt={alt} loading="lazy"></img>
-      <div className="unsplash-credit">
-        <p>
-          <a href={image} target="_blank" rel="noreferrer">
-            photo
-          </a>{" "}
-          by{" "}
-          <a
-            href={`${profile}?${unsplashreferral}`}
-            target="_blank"
-            rel="noreferrer"
-          >
-            {photographer}
-          </a>{" "}
-          on{" "}
-          <a
-            href={`https://unsplash.com/?${unsplashreferral}`}
-            target="_blank"
-            rel="noreferrer"
-          >
-            unsplash
-          </a>
-        </p>
+      <div className="credited-img">
+        <img src={image} alt={alt} loading="lazy"></img>
       </div>
       <div className="trip-info">
         <h5>

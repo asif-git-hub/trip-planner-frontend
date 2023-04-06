@@ -8,6 +8,8 @@ import Navbar from "./components/Navbar"
 import { Contact } from "./pages/Contact"
 import { Blog } from "./pages/Blog"
 import { Footer } from "./components/Footer"
+import { Privacy } from "./pages/Privacy"
+import { TermsOfService } from "./pages/TermsOfService"
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
           <Route path="/about" element={<About></About>} />
           <Route path="/blogs" element={<Blog></Blog>} />
           <Route path="/contact" element={<Contact></Contact>} />
+          <Route path="/privacy" element={<Privacy></Privacy>} />
+          <Route path="/terms" element={<TermsOfService></TermsOfService>} />
           <Route path="*" element={<NotFoundError></NotFoundError>} />
         </Routes>
       </Router>

@@ -59,9 +59,7 @@ module.exports = {
         REACT_APP_ITINERARY_RETRIEVER_API: JSON.stringify(
           process.env.REACT_APP_ITINERARY_RETRIEVER_API
         ),
-        REACT_APP_PHOTO_API: JSON.stringify(
-          process.env.REACT_APP_PHOTO_API
-        ),
+        REACT_APP_PHOTO_API: JSON.stringify(process.env.REACT_APP_PHOTO_API),
       },
     }),
   ],

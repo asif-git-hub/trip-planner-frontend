@@ -16,7 +16,7 @@ export function PresetTrips({
   setLoading,
   setErrored,
   setItinerary,
-  setPhotoData
+  setPhotoData,
 }: PresetTripsPropType) {
   return (
     <div className="preset-trips-container">

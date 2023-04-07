@@ -44,7 +44,6 @@ export function POI() {
           }
         }
       } catch (e) {
-        console.error(e)
         setPoiData([])
       } finally {
         setPoiLoading(false)

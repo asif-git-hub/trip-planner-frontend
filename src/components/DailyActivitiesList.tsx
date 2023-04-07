@@ -1,13 +1,14 @@
 import React from "react"
 import { DailyActivitiesType } from "../types/response.types"
-import { ActivityDetails } from "./ActivityDetails"
 import { createMapQuery } from "../utils/google.utils"
 import { options } from "../data/activity.options"
 import { RoundButton } from "./RoundButton"
+import { LinkedActivityDetails } from "./LinkedActivityDetails"
 
-type DailyActivitiesListPropType = DailyActivitiesType & { destination: string }
+type DailyActivitiesListPropType = DailyActivitiesType & { destination: string, id: number }
 
 export function DailyActivitiesList({
+  id,
   day,
   destination,
   activities,
@@ -18,15 +19,15 @@ export function DailyActivitiesList({
     destination.replace(/ /g, "+").replace(",", "")
   )
   return (
-    <div className="activitieslist-container">
-      <div className="day-container">
+    <div className="activitieslist-container" key={id}>
+      <div className="day-container" key={day}>
         <h2>
           Day {day}
           {city ? `: ${city}` : ""}
         </h2>
       </div>
 
-      <div className="meal-links-container">
+      <div className="meal-links-container" key={parseInt(`1${day}${id}`)}>
         {options.map((option, id) => {
           const link = `http://www.google.com/maps/search/${option.name}/@${activities[0].geocode.latitude},${activities[0].geocode.longitude},15z`
           return (
@@ -38,16 +39,17 @@ export function DailyActivitiesList({
       {activities.map((activity, id) => {
         return (
           <div>
-            <ActivityDetails
-              key={id}
+            <LinkedActivityDetails
+              key={parseInt(`${day}${id}`)}
               location={activity.location}
+              destination={destination}
               description={activity.description}
-            ></ActivityDetails>
+            ></LinkedActivityDetails>
           </div>
         )
       })}
 
-      <div className="google-map-code">
+      <div className="google-map-code" key={parseInt(`2${day}${id}`)}>
         <iframe
           src={mapsUrl}
           className="google-map"

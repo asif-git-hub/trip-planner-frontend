@@ -15,6 +15,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "build"),
     filename: "bundle.js",
+    publicPath: '/',
   },
   resolve: {
     extensions: [".js", ".jsx", ".json", ".ts", ".tsx"],
@@ -60,6 +61,7 @@ module.exports = {
           process.env.REACT_APP_ITINERARY_RETRIEVER_API
         ),
         REACT_APP_PHOTO_API: JSON.stringify(process.env.REACT_APP_PHOTO_API),
+        REACT_APP_POI_API: JSON.stringify(process.env.REACT_APP_POI_API),
       },
     }),
   ],

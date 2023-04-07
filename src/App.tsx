@@ -10,6 +10,7 @@ import { Blog } from "./pages/Blog"
 import { Footer } from "./components/Footer"
 import { Privacy } from "./pages/Privacy"
 import { TermsOfService } from "./pages/TermsOfService"
+import { POI } from "./pages/POI"
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home></Home>} />
           <Route path="/home" element={<Home></Home>} />
+          <Route path="/poi/:location/:destination" element={<POI></POI>} />
           <Route path="/about" element={<About></About>} />
           <Route path="/blogs" element={<Blog></Blog>} />
           <Route path="/contact" element={<Contact></Contact>} />

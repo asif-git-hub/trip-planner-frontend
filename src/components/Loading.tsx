@@ -3,10 +3,10 @@ import { ProgressBar } from "./ProgressBar"
 import { FunFact } from "./FunFact"
 
 type LoadingTypeProp = {
-  destination: string
+  message: string
 }
 
-export function Loading({ destination }: LoadingTypeProp) {
+export function Loading({ message }: LoadingTypeProp) {
   const [value, setValue] = useState(0)
 
   useEffect(() => {
@@ -27,7 +27,7 @@ export function Loading({ destination }: LoadingTypeProp) {
     <div className="loading-screen">
       <div className="loading-textbox">
         <h3>Hang tight</h3>
-        <h5>Your itinerary for {destination} is being prepared</h5>
+        <h5>{message}</h5>
         <p>This may take up to 1 minute</p>
       </div>
       <ProgressBar value={value}></ProgressBar>

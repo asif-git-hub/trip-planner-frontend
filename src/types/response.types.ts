@@ -17,3 +17,8 @@ export type ItineraryData = {
   isJson?: boolean | undefined
   itinerary: DailyActivitiesType[]
 }
+
+export type POIDataType = {
+  location: string
+  description: string
+}

@@ -17,6 +17,7 @@ export function ResponseBox({ destination, itinerary }: ResponsePropType) {
         return (
           <DailyActivitiesList
             key={id}
+            id={id}
             day={dailyActivities.day}
             destination={destination}
             activities={dailyActivities.activities}

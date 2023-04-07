@@ -36,6 +36,7 @@
   --light-mint: #c8e2d2;
   --dark-teal: #008080;
   --egg-shell: #f6d052;
+  --tangerine: #f28500;
   --mint: #daf7a6;
   --black: #222;
   --white: #fff;
@@ -43,6 +44,11 @@
   --red-dark: #842029;
   --green-light: #d1e7dd;
   --green-dark: #0f5132;
+  --alice-blue: #f0f8ff;
+  --beige: #f5f5dc;
+  --honeydew: #f0fff0;
+  --thistle: #d8bfd8;
+  --violet: #ee82ee;
 
   /* fonts  */
 
@@ -54,6 +60,7 @@
   --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   --borderRadius: 0.25rem;
+  --border-radius-2: 0.4rem;
   --response-menu-button-radius: 0.75rem;
   --fact-border-radius: 0.3rem;
   --preset-trips-radius: 0.25rem;
@@ -64,6 +71,7 @@
   --fixed-width: 600px;
   --spacing: 0.1rem;
   --fact-transition: 0.3s linear all;
+  --response-transition: max-height 1s ease-in-out;
 
   /* box shadow*/
   --shadow-1: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
@@ -294,6 +302,21 @@ ul {
   transform: translateY(2px);
 }
 
+.poi-show-btn {
+  cursor: pointer;
+  background: var(--tangerine);
+  display: block;
+  padding: 4px 8px;
+  text-align: center;
+  right: 0;
+  color: var(--white);
+  position: relative;
+  margin-left: auto;
+  border: transparent;
+  border-radius: var(--borderRadius);
+  letter-spacing: var(--letterSpacing);
+}
+
 /* Underline */
 
 .underline {
@@ -508,6 +531,25 @@ ul {
   padding: 1rem 1rem;
 }
 
+/* Links */
+
+.details-link {
+  background: var(--tangerine);
+  display: block;
+  width: 120px;
+  text-align: center;
+  border-radius: var(--borderRadius);
+  right: 0;
+  color: var(--white);
+  position: relative;
+  margin-top: 15px;
+  margin-left: auto;
+}
+
+.details-link:hover {
+  box-shadow: var(--shadow-3);
+}
+
 /* Itinerary */
 
 .activty-container {
@@ -527,6 +569,20 @@ ul {
   margin: 1rem auto;
   padding: 15px;
   border-radius: var(--borderRadius);
+}
+
+/* POI */
+
+.poi-container {
+  background: var(--thistle);
+  margin: auto;
+  padding: 15px;
+  border-radius: var(--border-radius-2);
+  width: 42.5vw;
+}
+
+.poi-container p {
+  text-align: left;
 }
 
 /* Food Recommendations */
@@ -554,8 +610,9 @@ ul {
 @media screen and (max-width: 800px) {
   .response-container,
   .response-menu-container,
-  .response-menu {
-    width: 90%;
+  .response-menu,
+  .poi-container {
+    width: 95%;
   }
   .response-menu-item {
     width: 40%;

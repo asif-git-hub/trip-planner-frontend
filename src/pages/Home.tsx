@@ -75,7 +75,7 @@ export function Home() {
   } else {
     return (
       <div>
-        <Loading destination={data.destination}></Loading>
+        <Loading message={`Preparing your itinerary for ${data.destination}`}></Loading>
       </div>
     )
   }

@@ -8,7 +8,7 @@ export function ActivityDetails({
   description,
 }: ActivityDetailsPropType) {
   return (
-    <div className="activty-container">
+    <div className="poi-container">
       <p>
         <strong>{location}</strong>
       </p>

@@ -666,16 +666,15 @@ ul {
 .footer {
   background-color: #2f3032;
   color: white;
-  position:absolute;
-  left:0;
-  bottom:0;
-  right:0;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
   width: 100%;
   height: 2.5rem;
   margin-top: auto;
   text-align: center;
 }
-
 
 /* Navbar */
 
@@ -783,7 +782,7 @@ nav {
   letter-spacing: var(--mainSpacing);
   text-align: center;
   position: relative;
-  margin: 4rem 0 4rem 0;
+  margin: 4rem 3rem 4rem 3rem;
 }
 
 .section-title::before {

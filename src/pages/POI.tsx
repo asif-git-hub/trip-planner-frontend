@@ -53,7 +53,11 @@ export function POI() {
   }, [destination, location])
 
   if (poiLoading) {
-    return <Loading message={`Looking for the best activities in ${location}`}></Loading>
+    return (
+      <Loading
+        message={`Looking for the best activities in ${location}`}
+      ></Loading>
+    )
   }
 
   if (poiError || poiData.length === 0) {

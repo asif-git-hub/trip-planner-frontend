@@ -5,7 +5,10 @@ import { options } from "../data/activity.options"
 import { RoundButton } from "./RoundButton"
 import { LinkedActivityDetails } from "./LinkedActivityDetails"
 
-type DailyActivitiesListPropType = DailyActivitiesType & { destination: string, id: number }
+type DailyActivitiesListPropType = DailyActivitiesType & {
+  destination: string
+  id: number
+}
 
 export function DailyActivitiesList({
   id,

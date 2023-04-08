@@ -5,7 +5,9 @@ export function Footer() {
 
   return (
     <div className="footer">
-      <p>Copyright &copy; bitesizeadventure {year}</p>
+      <div className="copyright">
+        <p>Copyright &copy; bitesizeadventure {year}</p>
+      </div>
     </div>
   )
 }

@@ -9,7 +9,7 @@ export function Privacy() {
         <div className="content-container">
           <Header heading="Privacy Policy"></Header>
 
-          <div className="about-section">
+          <div className="content-section">
             <p>
               At enchantrek, we value your privacy and are committed to
               protecting your personal information.

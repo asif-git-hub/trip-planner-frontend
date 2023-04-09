@@ -6,4 +6,4 @@ declare module "*.svg" {
 }
 
 declare module "*.png"
-declare module 'react-feedback-widget'
+declare module "react-feedback-widget"

@@ -799,12 +799,12 @@ nav {
   text-align: center;
 }
 
-.about-section {
+.content-section {
   max-width: var(--max-width);
   background: var(--white);
-  display: flex;
+  /* display: flex; */
   gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
   margin: 2rem auto;
   width: 60vw;
   padding: 20px;
@@ -814,7 +814,7 @@ nav {
   text-align: left;
 }
 
-.about-section p {
+.content-section p {
   line-height: 2rem;
   font-weight: 400;
   letter-spacing: 1px;
@@ -825,7 +825,7 @@ nav {
 }
 
 @media screen and (max-width: 800px) {
-  .about-section {
+  .content-section {
     width: 90%;
   }
 }
@@ -952,4 +952,10 @@ nav {
   padding-top: 0;
   padding-bottom: 0;
   margin-bottom: 0;
+}
+
+/* Feedback */
+
+.feedback-container {
+  text-align: center;
 }

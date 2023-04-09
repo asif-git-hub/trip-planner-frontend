@@ -20,7 +20,7 @@ export const About = () => {
             description="We aim to make travel planning simple, instant and affordable"
           ></Header>
 
-          <div className="about-section">
+          <div className="content-section">
             <article className="about-text">
               <p>
                 <i>Looking for an efficient way to plan your next trip?</i>

@@ -9,7 +9,7 @@ export function Privacy() {
         <div className="content-container">
           <Header heading="Privacy Policy"></Header>
           <div className="updated-date">
-            <p>Updated on {new Date().toLocaleDateString()}</p>
+            <p>Updated on 10/04/2023</p>
           </div>
           <div className="content-section">
             <p className="privacy-text">

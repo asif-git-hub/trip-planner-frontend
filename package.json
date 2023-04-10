@@ -10,7 +10,7 @@
     "start:dev": "react-scripts start",
     "start:prod": "webpack-dev-server --open --config webpack.frontend.config.js",
     "build:prod": "webpack --config webpack.frontend.config.js",
-    "build:netlify": "npm run build:prod && echo '/* /index.html 200' | cat >build/_redirects ",
+    "build:netlify": "npm run build:prod && cp './public/_redirects' 'build/_redirects' | cat >build/_redirects ",
     "serve": "npm run build:netlify && serve -s build"
   },
   "author": "Asif Alam",

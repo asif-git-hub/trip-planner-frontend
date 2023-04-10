@@ -25,7 +25,7 @@ export function LinkedActivityDetails({
         rel="noopener"
         className="details-link"
       >
-        Things to do
+        Discover more
       </Link>
     </div>
   )

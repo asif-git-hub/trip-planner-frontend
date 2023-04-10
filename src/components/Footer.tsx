@@ -10,8 +10,8 @@ export function Footer() {
         <p>Copyright &copy; bitesizeadventure {year}</p>
       </div>
       <div className="privacy-and-terms">
-        <a href="/privacy">Privacy | </a>
-        <a href="/terms">Terms & Condition</a>
+        <a href="/privacy">Privacy </a>
+        {/* <a href="/terms">Terms & Condition</a> */}
       </div>
     </div>
   )

@@ -22,7 +22,7 @@ export function Privacy() {
               <br></br>
               <strong>
                 We may collect various types of information from and about users
-                of our site, including:{" "}
+                of our site, including:
               </strong>
               <br></br>
               &#x2022; Personal Information: We may collect personal information
@@ -83,22 +83,22 @@ export function Privacy() {
               &#x2022; The right to access: You have the right to request access
               to the personal information we hold about you.
               <br></br>
-              &#x2022; The right to rectification: You have the right to request that we
-              correct any inaccurate or incomplete personal information we hold
-              about you.
+              &#x2022; The right to rectification: You have the right to request
+              that we correct any inaccurate or incomplete personal information
+              we hold about you.
               <br></br>
-              &#x2022; The right to erasure: You have the right to request that we erase
-              your personal information in certain circumstances, such as when
-              the information is no longer necessary for the purposes for which
-              it was collected.
+              &#x2022; The right to erasure: You have the right to request that
+              we erase your personal information in certain circumstances, such
+              as when the information is no longer necessary for the purposes
+              for which it was collected.
               <br></br>
-              &#x2022; The right to restrict processing: You have the right to request
-              that we restrict the processing of your personal information in
-              certain circumstances, such as when the accuracy of the
-              information is contested.
+              &#x2022; The right to restrict processing: You have the right to
+              request that we restrict the processing of your personal
+              information in certain circumstances, such as when the accuracy of
+              the information is contested.
               <br></br>
-              &#x2022; The right to data portability: You have the right to request a
-              copy of the personal information we hold about you in a
+              &#x2022; The right to data portability: You have the right to
+              request a copy of the personal information we hold about you in a
               structured, commonly used, and machine-readable format.
               <br></br>
               &#x2022; The right to object: You have the right to object to the

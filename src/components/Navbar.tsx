@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from "react"
 import { links } from "../data/nav.items"
-import logo from "../public/logo.svg"
+import logo from "../assets/enchantrek-logo-1.png"
 import { FaBars } from "react-icons/fa"
 
 export default function Navbar() {
@@ -28,6 +28,7 @@ export default function Navbar() {
         <div className="nav-header">
           <a href="/">
             <img src={logo} className="logo" alt="logo" />
+            <h3>ENCHANTREK</h3>
           </a>
           <button className="nav-toggle" onClick={toggleLinks}>
             <FaBars />

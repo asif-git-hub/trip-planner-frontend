@@ -31,7 +31,7 @@
   --grey-800: #1e293b;
   --grey-900: #0f172a;
   /* rest of the colors */
-
+  --clr-white: #fff
   --lavendar-blush: #fff0f5;
   --light-mint: #c8e2d2;
   --dark-teal: #008080;
@@ -717,6 +717,17 @@ nav {
   padding: 1rem;
 }
 
+.nav-header h3 {
+  line-height: 1;
+  font-size: smaller;
+  margin-left: 7px;
+  margin-top: 4px;
+  margin-bottom: 0px;
+  color: rgb(53, 101, 164);
+  font-weight: bolder;
+
+}
+
 .nav-toggle {
   font-size: 1.5rem;
   color: var(--clr-primary-5);
@@ -801,6 +812,10 @@ nav {
   align-items: center;
 }
 
+.enchantrek-writing {
+  size: 70%;
+}
+
 /* Heading */
 
 .section-title {
@@ -809,6 +824,7 @@ nav {
   letter-spacing: var(--mainSpacing);
   text-align: center;
   position: relative;
+  /* backdrop-filter: blur(10px); */
   margin: 4rem 3rem 4rem 3rem;
 }
 

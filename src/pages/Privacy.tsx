@@ -180,6 +180,7 @@ export function Privacy() {
               <br></br>
               <br></br>
               <strong>Updates to Privacy Policy</strong>
+              <br></br>
               We may update this Privacy Policy from time to time. If we make
               any material changes, we will post a notice on our Site and update
               the effective date at the top of this page.

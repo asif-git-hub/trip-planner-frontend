@@ -40,7 +40,7 @@ export function Home() {
             <div className="content-container">
               <Header
                 heading="Travel Planner"
-                description="Instant itinerary creator | Powered by AI"
+                description="Explore the world at the speed of thought in just 3 clicks"
               ></Header>
 
               <MyForm

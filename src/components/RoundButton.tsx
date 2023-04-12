@@ -10,18 +10,22 @@ type RoundButtonPropType = {
 export function RoundButton({ name, link }: RoundButtonPropType) {
   const iconMap = {
     breakfast: <MdCoffee title={name}></MdCoffee>,
-    lunch: <IoFastFoodOutline></IoFastFoodOutline>,
-    dinner: <MdRestaurant></MdRestaurant>,
-    museum: <MdMuseum></MdMuseum>,
+    lunch: <IoFastFoodOutline title={name}></IoFastFoodOutline>,
+    dinner: <MdRestaurant title={name}></MdRestaurant>,
+    museum: <MdMuseum title={name}></MdMuseum>,
   }
   return (
     <button
-      className="round-btn"
+      className={`round-btn ${name==="breakfast"? "round-btn-selected" : ""}`}
       onClick={() => {
         window.open(link, "_blank", "noopener,noreferrer")
       }}
     >
-      {iconMap[name]}
+      <div className={`btn-with-text`}>
+      {iconMap[name]} 
+      <p className="round-btn-txt">{name}</p>
+      </div>
+
     </button>
   )
 }

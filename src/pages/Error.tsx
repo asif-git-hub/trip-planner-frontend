@@ -7,7 +7,3 @@ export function NotFoundError() {
     </div>
   )
 }
-
-export function TechnicalError() {
-  return <div>Something went wrong</div>
-}

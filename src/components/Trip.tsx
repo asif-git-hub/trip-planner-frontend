@@ -1,7 +1,6 @@
 import React, { Dispatch, SetStateAction, useState } from "react"
 import { ItineraryRequestType } from "../types/request.types"
-import { DataAggregator } from "../data/data.aggregator"
-import { PhotoApi } from "../api/photo.api"
+import { useNavigate } from "react-router-dom"
 
 type TripPropsType = {
   destination: string
@@ -10,10 +9,6 @@ type TripPropsType = {
   image: string
   alt: string
   setData: Dispatch<SetStateAction<ItineraryRequestType>>
-  setLoading: Dispatch<SetStateAction<boolean>>
-  setErrored: Dispatch<SetStateAction<boolean>>
-  setItinerary: Dispatch<SetStateAction<string>>
-  setPhotoData: Dispatch<SetStateAction<string>>
 }
 
 export function Trip({
@@ -23,52 +18,22 @@ export function Trip({
   image,
   alt,
   setData,
-  setLoading,
-  setErrored,
-  setItinerary,
-  setPhotoData,
 }: TripPropsType) {
   const [readMore, setReadMore] = useState(false)
+  const navigate = useNavigate()
 
   async function handleSubmission() {
     setData({
       days: days.toString(),
       destination,
     })
+    navigate(`/result/${days}/${destination}`)
+  }  
 
-    try {
-      setLoading(true)
-
-      const dataAggregator = new DataAggregator()
-      //
-      const photoApi = new PhotoApi()
-
-      const [itineraryResult, photoResult] = await Promise.allSettled([
-        dataAggregator.getItinerary(destination, days.toString()),
-        photoApi.getPhoto(destination),
-      ])
-
-      if (itineraryResult.status === "rejected") {
-        throw new Error("Unable to resolve itinerary")
-      }
-      //
-
-      if (itineraryResult.status === "fulfilled") {
-        setItinerary(JSON.stringify(itineraryResult.value))
-        if (photoResult.status === "fulfilled") {
-          setPhotoData(JSON.stringify(photoResult.value))
-        }
-        setLoading(false)
-      }
-    } catch (e) {
-      setLoading(false)
-      setErrored(true)
-    }
-  }
   return (
     <div className="single-trip">
       <div className="credited-img">
-        <img src={image} alt={alt} loading="lazy"></img>
+        <img src={`${image}`} alt={alt} loading="lazy"></img>
       </div>
       <div className="trip-info">
         <h5>

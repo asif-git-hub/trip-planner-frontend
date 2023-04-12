@@ -31,7 +31,7 @@
   --grey-800: #1e293b;
   --grey-900: #0f172a;
   /* rest of the colors */
-  --clr-white: #fff
+  --clr-white: #fff;
   --lavendar-blush: #fff0f5;
   --light-mint: #c8e2d2;
   --dark-teal: #008080;
@@ -288,19 +288,26 @@ ul {
 }
 
 .round-btn {
-  background-color: #48abe0;
-  color: white;
+  /* background-color: #48abe0;
+  color: white; */
   border: none;
-  padding: 5px;
+  padding-top: 5px;
   margin-right: 10px;
   margin-left: 10px;
-  font-size: 31px;
-  height: 50px;
-  width: 50px;
+  font-size: 30px;
+  height: 55px;
+  width: 55px;
   box-shadow: 0 2px 4px darkslategray;
   cursor: pointer;
   transition: all 0.2s ease;
   border-radius: 50%;
+}
+
+.round-btn:hover,
+.round-btn-selected {
+  background-color: #48abe0;
+  color: white;
+  box-shadow: 0 2px 4px darkslategray;
 }
 
 .meal-btn:hover {
@@ -335,6 +342,21 @@ ul {
   background: var(--clr-primary-5);
   margin-left: auto;
   margin-right: auto;
+}
+
+/* Btn text */
+
+.btn-with-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.round-btn-txt {
+  padding-top: 0;
+  margin-top: 0;
+  font-size: 8px;
+  text-align: center;
 }
 
 /* form */
@@ -725,7 +747,6 @@ nav {
   margin-bottom: 0px;
   color: rgb(53, 101, 164);
   font-weight: bolder;
-
 }
 
 .nav-toggle {
@@ -901,19 +922,7 @@ nav {
   font-size: 2rem;
   color: var(--clr-grey-3);
 }
-.coffee-icon {
-  margin: 3px;
-  align-self: center;
-  float: right;
-  font-weight: 400;
-  font-weight: 400;
-  line-height: 1.3;
-  font-size: 60px;
-  border-radius: 50%;
-  border: 2px transparent rgb(0, 0, 0);
-  padding: 10px;
-  background-color: white;
-}
+
 /* Fun Fact */
 
 .facts {

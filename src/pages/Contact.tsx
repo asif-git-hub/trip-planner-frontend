@@ -37,7 +37,7 @@ export function Contact() {
             <div className="feedback-container">
               <ServoiceFeedback config={feedbackConfig}>
                 <button type="button" className="btn">
-                  Feedback
+                  Give Feedback
                 </button>
               </ServoiceFeedback>
             </div>

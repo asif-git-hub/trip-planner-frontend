@@ -11,8 +11,7 @@ export function UnsplashCredit({
   profile,
   photographer,
 }: UnsplashCreditPropType) {
-  const unsplashreferral =
-    "utm_source=bitesizeadventure.com&utm_medium=referral"
+  const unsplashreferral = "utm_source=enchantrek.com&utm_medium=referral"
 
   return (
     <div className="unsplash-credit">

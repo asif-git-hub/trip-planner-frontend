@@ -31,7 +31,7 @@
   --grey-800: #1e293b;
   --grey-900: #0f172a;
   /* rest of the colors */
-  --clr-white: #fff
+  --clr-white: #fff;
   --lavendar-blush: #fff0f5;
   --light-mint: #c8e2d2;
   --dark-teal: #008080;
@@ -725,7 +725,6 @@ nav {
   margin-bottom: 0px;
   color: rgb(53, 101, 164);
   font-weight: bolder;
-
 }
 
 .nav-toggle {

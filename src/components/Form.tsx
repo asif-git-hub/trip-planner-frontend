@@ -1,32 +1,22 @@
 import React, { Dispatch, SetStateAction, useState } from "react"
 import { DestinationInput } from "./DestinationInput"
-import { DataAggregator } from "../data/data.aggregator"
 import { getEnvVar } from "../utils/common.utils"
 import useScript from "../hooks/use.script"
+import { useNavigate } from "react-router-dom"
 import { ItineraryRequestType } from "../types/request.types"
-import { PhotoApi } from "../api/photo.api"
 
 type MyFormType = {
   data: ItineraryRequestType
   setData: Dispatch<SetStateAction<ItineraryRequestType>>
-  setLoading: Dispatch<SetStateAction<boolean>>
-  setItinerary: Dispatch<SetStateAction<string>>
-  setErrored: Dispatch<SetStateAction<boolean>>
-  setPhotoData: Dispatch<SetStateAction<string>>
 }
 
-export function MyForm({
-  data,
-  setData,
-  setLoading,
-  setItinerary,
-  setErrored,
-  setPhotoData,
-}: MyFormType) {
+export function MyForm({ data, setData }: MyFormType) {
   const [formError, setFormError] = useState({
     isInvalid: false,
     message: "",
   })
+
+  const navigate = useNavigate()
 
   const GOOGLE_API_KEY = getEnvVar("REACT_APP_GOOGLE_API_KEY")
 
@@ -34,8 +24,6 @@ export function MyForm({
     // By default, Google Places will attempt to guess your language based on your country.
     `https://maps.googleapis.com/maps/api/js?language=en&key=${GOOGLE_API_KEY}&libraries=places&callback=Function.prototype`
   )
-
-  const dataAggregator = new DataAggregator()
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.name === "days") {
@@ -68,35 +56,8 @@ export function MyForm({
   const handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault()
     const isFormValid = validateInput()
-
     if (isFormValid) {
-      try {
-        setLoading(true)
-
-        //
-        const photoApi = new PhotoApi()
-
-        const [itineraryResult, photoResult] = await Promise.allSettled([
-          dataAggregator.getItinerary(data.destination, data.days),
-          photoApi.getPhoto(data.destination),
-        ])
-
-        if (itineraryResult.status === "rejected") {
-          throw new Error("Unable to resolve itinerary")
-        }
-        //
-        if (itineraryResult.status === "fulfilled") {
-          setItinerary(JSON.stringify(itineraryResult.value))
-          if (photoResult.status === "fulfilled") {
-            setPhotoData(JSON.stringify(photoResult.value))
-          }
-          setLoading(false)
-        }
-      } catch (e) {
-        // Catch all exceptions
-        setErrored(true)
-        setLoading(false)
-      }
+      navigate(`/result/${data.days}/${data.destination}`)
     }
   }
 

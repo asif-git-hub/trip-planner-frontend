@@ -95,7 +95,7 @@ export function Result() {
               ></Header>
               <ResponseBox
                 destination={destination}
-                itinerary={JSON.stringify(itinerary)}
+                itineraryData={itinerary}
               ></ResponseBox>
             </div>
           </div>

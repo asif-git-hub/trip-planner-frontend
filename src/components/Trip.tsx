@@ -28,12 +28,12 @@ export function Trip({
       destination,
     })
     navigate(`/result/${days}/${destination}`)
-  }
+  }  
 
   return (
     <div className="single-trip">
       <div className="credited-img">
-        <img src={image} alt={alt} loading="lazy"></img>
+        <img src={`${image}`} alt={alt} loading="lazy"></img>
       </div>
       <div className="trip-info">
         <h5>

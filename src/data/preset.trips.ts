@@ -49,4 +49,19 @@ export const presetTrips = [
     photographer: "Benjamin Davies",
     alt: "Eagle eye view of London with the tower bridge",
   },
+  {
+    destination: "Dubai, United Arab Emirates",
+    days: 5,
+    description: `If you're looking for a destination that combines luxury, adventure, and culture, Dubai should be at the top of your list. As a bustling metropolis located on the southeast coast of the Persian Gulf, Dubai is known for its modern architecture, world-class shopping, and vibrant nightlife. From towering skyscrapers to luxurious resorts and breathtaking desert landscapes, this city has something to offer for everyone. Whether you want to explore historic sites like the Dubai Museum, experience the thrill of indoor skiing at Ski Dubai, or indulge in some retail therapy at one of the many shopping centers, Dubai is sure to leave you with unforgettable memories. So why not plan your trip today and discover all that this fascinating city has to offer?`,
+    image:
+      "https://images.unsplash.com/photo-1518684079-3c830dcef090?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw0MjUwMjd8MHwxfHNlYXJjaHwxfHxEdWJhaXxlbnwwfHx8fDE2ODEyOTUyMDQ&ixlib=rb-4.0.3&q=80&w=1080",
+    alt: "Aerial view of Dubai",
+  },
+  {
+    destination: "Bangkok, Thailand",
+    days: 4,
+    description: `Bangkok is the bustling capital city of Thailand and is one of the most popular tourist destinations in Southeast Asia. Known for its vibrant street life, stunning temples, and delicious food, Bangkok has something to offer for every type of traveler. From exploring the ornate Grand Palace and the famous Wat Phra Kaew temple to shopping for souvenirs at the Chatuchak Weekend Market and indulging in some of the best street food in the world, there's never a dull moment in Bangkok. Whether you want to immerse yourself in the local culture or simply relax and soak up the bustling atmosphere, Bangkok is sure to leave you with unforgettable memories.`,
+    image: "https://images.unsplash.com/photo-1582468546235-9bf31e5bc4a1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw0MjUwMjd8MHwxfHNlYXJjaHwzfHxCYW5na29rJTIwdGVtcGxlfGVufDB8fHx8MTY4MTI5NjcwMg&ixlib=rb-4.0.3&q=80&w=1080",
+    alt: "A Temple in Bangkok",
+  },
 ]

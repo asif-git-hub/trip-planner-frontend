@@ -5,14 +5,14 @@ import { PhotoApi, PhotoRetrieverResponseType } from "../api/photo.api"
 import { UnsplashCredit } from "../components/UnsplashCredit"
 import { useParams } from "react-router-dom"
 import { DataAggregator } from "../data/data.aggregator"
-import { ItineraryData } from "../types/response.types"
+import { ItineraryResponseType } from "../types/response.types"
 import { Loading } from "../components/Loading"
 import { TechnicalError } from "./errors/TechnicalError"
 
 export function Result() {
   const responseBoxRef = useRef<HTMLInputElement>(null)
   const [loading, setLoading] = useState(false)
-  const [itinerary, setItinerary] = useState<ItineraryData>()
+  const [itinerary, setItinerary] = useState<ItineraryResponseType>()
   const [resultPhoto, setResultPhoto] = useState<PhotoRetrieverResponseType>()
   const [errored, setErrored] = useState(false)
   const { days, destination } = useParams()

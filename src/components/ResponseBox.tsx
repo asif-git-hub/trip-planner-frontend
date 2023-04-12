@@ -1,18 +1,18 @@
 import React from "react"
 import { DailyActivitiesList } from "./DailyActivitiesList"
-import { ItineraryData } from "../types/response.types"
+import { ItineraryResponseType } from "../types/response.types"
 
 type ResponsePropType = {
   destination: string
-  itineraryData: ItineraryData
+  itineraryData: ItineraryResponseType
 }
 
 export function ResponseBox({ destination, itineraryData }: ResponsePropType) {
 
   return (
     <div className="response-container">
-      {/* Itinerary */}
-      {itineraryData.itinerary.map((dailyActivities, id) => {
+      
+      {itineraryData.map((dailyActivities, id) => {
         return (
           <DailyActivitiesList
             key={id}

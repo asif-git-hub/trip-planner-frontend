@@ -13,10 +13,7 @@ export type ActivityType = {
   }
 }
 
-export type ItineraryData = {
-  isJson?: boolean | undefined
-  itinerary: DailyActivitiesType[]
-}
+export type ItineraryResponseType = DailyActivitiesType[]
 
 export type POIDataType = {
   location: string

@@ -61,7 +61,8 @@ export const presetTrips = [
     destination: "Bangkok, Thailand",
     days: 4,
     description: `Bangkok is the bustling capital city of Thailand and is one of the most popular tourist destinations in Southeast Asia. Known for its vibrant street life, stunning temples, and delicious food, Bangkok has something to offer for every type of traveler. From exploring the ornate Grand Palace and the famous Wat Phra Kaew temple to shopping for souvenirs at the Chatuchak Weekend Market and indulging in some of the best street food in the world, there's never a dull moment in Bangkok. Whether you want to immerse yourself in the local culture or simply relax and soak up the bustling atmosphere, Bangkok is sure to leave you with unforgettable memories.`,
-    image: "https://images.unsplash.com/photo-1582468546235-9bf31e5bc4a1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw0MjUwMjd8MHwxfHNlYXJjaHwzfHxCYW5na29rJTIwdGVtcGxlfGVufDB8fHx8MTY4MTI5NjcwMg&ixlib=rb-4.0.3&q=80&w=1080",
+    image:
+      "https://images.unsplash.com/photo-1582468546235-9bf31e5bc4a1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw0MjUwMjd8MHwxfHNlYXJjaHwzfHxCYW5na29rJTIwdGVtcGxlfGVufDB8fHx8MTY4MTI5NjcwMg&ixlib=rb-4.0.3&q=80&w=1080",
     alt: "A Temple in Bangkok",
   },
 ]

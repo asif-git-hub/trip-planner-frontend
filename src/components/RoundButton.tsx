@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { IoFastFoodOutline } from "react-icons/io5"
 import { MdCoffee, MdMuseum, MdRestaurant } from "react-icons/md"
 
@@ -8,6 +8,8 @@ type RoundButtonPropType = {
 }
 
 export function RoundButton({ name, link }: RoundButtonPropType) {
+  const [isSelected, setIsSelected] = useState(false)
+
   const iconMap = {
     breakfast: <MdCoffee title={name}></MdCoffee>,
     lunch: <IoFastFoodOutline title={name}></IoFastFoodOutline>,
@@ -16,16 +18,18 @@ export function RoundButton({ name, link }: RoundButtonPropType) {
   }
   return (
     <button
-      className={`round-btn ${name==="breakfast"? "round-btn-selected" : ""}`}
+      className={`round-btn ${
+        name === "breakfast" || isSelected ? "round-btn-selected" : ""
+      }`}
       onClick={() => {
+        setIsSelected(true)
         window.open(link, "_blank", "noopener,noreferrer")
       }}
     >
       <div className={`btn-with-text`}>
-      {iconMap[name]} 
-      <p className="round-btn-txt">{name}</p>
+        {iconMap[name]}
+        <p className="round-btn-txt">{name}</p>
       </div>
-
     </button>
   )
 }

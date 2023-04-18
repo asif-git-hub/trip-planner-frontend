@@ -1017,3 +1017,20 @@ nav {
   color: var(--grey-600);
   letter-spacing: 0.2px;
 }
+
+/* Not Found Error */
+.not-found {
+  margin-top: 5px;
+  justify-content: center;
+  text-align: center;
+  padding: 15px;
+}
+
+.not-found img {
+  text-align: center;
+  height: 250px;
+}
+
+.not-found p {
+  text-align: center;
+}

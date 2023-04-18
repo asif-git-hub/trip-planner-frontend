@@ -28,7 +28,7 @@ export function Trip({
       destination,
     })
     navigate(`/result/${days}/${destination}`)
-  }  
+  }
 
   return (
     <div className="single-trip">

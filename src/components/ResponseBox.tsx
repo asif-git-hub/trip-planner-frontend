@@ -8,10 +8,8 @@ type ResponsePropType = {
 }
 
 export function ResponseBox({ destination, itineraryData }: ResponsePropType) {
-
   return (
     <div className="response-container">
-      
       {itineraryData.map((dailyActivities, id) => {
         return (
           <DailyActivitiesList

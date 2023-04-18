@@ -34,14 +34,18 @@ export function DailyActivitiesList({
         {options.map((option, id) => {
           const link = `http://www.google.com/maps/search/${option.name}/@${activities[0].geocode.latitude},${activities[0].geocode.longitude},15z`
           return (
-            <RoundButton key={id} name={option.name} link={link}></RoundButton>
+            <RoundButton
+              key={parseInt(`${day}${id}`)}
+              name={option.name}
+              link={link}
+            ></RoundButton>
           )
         })}
       </div>
 
       {activities.map((activity, id) => {
         return (
-          <div>
+          <div key={parseInt(`${day}${id}`)}>
             <LinkedActivityDetails
               key={parseInt(`${day}${id}`)}
               location={activity.location}

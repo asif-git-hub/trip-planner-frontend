@@ -30,8 +30,8 @@ export function POI() {
       try {
         if (location && destination) {
           const [poiResult, photoResult] = await Promise.allSettled([
-            itineraryApi.getPOI(decodeURI(location), decodeURI(destination)),
-            photoApi.getPhoto(decodeURI(location)),
+            itineraryApi.getPOI(decodeURIComponent(location), decodeURIComponent(destination)),
+            photoApi.getPhoto(decodeURIComponent(location)),
           ])
 
           if (poiResult.status === "rejected") {

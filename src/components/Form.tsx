@@ -4,6 +4,7 @@ import { getEnvVar } from "../utils/common.utils"
 import useScript from "../hooks/use.script"
 import { useNavigate } from "react-router-dom"
 import { ItineraryRequestType } from "../types/request.types"
+import { determineDestinationType } from "../utils/destination.utils"
 
 type MyFormType = {
   data: ItineraryRequestType
@@ -57,7 +58,13 @@ export function MyForm({ data, setData }: MyFormType) {
     e.preventDefault()
     const isFormValid = validateInput()
     if (isFormValid) {
-      navigate(`/result/${data.days}/${data.destination}`)
+      // Check destination type - city or country
+      const destinationType = determineDestinationType(data.destination)
+      if (destinationType === "city") {
+        navigate(`/result/${data.days}/${data.destination}`)
+      } else if (destinationType === "country") {
+        navigate(`/popular-cities/${data.destination}`)
+      }
     }
   }
 

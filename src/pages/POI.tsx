@@ -30,7 +30,10 @@ export function POI() {
       try {
         if (location && destination) {
           const [poiResult, photoResult] = await Promise.allSettled([
-            itineraryApi.getPOI(decodeURIComponent(location), decodeURIComponent(destination)),
+            itineraryApi.getPOI(
+              decodeURIComponent(location),
+              decodeURIComponent(destination)
+            ),
             photoApi.getPhoto(decodeURIComponent(location)),
           ])
 

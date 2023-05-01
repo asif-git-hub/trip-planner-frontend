@@ -62,6 +62,9 @@ module.exports = {
         ),
         REACT_APP_PHOTO_API: JSON.stringify(process.env.REACT_APP_PHOTO_API),
         REACT_APP_POI_API: JSON.stringify(process.env.REACT_APP_POI_API),
+        REACT_APP_POPCITY_API: JSON.stringify(
+          process.env.REACT_APP_POPCITY_API
+        ),
         REACT_APP_SERVID: JSON.stringify(process.env.REACT_APP_SERVID),
       },
     }),

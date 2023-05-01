@@ -20,7 +20,9 @@ export function LinkedActivityDetails({
       <i>{description}</i>
       <br></br>
       <Link
-        to={`/poi/${encodeURIComponent(location)}/${encodeURIComponent(destination)}`}
+        to={`/poi/${encodeURIComponent(location)}/${encodeURIComponent(
+          destination
+        )}`}
         target="_blank"
         rel="noopener"
         className="details-link"

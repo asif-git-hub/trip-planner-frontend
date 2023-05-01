@@ -12,6 +12,7 @@ import { Privacy } from "./pages/Privacy"
 import { TermsOfService } from "./pages/TermsOfService"
 import { POI } from "./pages/POI"
 import { Result } from "./pages/Result"
+import { PopularCities } from "./pages/PopularCities"
 
 function App() {
   return (
@@ -25,6 +26,10 @@ function App() {
           <Route
             path="/result/:days/:destination"
             element={<Result></Result>}
+          />
+          <Route
+            path="/popular-cities/:country"
+            element={<PopularCities></PopularCities>}
           />
           <Route path="/about" element={<About></About>} />
           <Route path="/blogs" element={<Blog></Blog>} />

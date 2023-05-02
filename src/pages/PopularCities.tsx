@@ -30,12 +30,11 @@ export function PopularCities() {
         const photoApi = new PhotoApi()
 
         const [popcityData, photoResult] = await Promise.allSettled([
-            itineraryApi.getPopularCities(country),
-            photoApi.getPhoto(country)
+          itineraryApi.getPopularCities(country),
+          photoApi.getPhoto(country),
         ])
 
         if (popcityData.status === "rejected") {
-          console.log(popcityData)
           throw new Error("Unable to resolve popular cities")
         }
         //

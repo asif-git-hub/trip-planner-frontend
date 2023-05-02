@@ -13,7 +13,6 @@ export class ItineraryApi {
     const url = `${baseUrl}?location=${location}&destination=${destination}`
 
     const response = await this.httpClient.get(url)
-
     return JSON.parse(response.data)
   }
 

@@ -9,7 +9,6 @@ export function Home() {
   // data to be sent
   const [data, setData] = useState<ItineraryRequestType>({
     destination: "",
-    days: "",
   })
 
   return (

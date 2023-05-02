@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom"
 
 type TripPropsType = {
   destination: string
-  days: number
   description: string
   image: string
   alt: string
@@ -13,7 +12,6 @@ type TripPropsType = {
 
 export function Trip({
   destination,
-  days,
   description,
   image,
   alt,
@@ -24,10 +22,9 @@ export function Trip({
 
   async function handleSubmission() {
     setData({
-      days: days.toString(),
       destination,
     })
-    navigate(`/result/${days}/${destination}`)
+    navigate(`/result/${encodeURIComponent(destination)}`)
   }
 
   return (
@@ -36,9 +33,7 @@ export function Trip({
         <img src={`${image}`} alt={alt} loading="lazy"></img>
       </div>
       <div className="trip-info">
-        <h5>
-          Best of {destination} in {days} days
-        </h5>
+        <h5>Best of {destination}</h5>
       </div>
       <p>
         {readMore ? description : `${description.substring(0, 200)}...`}

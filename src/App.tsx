@@ -23,10 +23,7 @@ function App() {
           <Route path="/" element={<Home></Home>} />
           <Route path="/home" element={<Home></Home>} />
           <Route path="/poi/:location/:destination" element={<POI></POI>} />
-          <Route
-            path="/result/:days/:destination"
-            element={<Result></Result>}
-          />
+          <Route path="/result/:destination" element={<Result></Result>} />
           <Route
             path="/popular-cities/:country"
             element={<PopularCities></PopularCities>}

@@ -15,14 +15,14 @@ export function Result() {
   const [itinerary, setItinerary] = useState<ItineraryResponseType>()
   const [resultPhoto, setResultPhoto] = useState<PhotoRetrieverResponseType>()
   const [errored, setErrored] = useState(false)
-  const { days, destination } = useParams()
+  const { destination } = useParams()
 
   useEffect(() => {
     try {
       setLoading(true)
 
       async function getData() {
-        if (!destination || !days) {
+        if (!destination) {
           throw new Error("mandatory params missing")
         }
         //
@@ -30,8 +30,8 @@ export function Result() {
         const photoApi = new PhotoApi()
 
         const [itineraryResult, photoResult] = await Promise.allSettled([
-          dataAggregator.getItinerary(destination, days),
-          photoApi.getPhoto(destination),
+          dataAggregator.getItinerary(decodeURIComponent(destination)),
+          photoApi.getPhoto(decodeURIComponent(destination)),
         ])
 
         if (itineraryResult.status === "rejected") {
@@ -63,7 +63,7 @@ export function Result() {
 
   return (
     <div>
-      {!days || !destination || !itinerary || errored ? (
+      {!destination || !itinerary || errored ? (
         // Invalid params or Error
         <TechnicalError></TechnicalError>
       ) : (

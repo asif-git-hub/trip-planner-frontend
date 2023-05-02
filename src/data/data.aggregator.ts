@@ -7,8 +7,8 @@ export class DataAggregator {
 
   private httpClient = new HttpClient()
 
-  async getItinerary(destination: string, days: string) {
-    const url = `${this.itineraryBaseUrl}?destination=${destination}&days=${days}`
+  async getItinerary(destination: string) {
+    const url = `${this.itineraryBaseUrl}?destination=${destination}`
     const headers = new AxiosHeaders({
       "Content-Type": "application/x-www-form-urlencoded",
       "Access-Control-Allow-Origin": "*",
@@ -20,18 +20,4 @@ export class DataAggregator {
 
     return response.data
   }
-
-  // async getAllData(destination: string, days: string) {
-  //   const photoApi = new PhotoApi()
-
-  //   const [itinerary, photo] = await Promise.allSettled([
-  //     this.getItinerary(destination, days),
-  //     photoApi.getPhoto(destination),
-  //   ])
-
-  //   //
-  //   if (itinerary.status === "rejected") {
-  //     throw new Error("")
-  //   }
-  // }
 }

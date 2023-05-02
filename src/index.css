@@ -37,6 +37,7 @@
   --dark-teal: #008080;
   --egg-shell: #f6d052;
   --tangerine: #f28500;
+  --tangerine-darker: #d37a0d;
   --mint: #daf7a6;
   --black: #222;
   --white: #fff;
@@ -566,6 +567,7 @@ ul {
 /* Links */
 
 .details-link {
+  cursor: pointer;
   background: var(--tangerine);
   display: block;
   width: 120px;
@@ -576,10 +578,14 @@ ul {
   position: relative;
   margin-top: 15px;
   margin-left: auto;
+  box-shadow: var(--shadow-1);
+  transition: var(--transition);
 }
 
 .details-link:hover {
   box-shadow: var(--shadow-3);
+  background: var(--tangerine-darker);
+
 }
 
 /* Itinerary */

@@ -74,7 +74,7 @@ export function DestinationInput({
         autoComplete="off"
         autoFocus
         required={true}
-        placeholder="Enter a destination (For example, Munich, Germany)"
+        placeholder="Where can we take you?"
         onChange={handleDestinationInput}
       />
     </label>

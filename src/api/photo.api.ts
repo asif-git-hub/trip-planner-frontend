@@ -1,5 +1,6 @@
 import { getEnvVar } from "../utils/common.utils"
 import { HttpClient } from "../clients/http.client"
+
 export type PhotoRetrieverResponseType = {
   photo: {
     description: string

@@ -1,3 +1,5 @@
+import { PhotoRetrieverResponseType } from "../api/photo.api"
+
 export type DailyActivitiesType = {
   day: number
   city?: string
@@ -18,4 +20,10 @@ export type ItineraryResponseType = DailyActivitiesType[]
 export type POIDataType = {
   location: string
   description: string
+}
+
+export type PopularCitiesResponseType = {
+  city: string
+  description: string
+  imgData?: PhotoRetrieverResponseType
 }

@@ -4,6 +4,7 @@ import { getEnvVar } from "../utils/common.utils"
 import useScript from "../hooks/use.script"
 import { useNavigate } from "react-router-dom"
 import { ItineraryRequestType } from "../types/request.types"
+import { determineDestinationType } from "../utils/destination.utils"
 
 type MyFormType = {
   data: ItineraryRequestType
@@ -25,12 +26,6 @@ export function MyForm({ data, setData }: MyFormType) {
     `https://maps.googleapis.com/maps/api/js?language=en&key=${GOOGLE_API_KEY}&libraries=places&callback=Function.prototype`
   )
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.name === "days") {
-      setData({ ...data, days: e.target.value })
-    }
-  }
-
   function validateInput() {
     let isFormValid = true
 
@@ -42,14 +37,6 @@ export function MyForm({ data, setData }: MyFormType) {
       })
     }
 
-    if (!data.days || data.days === "") {
-      isFormValid = false
-      setFormError({
-        isInvalid: true,
-        message: "Number of days must be between 1 and 6",
-      })
-    }
-
     return isFormValid
   }
 
@@ -57,7 +44,14 @@ export function MyForm({ data, setData }: MyFormType) {
     e.preventDefault()
     const isFormValid = validateInput()
     if (isFormValid) {
-      navigate(`/result/${data.days}/${data.destination}`)
+      // Check destination type - city or country
+      const destinationType = determineDestinationType(data.destination)
+      navigate(`/result/${encodeURIComponent(data.destination)}`)
+      // if (destinationType === "city") {
+      //   navigate(`/result/${data.days}/${data.destination}`)
+      // } else if (destinationType === "country") {
+      //   navigate(`/popular-cities/${data.destination}`)
+      // }
     }
   }
 
@@ -70,20 +64,6 @@ export function MyForm({ data, setData }: MyFormType) {
             data={data}
             setData={setData}
           ></DestinationInput>
-
-          <label>
-            <input
-              className="form-input form-row"
-              id="days"
-              type="number"
-              name="days"
-              required={true}
-              placeholder="How many days (maximum 7 days)"
-              min={1}
-              max={7}
-              onChange={handleChange}
-            />
-          </label>
 
           {formError.isInvalid ? (
             <div>

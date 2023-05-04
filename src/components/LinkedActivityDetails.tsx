@@ -5,12 +5,14 @@ type LinkedActivityDetailPropType = {
   location: string
   destination: string
   description: string
+  custom?: boolean | undefined
 }
 
 export function LinkedActivityDetails({
   location,
   destination,
   description,
+  custom,
 }: LinkedActivityDetailPropType) {
   return (
     <div className="activty-container">
@@ -19,16 +21,20 @@ export function LinkedActivityDetails({
       </p>
       <i>{description}</i>
       <br></br>
-      <Link
-        to={`/poi/${encodeURIComponent(location)}/${encodeURIComponent(
-          destination
-        )}`}
-        target="_blank"
-        rel="noopener"
-        className="details-link"
-      >
-        Discover more
-      </Link>
+      {custom ? (
+        ""
+      ) : (
+        <Link
+          to={`/poi/${encodeURIComponent(location)}/${encodeURIComponent(
+            destination
+          )}`}
+          target="_blank"
+          rel="noopener"
+          className="details-link"
+        >
+          Discover more
+        </Link>
+      )}
     </div>
   )
 }

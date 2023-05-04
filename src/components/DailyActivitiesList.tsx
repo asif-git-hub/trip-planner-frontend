@@ -1,9 +1,12 @@
-import React from "react"
-import { DailyActivitiesType } from "../types/response.types"
+import React, { useState } from "react"
+import { DailyActivitiesType, ActivityType } from "../types/response.types"
 import { createMapQuery } from "../utils/google.utils"
 import { options } from "../data/activity.options"
 import { RoundButton } from "./RoundButton"
 import { LinkedActivityDetails } from "./LinkedActivityDetails"
+import { BiMessageAdd } from "react-icons/bi"
+import { AddActivityModal } from "./AddActivityModal"
+import { getCountryCode } from "../utils/destination.utils"
 
 type DailyActivitiesListPropType = DailyActivitiesType & {
   destination: string
@@ -17,10 +20,22 @@ export function DailyActivitiesList({
   activities,
   city,
 }: DailyActivitiesListPropType) {
+  const [showActivityForm, setShowActivityForm] = useState(false)
+  const [newActivity, setNewActivity] = useState<ActivityType>({
+    location: "",
+    description: "",
+    custom: true,
+  })
+  const [dailyActivities, setDailyActivities] = useState(activities)
+
   let mapsUrl = createMapQuery(
-    activities,
+    dailyActivities, //TODO: use dailyActivities
     destination.replace(/ /g, "+").replace(",", "")
   )
+
+  // country code for geo restriction for google search
+  const countrycode = getCountryCode(destination)
+
   return (
     <div className="activitieslist-container" key={id}>
       <div className="day-container" key={day}>
@@ -32,7 +47,7 @@ export function DailyActivitiesList({
 
       <div className="meal-links-container" key={parseInt(`1${day}${id}`)}>
         {options.map((option, id) => {
-          const link = `http://www.google.com/maps/search/${option.name}/@${activities[0].geocode.latitude},${activities[0].geocode.longitude},15z`
+          const link = `http://www.google.com/maps/search/${option.name}/@${dailyActivities[0].geocode?.latitude},${dailyActivities[0].geocode?.longitude},15z`
           return (
             <RoundButton
               key={parseInt(`${day}${id}`)}
@@ -43,7 +58,7 @@ export function DailyActivitiesList({
         })}
       </div>
 
-      {activities.map((activity, id) => {
+      {dailyActivities.map((activity, id) => {
         return (
           <div key={parseInt(`${day}${id}`)}>
             <LinkedActivityDetails
@@ -51,10 +66,33 @@ export function DailyActivitiesList({
               location={activity.location}
               destination={destination}
               description={activity.description}
+              custom={activity.custom}
             ></LinkedActivityDetails>
           </div>
         )
       })}
+
+      <div className="daily-activity-control-container">
+        <div className="add-activity-container">
+          <button
+            className="add-activity-btn"
+            onClick={() => setShowActivityForm(!showActivityForm)}
+          >
+            Add activity <BiMessageAdd className="add-icon"></BiMessageAdd>
+          </button>
+        </div>
+      </div>
+
+      <AddActivityModal
+        key={id}
+        day={day}
+        showActivityForm={showActivityForm}
+        newActivity={newActivity}
+        countrycode={countrycode}
+        setShowActivityForm={setShowActivityForm}
+        setNewActivity={setNewActivity}
+        setDailyActivities={setDailyActivities}
+      ></AddActivityModal>
 
       <div className="google-map-code" key={parseInt(`2${day}${id}`)}>
         <iframe

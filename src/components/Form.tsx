@@ -1,7 +1,5 @@
-import React, { Dispatch, SetStateAction, useState } from "react"
+import React, { Dispatch, SetStateAction, useMemo, useState } from "react"
 import { DestinationInput } from "./DestinationInput"
-import { getEnvVar } from "../utils/common.utils"
-import useScript from "../hooks/use.script"
 import { useNavigate } from "react-router-dom"
 import { ItineraryRequestType } from "../types/request.types"
 import { determineDestinationType } from "../utils/destination.utils"
@@ -19,12 +17,20 @@ export function MyForm({ data, setData }: MyFormType) {
 
   const navigate = useNavigate()
 
-  const GOOGLE_API_KEY = getEnvVar("REACT_APP_GOOGLE_API_KEY")
-
-  const scriptStatus = useScript(
-    // By default, Google Places will attempt to guess your language based on your country.
-    `https://maps.googleapis.com/maps/api/js?language=en&key=${GOOGLE_API_KEY}&libraries=places&callback=Function.prototype`
+  const destinationAutocompleteOptions = useMemo(
+    () => ({
+      fields: ["name"],
+      types: ["(regions)"],
+    }),
+    []
   )
+
+  // const GOOGLE_API_KEY = getEnvVar("REACT_APP_GOOGLE_API_KEY")
+
+  // const scriptStatus = useScript(
+  //   // By default, Google Places will attempt to guess your language based on your country.
+  //   `https://maps.googleapis.com/maps/api/js?language=en&key=${GOOGLE_API_KEY}&libraries=places&callback=Function.prototype`
+  // )
 
   function validateInput() {
     let isFormValid = true
@@ -60,7 +66,10 @@ export function MyForm({ data, setData }: MyFormType) {
       <form className="form" onSubmit={handleSubmit}>
         <div className="input-grid-section">
           <DestinationInput
-            googleScript={scriptStatus}
+            // googleScript={scriptStatus}
+            inputName="destination"
+            placeholder="Where can we take you?"
+            autocompleteOptions={destinationAutocompleteOptions}
             data={data}
             setData={setData}
           ></DestinationInput>

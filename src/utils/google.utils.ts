@@ -6,7 +6,7 @@ export function createMapQuery(
   destination: string
 ): string {
   const numberOfActivities = activities.length
-  const origin = activities[0].location.replace(/ /g, "+") + "+" + destination
+  const origin = encodeURIComponent(activities[0].location + " " + destination)
 
   const key = `key=${getEnvVar("REACT_APP_GOOGLE_API_KEY")}`
 
@@ -17,28 +17,27 @@ export function createMapQuery(
   }
 
   if (numberOfActivities === 2) {
-    mapQuery += `directions?&origin=${origin}&destination=${
-      activities[1].location.replace(" ", "+") + "+" + destination
-    }`
+    mapQuery += `directions?&origin=${origin}&destination=${encodeURIComponent(
+      activities[1].location + " " + destination
+    )}`
   }
 
   if (numberOfActivities > 2) {
     mapQuery += `directions?&origin=${origin}&waypoints=`
 
     for (let i = 1; i < numberOfActivities - 1; i++) {
-      const waypoints =
-        activities[i].location.replace(/ /g, "+") + "+" + destination
+      const waypoints = encodeURIComponent(
+        activities[i].location + " " + destination
+      )
 
       mapQuery += `${waypoints}`
       if (!(i === numberOfActivities - 2)) {
         mapQuery += `|`
       }
     }
-    mapQuery += `&destination=${
-      activities[numberOfActivities - 1].location.replace(/ /g, "+") +
-      "+" +
-      destination
-    }`
+    mapQuery += `&destination=${encodeURIComponent(
+      activities[numberOfActivities - 1].location + " " + destination
+    )}`
   }
 
   mapQuery += `&${key}`

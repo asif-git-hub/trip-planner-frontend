@@ -1,24 +1,24 @@
-import { Dispatch, useEffect, useMemo, useRef } from "react"
+import { Dispatch, useEffect, useRef } from "react"
 import React from "react"
-import { ItineraryRequestType } from "../types/request.types"
 import { getEnvVar } from "../utils/common.utils"
 import useScript from "../hooks/use.script"
+import { ActivityType } from "../types/response.types"
 
-type DestinationFormPropType = {
+type GoogleInputFormPropType = {
   inputName: string
   placeholder: string
   autocompleteOptions: google.maps.places.AutocompleteOptions
-  data: ItineraryRequestType
-  setData: Dispatch<React.SetStateAction<ItineraryRequestType>>
+  data: ActivityType
+  setData: Dispatch<React.SetStateAction<ActivityType>>
 }
 
-export function DestinationInput({
+export function ActivityLocationInput({
   inputName,
   placeholder,
   autocompleteOptions,
   data,
   setData,
-}: DestinationFormPropType) {
+}: GoogleInputFormPropType) {
   const autoCompleteRef = useRef<google.maps.places.Autocomplete>()
   const destinationInputRef = useRef<HTMLInputElement>(null)
 
@@ -31,7 +31,6 @@ export function DestinationInput({
 
   const handleDestinationInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     // Dont allow users to input
-
     setData({ ...data, [e.target.name]: "" })
   }
 
@@ -65,15 +64,16 @@ export function DestinationInput({
 
       // Retrieve the selected location with the `getPlace` method.
       const place = autoCompleteRef.current?.getPlace()
-      setData((data) => ({ ...data, destination: place?.name as string }))
+      setData((data) => ({ ...data, location: place?.name as string }))
     })
   }, [googleScript, autocompleteOptions, handleDestinationInput])
 
   return (
-    <label>
+    <label className="location-input">
+      <div className="location-label">Location</div>
       <input
-        className="form-input form-row"
         id={inputName}
+        className="location"
         ref={destinationInputRef}
         type="text"
         name={inputName}

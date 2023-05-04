@@ -9,10 +9,11 @@ export type DailyActivitiesType = {
 export type ActivityType = {
   location: string
   description: string
-  geocode: {
+  geocode?: {
     longitude: number
     latitude: number
   }
+  custom?: boolean
 }
 
 export type ItineraryResponseType = DailyActivitiesType[]

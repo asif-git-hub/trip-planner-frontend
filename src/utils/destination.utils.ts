@@ -1,3 +1,5 @@
+import { countryCodeMap } from "../data/countries"
+
 const citiesAsCountries = ["Singapore"]
 
 export function determineDestinationType(
@@ -14,4 +16,27 @@ export function determineDestinationType(
   } else {
     return "city"
   }
+}
+
+export function getCountryCode(destination: string): string | null {
+  // destination can be strings like Germany or Dhaka, Bangladesh or Melbourne, VIC, Australia
+
+  const destinationComponents = destination.split(",")
+
+  let countrycode = null
+
+  if (destinationComponents.length === 1) {
+    // Country
+    countrycode = countryCodeMap.get(destination)
+  } else {
+    countrycode = countryCodeMap.get(
+      destinationComponents[destinationComponents.length - 1].replace(" ", "")
+    )
+  }
+
+  if (!countrycode) {
+    return null
+  }
+
+  return countrycode
 }

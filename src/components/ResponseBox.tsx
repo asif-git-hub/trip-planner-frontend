@@ -11,6 +11,15 @@ export function ResponseBox({ destination, itineraryData }: ResponsePropType) {
   return (
     <div className="response-container">
       {itineraryData.map((dailyActivities, id) => {
+        let isDifferentCityNextDay = false
+        let nextCity = undefined
+
+        if (id !== itineraryData.length - 1) {
+          isDifferentCityNextDay =
+            dailyActivities.city !== itineraryData[id + 1].city
+          nextCity = itineraryData[id + 1].city
+        }
+
         return (
           <DailyActivitiesList
             key={id}
@@ -19,6 +28,8 @@ export function ResponseBox({ destination, itineraryData }: ResponsePropType) {
             destination={destination}
             activities={dailyActivities.activities}
             city={dailyActivities.city}
+            isDifferentCityNextDay={isDifferentCityNextDay}
+            nextCity={nextCity}
           ></DailyActivitiesList>
         )
       })}

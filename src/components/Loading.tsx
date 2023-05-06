@@ -28,7 +28,7 @@ export function Loading({ message }: LoadingTypeProp) {
       <div className="loading-textbox">
         <h3>Hang tight</h3>
         <h5>{message}</h5>
-        <p>This may take up to 1 minute</p>
+        <p>This may take up to 2 minutes</p>
       </div>
       <ProgressBar value={value}></ProgressBar>
       <FunFact></FunFact>

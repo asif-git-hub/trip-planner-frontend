@@ -2,19 +2,32 @@ import { countryCodeMap } from "../data/countries"
 
 const citiesAsCountries = ["Singapore"]
 
-export function determineDestinationType(
-  destination: string
-): "country" | "city" {
+type DestinationType = {
+  type: "country" | "city"
+  country: string
+}
+export function determineDestinationType(destination: string): DestinationType {
   // If the destination is Munich, Germany. It is likely a city
   // If the destination is Bangladesh without any comas, it is likely a country
   if (destination.split(",").length === 1) {
+    // This is likely a country
     if (citiesAsCountries.includes(destination)) {
       // Some cities has the same name as a country, for example, Singapore
-      return "city"
+      return {
+        type: "city",
+        country: destination,
+      }
     }
-    return "country"
+    return {
+      type: "country",
+      country: destination,
+    }
   } else {
-    return "city"
+    // This is likely a city: Munich, Germany
+    return {
+      type: "city",
+      country: destination.split(",")[destination.split(",").length - 1],
+    }
   }
 }
 

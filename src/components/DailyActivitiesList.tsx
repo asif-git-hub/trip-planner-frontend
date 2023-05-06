@@ -6,11 +6,17 @@ import { RoundButton } from "./RoundButton"
 import { LinkedActivityDetails } from "./LinkedActivityDetails"
 import { BiMessageAdd } from "react-icons/bi"
 import { AddActivityModal } from "./AddActivityModal"
-import { getCountryCode } from "../utils/destination.utils"
+import {
+  determineDestinationType,
+  getCountryCode,
+} from "../utils/destination.utils"
+import { CityTransferMode } from "./CityTransferMode"
 
 type DailyActivitiesListPropType = DailyActivitiesType & {
   destination: string
   id: number
+  isDifferentCityNextDay: boolean
+  nextCity?: string
 }
 
 export function DailyActivitiesList({
@@ -19,6 +25,8 @@ export function DailyActivitiesList({
   destination,
   activities,
   city,
+  isDifferentCityNextDay,
+  nextCity,
 }: DailyActivitiesListPropType) {
   const [showActivityForm, setShowActivityForm] = useState(false)
   const [newActivity, setNewActivity] = useState<ActivityType>({
@@ -29,7 +37,7 @@ export function DailyActivitiesList({
   const [dailyActivities, setDailyActivities] = useState(activities)
 
   let mapsUrl = createMapQuery(
-    dailyActivities, //TODO: use dailyActivities
+    dailyActivities,
     destination.replace(/ /g, "+").replace(",", "")
   )
 
@@ -47,7 +55,7 @@ export function DailyActivitiesList({
 
       <div className="meal-links-container" key={parseInt(`1${day}${id}`)}>
         {options.map((option, id) => {
-          const link = `http://www.google.com/maps/search/${option.name}/@${dailyActivities[0].geocode?.latitude},${dailyActivities[0].geocode?.longitude},15z`
+          const link = `https://www.google.com/maps/search/${option.name}/@${dailyActivities[0].geocode?.latitude},${dailyActivities[0].geocode?.longitude},15z`
           return (
             <RoundButton
               key={parseInt(`${day}${id}`)}
@@ -107,6 +115,17 @@ export function DailyActivitiesList({
           tabIndex={0}
         ></iframe>
       </div>
+
+      {isDifferentCityNextDay && nextCity && city ? (
+        <CityTransferMode
+          key={id}
+          currentCity={city}
+          nextCity={nextCity}
+          country={`${determineDestinationType(destination).country}`}
+        ></CityTransferMode>
+      ) : (
+        ""
+      )}
     </div>
   )
 }

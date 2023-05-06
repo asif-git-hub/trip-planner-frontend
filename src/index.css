@@ -429,6 +429,29 @@ ul {
   margin-right: auto;
 }
 
+/* Arrow */
+
+.dotted-line {
+  border: none;
+  border-top: 5px dotted var(--tangerine);
+  color: #fff;
+  width: 75%;
+  max-width: var(--max-width);
+  height: 0.25rem;
+  margin: auto;
+  margin-top: 25px;
+  position: absolute;
+  /* bottom: 0; */
+}
+
+.behind {
+  z-index: 1;
+}
+
+.front {
+  z-index: 3;
+}
+
 /* Btn text */
 
 .btn-with-text {
@@ -516,6 +539,9 @@ ul {
 @media screen and (max-width: 800px) {
   .form {
     width: 90%;
+  }
+  .arrow {
+    width: 65%;
   }
 }
 
@@ -693,6 +719,47 @@ ul {
   margin: 1rem auto;
   padding: 15px;
   border-radius: var(--borderRadius);
+}
+
+.city-transfer-container {
+  margin-top: 10px;
+  background-color: rgb(246, 234, 237);
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  justify-content: center;
+  border-radius: var(--borderRadius);
+}
+
+.travel-mode-container {
+  text-align: center;
+  justify-content: center;
+}
+
+.current-location-marker {
+  left: 0;
+  position: absolute;
+}
+
+.next-location-marker {
+  right: 0;
+  position: absolute;
+}
+
+.next-location-icon {
+  color: darkred;
+}
+
+.city-transfer-container p {
+  text-align: center;
+}
+
+.city-marker-text {
+  margin-right: 5px;
+  font-weight: 600;
 }
 
 /* Daily activity control panel */
@@ -1079,7 +1146,6 @@ nav {
   max-width: var(--max-width);
   display: flex;
   gap: 1rem;
-  /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
   margin: 2rem auto;
   width: 60vw;
   padding: 20px;
@@ -1108,6 +1174,11 @@ nav {
 .add-icon {
   font-size: 1rem;
   /* margin-top: 2px; */
+}
+
+.marker-icon {
+  font-size: 2rem;
+  margin: 11px 20px 0 20px;
 }
 
 /* Fun Fact */

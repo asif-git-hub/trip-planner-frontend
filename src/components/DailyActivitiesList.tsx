@@ -38,7 +38,8 @@ export function DailyActivitiesList({
 
   let mapsUrl = createMapQuery(
     dailyActivities,
-    destination.replace(/ /g, "+").replace(",", "")
+    city,
+    destination.split(",")[destination.split(",").length - 1]
   )
 
   // country code for geo restriction for google search
@@ -80,9 +81,10 @@ export function DailyActivitiesList({
         )
       })}
 
-      <div className="daily-activity-control-container">
-        <div className="add-activity-container">
+      <div key={id} className="daily-activity-control-container">
+        <div key={id} className="add-activity-container">
           <button
+            key={parseInt(`${day}${id}`)}
             className="add-activity-btn"
             onClick={() => setShowActivityForm(!showActivityForm)}
           >
@@ -92,7 +94,7 @@ export function DailyActivitiesList({
       </div>
 
       <AddActivityModal
-        key={id}
+        key={parseInt(`${day}${id}`)}
         day={day}
         showActivityForm={showActivityForm}
         newActivity={newActivity}
@@ -118,7 +120,7 @@ export function DailyActivitiesList({
 
       {isDifferentCityNextDay && nextCity && city ? (
         <CityTransferMode
-          key={id}
+          key={parseInt(`${day}${id}`)}
           currentCity={city}
           nextCity={nextCity}
           country={`${determineDestinationType(destination).country}`}

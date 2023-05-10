@@ -3,10 +3,11 @@ import { getEnvVar } from "./common.utils"
 
 export function createMapQuery(
   activities: ActivityType[],
+  city: string,
   destination: string
 ): string {
   const numberOfActivities = activities.length
-  const origin = encodeURIComponent(activities[0].location + " " + destination)
+  const origin = encodeURIComponent(`${activities[0].location}, ${city}, ${destination}`)
 
   const key = `key=${getEnvVar("REACT_APP_GOOGLE_API_KEY")}`
 
@@ -18,7 +19,7 @@ export function createMapQuery(
 
   if (numberOfActivities === 2) {
     mapQuery += `directions?&origin=${origin}&destination=${encodeURIComponent(
-      activities[1].location + " " + destination
+      `${activities[1].location}, ${city}, ${destination}`
     )}`
   }
 
@@ -27,7 +28,7 @@ export function createMapQuery(
 
     for (let i = 1; i < numberOfActivities - 1; i++) {
       const waypoints = encodeURIComponent(
-        activities[i].location + " " + destination
+        `${activities[i].location}, ${city}, ${destination}`
       )
 
       mapQuery += `${waypoints}`
@@ -36,7 +37,7 @@ export function createMapQuery(
       }
     }
     mapQuery += `&destination=${encodeURIComponent(
-      activities[numberOfActivities - 1].location + " " + destination
+      `${activities[numberOfActivities - 1].location}, ${city}, ${destination}`
     )}`
   }
 

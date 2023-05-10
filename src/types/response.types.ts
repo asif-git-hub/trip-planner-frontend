@@ -2,7 +2,7 @@ import { PhotoRetrieverResponseType } from "../api/photo.api"
 
 export type DailyActivitiesType = {
   day: number
-  city?: string
+  city: string
   activities: ActivityType[]
 }
 

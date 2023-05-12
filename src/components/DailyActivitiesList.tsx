@@ -39,7 +39,7 @@ export function DailyActivitiesList({
   let mapsUrl = createMapQuery(
     dailyActivities,
     city,
-    destination.split(",")[destination.split(",").length - 1]
+    destination
   )
 
   // country code for geo restriction for google search
@@ -123,7 +123,7 @@ export function DailyActivitiesList({
           key={parseInt(`${day}${id}`)}
           currentCity={city}
           nextCity={nextCity}
-          country={`${determineDestinationType(destination).country}`}
+          country={`${determineDestinationType(destination).region}`}
         ></CityTransferMode>
       ) : (
         ""

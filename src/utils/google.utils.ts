@@ -9,8 +9,10 @@ export function createMapQuery(
 ): string {
   const region = determineDestinationType(destination).region
   const numberOfActivities = activities.length
-  
-  const origin = encodeURIComponent(`${activities[0].location}, ${city}, ${region}`)
+
+  const origin = encodeURIComponent(
+    `${activities[0].location}, ${city}, ${region}`
+  )
 
   const key = `key=${getEnvVar("REACT_APP_GOOGLE_API_KEY")}`
 

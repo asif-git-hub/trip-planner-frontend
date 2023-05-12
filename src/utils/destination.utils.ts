@@ -24,14 +24,13 @@ export function determineDestinationType(destination: string): DestinationType {
       type: "country",
       region: destination,
     }
-  } else {  
+  } else {
     // This is likely a city: Munich, Germany or Melbourne, VIC, Australia
     const region = destinationComponents.slice(1).toString()
     return {
       type: "city",
-      region
+      region,
     }
-    
   }
 }
 

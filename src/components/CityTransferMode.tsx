@@ -46,8 +46,8 @@ function createTransferLink(
   mode: "driving" | "transit"
 ) {
   return `https://www.google.com/maps/dir/?api=1&origin=${decodeURIComponent(
-    `${currentCity},${country}`
+    `${currentCity}, ${country}`
   )}&destination=${decodeURIComponent(
-    `${nextCity},${country}`
+    `${nextCity}, ${country}`
   )}&travelmode=${mode}`
 }

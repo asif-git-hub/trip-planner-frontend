@@ -1,13 +1,16 @@
 import { ActivityType } from "../types/response.types"
 import { getEnvVar } from "./common.utils"
+import { determineDestinationType } from "./destination.utils"
 
 export function createMapQuery(
   activities: ActivityType[],
   city: string,
   destination: string
 ): string {
+  const region = determineDestinationType(destination).region
   const numberOfActivities = activities.length
-  const origin = encodeURIComponent(`${activities[0].location}, ${city}, ${destination}`)
+  
+  const origin = encodeURIComponent(`${activities[0].location}, ${city}, ${region}`)
 
   const key = `key=${getEnvVar("REACT_APP_GOOGLE_API_KEY")}`
 
@@ -19,7 +22,7 @@ export function createMapQuery(
 
   if (numberOfActivities === 2) {
     mapQuery += `directions?&origin=${origin}&destination=${encodeURIComponent(
-      `${activities[1].location}, ${city}, ${destination}`
+      `${activities[1].location}, ${city}, ${region}`
     )}`
   }
 
@@ -28,7 +31,7 @@ export function createMapQuery(
 
     for (let i = 1; i < numberOfActivities - 1; i++) {
       const waypoints = encodeURIComponent(
-        `${activities[i].location}, ${city}, ${destination}`
+        `${activities[i].location}, ${city}, ${region}`
       )
 
       mapQuery += `${waypoints}`
@@ -37,7 +40,7 @@ export function createMapQuery(
       }
     }
     mapQuery += `&destination=${encodeURIComponent(
-      `${activities[numberOfActivities - 1].location}, ${city}, ${destination}`
+      `${activities[numberOfActivities - 1].location}, ${city}, ${region}`
     )}`
   }
 

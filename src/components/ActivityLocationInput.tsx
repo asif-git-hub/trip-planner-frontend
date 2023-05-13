@@ -36,6 +36,7 @@ export function ActivityLocationInput({
 
   useEffect(() => {
     // Conditions to ensure that no multiple instances of the
+    console.log("ActivityLocationInput :: USEEFFECT RUNNINGG")
     if (
       autoCompleteRef.current ||
       googleScript === "loading" ||
@@ -66,7 +67,7 @@ export function ActivityLocationInput({
       const place = autoCompleteRef.current?.getPlace()
       setData((data) => ({ ...data, location: place?.name as string }))
     })
-  }, [googleScript, autocompleteOptions, handleDestinationInput])
+  }, [googleScript, autocompleteOptions])
 
   return (
     <label className="location-input">

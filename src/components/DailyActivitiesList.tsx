@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { DailyActivitiesType, ActivityType } from "../types/response.types"
 import { createMapQuery } from "../utils/google.utils"
 import { options } from "../data/activity.options"
@@ -36,18 +36,18 @@ export function DailyActivitiesList({
   })
   const [dailyActivities, setDailyActivities] = useState(activities)
 
-  let mapsUrl = createMapQuery(
-    dailyActivities,
-    city,
-    destination
-  )
+  let mapsUrl = createMapQuery(dailyActivities, city, destination)
 
   // country code for geo restriction for google search
   const countrycode = getCountryCode(destination)
 
+  useEffect(() => {
+    console.log("DAILY ACTIVITIES CHANGED :: USE EFFECT RUN")
+  }, [dailyActivities[0], dailyActivities[1], dailyActivities[3]])
+
   return (
-    <div className="activitieslist-container" key={id}>
-      <div className="day-container" key={day}>
+    <div className="activitieslist-container">
+      <div className="day-container">
         <h2>
           Day {day}
           {city ? `: ${city}` : ""}
@@ -69,22 +69,22 @@ export function DailyActivitiesList({
 
       {dailyActivities.map((activity, id) => {
         return (
-          <div key={parseInt(`${day}${id}`)}>
-            <LinkedActivityDetails
-              key={parseInt(`${day}${id}`)}
-              location={activity.location}
-              destination={destination}
-              description={activity.description}
-              custom={activity.custom}
-            ></LinkedActivityDetails>
-          </div>
+          <LinkedActivityDetails
+            key={parseInt(`${day}${id}`)}
+            location={activity.location}
+            destination={destination}
+            description={activity.description}
+            custom={activity.custom}
+            dailyActivities={dailyActivities}
+            setDailyActivities={setDailyActivities}
+            currentOrder={id}
+          ></LinkedActivityDetails>
         )
       })}
 
       <div key={id} className="daily-activity-control-container">
-        <div key={id} className="add-activity-container">
+        <div className="add-activity-container">
           <button
-            key={parseInt(`${day}${id}`)}
             className="add-activity-btn"
             onClick={() => setShowActivityForm(!showActivityForm)}
           >
@@ -94,7 +94,6 @@ export function DailyActivitiesList({
       </div>
 
       <AddActivityModal
-        key={parseInt(`${day}${id}`)}
         day={day}
         showActivityForm={showActivityForm}
         newActivity={newActivity}
@@ -120,7 +119,6 @@ export function DailyActivitiesList({
 
       {isDifferentCityNextDay && nextCity && city ? (
         <CityTransferMode
-          key={parseInt(`${day}${id}`)}
           currentCity={city}
           nextCity={nextCity}
           country={`${determineDestinationType(destination).region}`}

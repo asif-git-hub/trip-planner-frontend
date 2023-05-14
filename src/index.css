@@ -483,8 +483,6 @@ ul {
   border-radius: var(--borderRadius); */
 }
 
-
-
 /* Underline */
 
 .underline {
@@ -946,7 +944,7 @@ ul {
 .expandable-btn-container button:hover {
   cursor: pointer;
   color: var(--black);
-  background-color: #FAC898  ;
+  background-color: #fac898;
 }
 
 .expandable-btn-container button:first-child {
@@ -969,7 +967,6 @@ ul {
 .expandable-btn-icon {
   float: left;
   margin-right: 5px;
-
 }
 
 .expandable-btn-text {

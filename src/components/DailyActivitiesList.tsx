@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import { DailyActivitiesType, ActivityType } from "../types/response.types"
 import { createMapQuery } from "../utils/google.utils"
 import { options } from "../data/activity.options"
@@ -41,10 +41,6 @@ export function DailyActivitiesList({
   // country code for geo restriction for google search
   const countrycode = getCountryCode(destination)
 
-  useEffect(() => {
-    console.log("DAILY ACTIVITIES CHANGED :: USE EFFECT RUN")
-  }, [dailyActivities[0], dailyActivities[1], dailyActivities[3]])
-
   return (
     <div className="activitieslist-container">
       <div className="day-container">
@@ -85,10 +81,10 @@ export function DailyActivitiesList({
       <div key={id} className="daily-activity-control-container">
         <div className="add-activity-container">
           <button
-            className="add-activity-btn"
+            className="btn-5"
             onClick={() => setShowActivityForm(!showActivityForm)}
           >
-            Add activity <BiMessageAdd className="add-icon"></BiMessageAdd>
+            Add Activity <BiMessageAdd className="add-icon"></BiMessageAdd>
           </button>
         </div>
       </div>

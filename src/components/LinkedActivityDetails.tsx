@@ -1,6 +1,4 @@
-import React, { Dispatch, useEffect } from "react"
-import { Link } from "react-router-dom"
-import { ActivityOrderContainer } from "./ActivityOrderContainer"
+import React, { Dispatch } from "react"
 import { ActivityType } from "../types/response.types"
 import { EditActivity } from "./EditActivity"
 
@@ -29,20 +27,28 @@ export function LinkedActivityDetails({
         <strong>{location}</strong>
       </p>
       <i>{description}</i>
-      {/* <ActivityOrderContainer
+
+      <EditActivity
         dailyActivities={dailyActivities}
         setDailyActivities={setDailyActivities}
         currentOrder={currentOrder}
-      ></ActivityOrderContainer> */}
-      <EditActivity
       ></EditActivity>
 
       {custom ? (
         ""
       ) : (
-        <button className="details-link btn-4" onClick={() => {
-          window.open(`/poi/${encodeURIComponent(location)}/${encodeURIComponent(destination)}`, '_blank', 'noopener,noreferrer')
-        }}>
+        <button
+          className="details-link btn-4"
+          onClick={() => {
+            window.open(
+              `/poi/${encodeURIComponent(location)}/${encodeURIComponent(
+                destination
+              )}`,
+              "_blank",
+              "noopener,noreferrer"
+            )
+          }}
+        >
           Discover more
         </button>
       )}

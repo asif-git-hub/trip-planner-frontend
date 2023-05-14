@@ -1,7 +1,9 @@
 import React, { Dispatch } from "react"
 import { ActivityType } from "../types/response.types"
-import { TbSquareRoundedChevronDown, TbSquareRoundedChevronUp } from "react-icons/tb"
-import { AiOutlineDown, AiOutlineUp } from "react-icons/ai"
+import {
+  TbSquareRoundedChevronDown,
+  TbSquareRoundedChevronUp,
+} from "react-icons/tb"
 
 type ActivityOrderContainerPropType = {
   dailyActivities: ActivityType[]
@@ -25,7 +27,6 @@ export function ActivityOrderContainer({
       newDailyActivities[currentOrder] = previousActivity
       newDailyActivities[currentOrder - 1] = dailyActivities[currentOrder]
 
-      console.log(newDailyActivities)
       setDailyActivities(newDailyActivities)
     }
   }
@@ -47,16 +48,15 @@ export function ActivityOrderContainer({
 
   return (
     <div className="activity-order-container">
-        <div className="up-down-container">
+      <div className="up-down-container">
         <button className="move-activity-btn" onClick={moveUp}>
-        <TbSquareRoundedChevronUp></TbSquareRoundedChevronUp>
-      </button>
+          <TbSquareRoundedChevronUp></TbSquareRoundedChevronUp>
+        </button>
 
-      <button className="move-activity-btn" onClick={moveDown}>
-        <TbSquareRoundedChevronDown></TbSquareRoundedChevronDown>
-      </button>
-        </div>
-
+        <button className="move-activity-btn" onClick={moveDown}>
+          <TbSquareRoundedChevronDown></TbSquareRoundedChevronDown>
+        </button>
+      </div>
     </div>
   )
 }

@@ -36,7 +36,6 @@ export function ActivityLocationInput({
 
   useEffect(() => {
     // Conditions to ensure that no multiple instances of the
-    console.log("ActivityLocationInput :: USEEFFECT RUNNINGG")
     if (
       autoCompleteRef.current ||
       googleScript === "loading" ||

@@ -66,7 +66,7 @@ export function ActivityLocationInput({
       const place = autoCompleteRef.current?.getPlace()
       setData((data) => ({ ...data, location: place?.name as string }))
     })
-  }, [googleScript, autocompleteOptions, handleDestinationInput])
+  }, [googleScript, autocompleteOptions])
 
   return (
     <label className="location-input">

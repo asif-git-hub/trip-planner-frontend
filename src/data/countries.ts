@@ -233,6 +233,7 @@ const countryCodeJSON = {
   Ukraine: "UA",
   "United Arab Emirates": "AE",
   "United Kingdom": "GB",
+  UK: "GB",
   "United States": "US",
   "United States Minor Outlying Islands": "UM",
   Uruguay: "UY",

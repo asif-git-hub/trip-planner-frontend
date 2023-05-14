@@ -1,11 +1,15 @@
-import React from "react"
-import { Link } from "react-router-dom"
+import React, { Dispatch } from "react"
+import { ActivityType } from "../types/response.types"
+import { EditActivity } from "./EditActivity"
 
 type LinkedActivityDetailPropType = {
   location: string
   destination: string
   description: string
   custom?: boolean | undefined
+  dailyActivities: ActivityType[]
+  setDailyActivities: Dispatch<React.SetStateAction<ActivityType[]>>
+  currentOrder: number
 }
 
 export function LinkedActivityDetails({
@@ -13,6 +17,9 @@ export function LinkedActivityDetails({
   destination,
   description,
   custom,
+  dailyActivities,
+  setDailyActivities,
+  currentOrder,
 }: LinkedActivityDetailPropType) {
   return (
     <div className="activty-container">
@@ -20,20 +27,30 @@ export function LinkedActivityDetails({
         <strong>{location}</strong>
       </p>
       <i>{description}</i>
-      <br></br>
+
+      <EditActivity
+        dailyActivities={dailyActivities}
+        setDailyActivities={setDailyActivities}
+        currentOrder={currentOrder}
+      ></EditActivity>
+
       {custom ? (
         ""
       ) : (
-        <Link
-          to={`/poi/${encodeURIComponent(location)}/${encodeURIComponent(
-            destination
-          )}`}
-          target="_blank"
-          rel="noopener"
-          className="details-link"
+        <button
+          className="details-link btn-4"
+          onClick={() => {
+            window.open(
+              `/poi/${encodeURIComponent(location)}/${encodeURIComponent(
+                destination
+              )}`,
+              "_blank",
+              "noopener,noreferrer"
+            )
+          }}
         >
           Discover more
-        </Link>
+        </button>
       )}
     </div>
   )

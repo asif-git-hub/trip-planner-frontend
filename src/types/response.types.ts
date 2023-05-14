@@ -4,15 +4,15 @@ export type DailyActivitiesType = {
   day: number
   city: string
   activities: ActivityType[]
+  geocode: {
+    longitude: number
+    latitude: number
+  }
 }
 
 export type ActivityType = {
   location: string
   description: string
-  geocode?: {
-    longitude: number
-    latitude: number
-  }
   custom?: boolean
 }
 

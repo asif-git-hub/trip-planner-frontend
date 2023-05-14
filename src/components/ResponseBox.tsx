@@ -28,6 +28,7 @@ export function ResponseBox({ destination, itineraryData }: ResponsePropType) {
             destination={destination}
             activities={dailyActivities.activities}
             city={dailyActivities.city}
+            geocode={dailyActivities.geocode}
             isDifferentCityNextDay={isDifferentCityNextDay}
             nextCity={nextCity}
           ></DailyActivitiesList>

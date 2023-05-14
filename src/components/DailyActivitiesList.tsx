@@ -25,6 +25,7 @@ export function DailyActivitiesList({
   destination,
   activities,
   city,
+  geocode,
   isDifferentCityNextDay,
   nextCity,
 }: DailyActivitiesListPropType) {
@@ -52,7 +53,7 @@ export function DailyActivitiesList({
 
       <div className="meal-links-container" key={parseInt(`1${day}${id}`)}>
         {options.map((option, id) => {
-          const link = `https://www.google.com/maps/search/${option.name}/@${dailyActivities[0].geocode?.latitude},${dailyActivities[0].geocode?.longitude},15z`
+          const link = `https://www.google.com/maps/search/${option.name}/@${geocode.latitude},${geocode.longitude},15z`
           return (
             <RoundButton
               key={parseInt(`${day}${id}`)}

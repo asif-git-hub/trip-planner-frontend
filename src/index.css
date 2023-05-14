@@ -476,7 +476,7 @@ ul {
   background-color: var(--tangerine);
   float: left;
   color: var(--white);
-  padding: 3px 5px;
+  padding: 0.375rem 0.75rem;
   border-radius: var(--borderRadius);
   letter-spacing: var(--letterSpacing);
   /* padding: 0.375rem 0.75rem;
@@ -901,21 +901,6 @@ ul {
   padding: 5px 6px;
 }
 
-.up-down-container {
-  left: 0;
-  bottom: 0;
-  margin-left: auto;
-  margin-top: 5px;
-  margin-bottom: 10px;
-  /* padding-top: 10px; */
-
-  padding-bottom: 5px;
-  position: relative;
-  display: block;
-  transition: var(--transition);
-  width: auto;
-}
-
 .edit-activity-menu {
   left: 0;
   bottom: 0;
@@ -928,7 +913,7 @@ ul {
   display: flex;
   flex-direction: column;
   border-radius: 5px;
-  margin-top: 25px;
+  margin-top: 30px;
   border-radius: var(--borderRadius);
 }
 
@@ -1312,7 +1297,7 @@ nav {
 }
 
 .edit-toggle-icon {
-  margin-left: 40px;
+  margin-left: 25px;
 }
 
 /* Fun Fact */

@@ -2,6 +2,7 @@ import React, { Dispatch, useState } from "react"
 import { FiEdit } from "react-icons/fi"
 import { ActivityType } from "../types/response.types"
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai"
+import { MdOutlineDeleteForever } from "react-icons/md"
 
 type EditActivityPropType = {
   dailyActivities: ActivityType[]
@@ -48,6 +49,20 @@ export function EditActivity({
     setExpand(!expand)
   }
 
+  function remove() {
+    let newDailyActivities: ActivityType[] = []
+
+    Object.assign(newDailyActivities, dailyActivities)
+
+    if (dailyActivities.length !== 0 && newDailyActivities.length !== 0) {
+
+      newDailyActivities.splice(currentOrder, 1)
+      setDailyActivities(newDailyActivities)
+
+    }
+    setExpand(!expand)
+  }
+
   return (
     <div className="edit-activity-menu">
       <button
@@ -80,6 +95,14 @@ export function EditActivity({
                 <AiOutlineDown></AiOutlineDown>
               </div>
               <div className="expandable-btn-text">Move Down</div>
+            </div>
+          </button>
+          <button className="delete-activity-btn" onClick={remove}>
+            <div className="expandable-btn-content">
+              <div className="expandable-btn-icon">
+                <MdOutlineDeleteForever></MdOutlineDeleteForever>
+              </div>
+              <div className="expandable-btn-text">Remove</div>
             </div>
           </button>
         </div>

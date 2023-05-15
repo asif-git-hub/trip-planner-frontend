@@ -1,14 +1,11 @@
-import React, { Dispatch, SetStateAction } from "react"
+import React from "react"
 import { presetTrips } from "../data/preset.trips"
 import { Trip } from "./Trip"
-import { ItineraryRequestType } from "../types/request.types"
 import { shuffleArray } from "../utils/common.utils"
 
-type PresetTripsPropType = {
-  setData: Dispatch<SetStateAction<ItineraryRequestType>>
-}
 
-export function PresetTrips({ setData }: PresetTripsPropType) {
+export function PresetTrips() {
+
   return (
     <div className="preset-trips-container">
       <div className="preset-trips-heading">
@@ -17,7 +14,7 @@ export function PresetTrips({ setData }: PresetTripsPropType) {
       <div className="underline"></div>
       <div className="trips-container">
         {shuffleArray(presetTrips).map((trip, id) => {
-          return <Trip key={id} {...trip} setData={setData}></Trip>
+          return <Trip key={id} {...trip}></Trip>
         })}
       </div>
     </div>

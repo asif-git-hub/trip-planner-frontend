@@ -1,13 +1,12 @@
-import React, { Dispatch, SetStateAction, useState } from "react"
-import { ItineraryRequestType } from "../types/request.types"
+import React, { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { useGlobalContext } from "../context"
 
 type TripPropsType = {
   destination: string
   description: string
   image: string
   alt: string
-  setData: Dispatch<SetStateAction<ItineraryRequestType>>
 }
 
 export function Trip({
@@ -15,15 +14,17 @@ export function Trip({
   description,
   image,
   alt,
-  setData,
 }: TripPropsType) {
+  const {setItineraryRequest} = useGlobalContext()
+
   const [readMore, setReadMore] = useState(false)
   const navigate = useNavigate()
 
   async function handleSubmission() {
-    setData({
+    setItineraryRequest({
       destination,
     })
+
     navigate(`/result/${encodeURIComponent(destination)}`)
   }
 

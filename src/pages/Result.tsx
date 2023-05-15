@@ -20,6 +20,7 @@ export function Result() {
     itineraryPagePhoto,
     setItineraryPagePhoto,
   } = useGlobalContext()
+
   const { destination } = useParams()
 
   useEffect(() => {

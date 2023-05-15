@@ -1,7 +1,6 @@
-import React, { Dispatch, SetStateAction, useMemo, useState } from "react"
+import React, { useMemo, useState } from "react"
 import { DestinationInput } from "./DestinationInput"
 import { useNavigate } from "react-router-dom"
-import { ItineraryRequestType } from "../types/request.types"
 import { determineDestinationType } from "../utils/destination.utils"
 import { useGlobalContext } from "../context"
 

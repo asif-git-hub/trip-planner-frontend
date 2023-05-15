@@ -1,6 +1,5 @@
-import { Dispatch, useEffect, useMemo, useRef } from "react"
+import { useEffect, useRef } from "react"
 import React from "react"
-import { ItineraryRequestType } from "../types/request.types"
 import { getEnvVar } from "../utils/common.utils"
 import useScript from "../hooks/use.script"
 import { useGlobalContext } from "../context"

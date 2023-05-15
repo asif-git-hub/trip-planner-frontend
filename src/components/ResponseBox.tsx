@@ -8,9 +8,7 @@ export function ResponseBox() {
 
   return itineraryResponse ? (
     <div className="response-container">
-      
       {itineraryResponse.map((dailyActivities, id) => {
-
         let isDifferentCityNextDay = false
         let nextCity = undefined
 

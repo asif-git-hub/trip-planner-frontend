@@ -6,8 +6,7 @@ import { determineDestinationType } from "../utils/destination.utils"
 import { useGlobalContext } from "../context"
 
 export function MyForm() {
-
-  const {itineraryRequest} = useGlobalContext()
+  const { itineraryRequest } = useGlobalContext()
 
   const [formError, setFormError] = useState({
     isInvalid: false,
@@ -43,7 +42,9 @@ export function MyForm() {
     const isFormValid = validateInput()
     if (isFormValid) {
       // Check destination type - city or country
-      const destinationType = determineDestinationType(itineraryRequest.destination)
+      const destinationType = determineDestinationType(
+        itineraryRequest.destination
+      )
       navigate(`/result/${encodeURIComponent(itineraryRequest.destination)}`)
       // if (destinationType === "city") {
       //   navigate(`/result/${data.days}/${data.destination}`)

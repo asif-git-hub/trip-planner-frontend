@@ -9,13 +9,8 @@ type TripPropsType = {
   alt: string
 }
 
-export function Trip({
-  destination,
-  description,
-  image,
-  alt,
-}: TripPropsType) {
-  const {setItineraryRequest} = useGlobalContext()
+export function Trip({ destination, description, image, alt }: TripPropsType) {
+  const { setItineraryRequest } = useGlobalContext()
 
   const [readMore, setReadMore] = useState(false)
   const navigate = useNavigate()

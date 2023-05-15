@@ -11,9 +11,9 @@ import {
   getCountryCode,
 } from "../utils/destination.utils"
 import { CityTransferMode } from "./CityTransferMode"
+import { useGlobalContext } from "../context"
 
 type DailyActivitiesListPropType = DailyActivitiesType & {
-  destination: string
   id: number
   isDifferentCityNextDay: boolean
   nextCity?: string
@@ -22,7 +22,6 @@ type DailyActivitiesListPropType = DailyActivitiesType & {
 export function DailyActivitiesList({
   id,
   day,
-  destination,
   activities,
   city,
   geocode,
@@ -37,10 +36,16 @@ export function DailyActivitiesList({
   })
   const [dailyActivities, setDailyActivities] = useState(activities)
 
-  let mapsUrl = createMapQuery(dailyActivities, city, destination)
+  const { itineraryRequest } = useGlobalContext()
+
+  let mapsUrl = createMapQuery(
+    dailyActivities,
+    city,
+    itineraryRequest.destination
+  )
 
   // country code for geo restriction for google search
-  const countrycode = getCountryCode(destination)
+  const countrycode = getCountryCode(itineraryRequest.destination)
 
   return (
     <div className="activitieslist-container">
@@ -69,7 +74,7 @@ export function DailyActivitiesList({
           <LinkedActivityDetails
             key={parseInt(`${day}${id}`)}
             location={activity.location}
-            destination={destination}
+            destination={itineraryRequest.destination}
             description={activity.description}
             custom={activity.custom}
             dailyActivities={dailyActivities}
@@ -105,7 +110,7 @@ export function DailyActivitiesList({
           src={mapsUrl}
           className="google-map"
           loading="lazy"
-          title={`Day ${day} activities for ${destination}`}
+          title={`Day ${day} activities for ${itineraryRequest.destination}`}
           referrerPolicy="no-referrer-when-downgrade"
           width="100%"
           height="100%"
@@ -118,7 +123,9 @@ export function DailyActivitiesList({
         <CityTransferMode
           currentCity={city}
           nextCity={nextCity}
-          country={`${determineDestinationType(destination).region}`}
+          country={`${
+            determineDestinationType(itineraryRequest.destination).region
+          }`}
         ></CityTransferMode>
       ) : (
         ""

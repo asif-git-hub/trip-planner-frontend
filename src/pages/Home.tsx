@@ -5,7 +5,6 @@ import homeImg from "../assets/great-ocean-road.png"
 import { PresetTrips } from "../components/PresetTrips"
 
 export function Home() {
-
   return (
     <div className="home">
       <div className="block img-background">

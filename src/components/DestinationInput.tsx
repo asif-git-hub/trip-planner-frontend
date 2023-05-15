@@ -18,7 +18,7 @@ export function DestinationInput({
 }: DestinationFormPropType) {
   const autoCompleteRef = useRef<google.maps.places.Autocomplete>()
   const destinationInputRef = useRef<HTMLInputElement>(null)
-  const {itineraryRequest, setItineraryRequest} = useGlobalContext()
+  const { itineraryRequest, setItineraryRequest } = useGlobalContext()
 
   const GOOGLE_API_KEY = getEnvVar("REACT_APP_GOOGLE_API_KEY")
 
@@ -63,8 +63,10 @@ export function DestinationInput({
 
       // Retrieve the selected location with the `getPlace` method.
       const place = autoCompleteRef.current?.getPlace()
-      setItineraryRequest((itineraryRequest) => ({ ...itineraryRequest, destination: place?.name as string }))
-
+      setItineraryRequest((itineraryRequest) => ({
+        ...itineraryRequest,
+        destination: place?.name as string,
+      }))
     })
   }, [googleScript, autocompleteOptions, handleDestinationInput])
 

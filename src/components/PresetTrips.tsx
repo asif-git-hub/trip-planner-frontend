@@ -3,9 +3,7 @@ import { presetTrips } from "../data/preset.trips"
 import { Trip } from "./Trip"
 import { shuffleArray } from "../utils/common.utils"
 
-
 export function PresetTrips() {
-
   return (
     <div className="preset-trips-container">
       <div className="preset-trips-heading">

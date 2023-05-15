@@ -818,6 +818,7 @@ ul {
 /* Daily activity control panel */
 
 .daily-activity-control-container {
+  margin-top: 15px;
   margin-bottom: 20px;
 }
 

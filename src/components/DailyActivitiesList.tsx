@@ -105,7 +105,9 @@ export function DailyActivitiesList({
         setDailyActivities={setDailyActivities}
       ></AddActivityModal>
 
-      <div className="google-map-code" key={parseInt(`2${day}${id}`)}>
+      {
+        mapsUrl? 
+        <div className="google-map-code" key={parseInt(`2${day}${id}`)}>
         <iframe
           src={mapsUrl}
           className="google-map"
@@ -118,6 +120,10 @@ export function DailyActivitiesList({
           tabIndex={0}
         ></iframe>
       </div>
+      : 
+      ""
+      }
+
 
       {isDifferentCityNextDay && nextCity && city ? (
         <CityTransferMode

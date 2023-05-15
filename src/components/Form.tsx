@@ -1,15 +1,12 @@
-import React, { Dispatch, SetStateAction, useMemo, useState } from "react"
+import React, { useMemo, useState } from "react"
 import { DestinationInput } from "./DestinationInput"
 import { useNavigate } from "react-router-dom"
-import { ItineraryRequestType } from "../types/request.types"
 import { determineDestinationType } from "../utils/destination.utils"
+import { useGlobalContext } from "../context"
 
-type MyFormType = {
-  data: ItineraryRequestType
-  setData: Dispatch<SetStateAction<ItineraryRequestType>>
-}
+export function MyForm() {
+  const { itineraryRequest } = useGlobalContext()
 
-export function MyForm({ data, setData }: MyFormType) {
   const [formError, setFormError] = useState({
     isInvalid: false,
     message: "",
@@ -25,17 +22,10 @@ export function MyForm({ data, setData }: MyFormType) {
     []
   )
 
-  // const GOOGLE_API_KEY = getEnvVar("REACT_APP_GOOGLE_API_KEY")
-
-  // const scriptStatus = useScript(
-  //   // By default, Google Places will attempt to guess your language based on your country.
-  //   `https://maps.googleapis.com/maps/api/js?language=en&key=${GOOGLE_API_KEY}&libraries=places&callback=Function.prototype`
-  // )
-
   function validateInput() {
     let isFormValid = true
 
-    if (!data.destination || data.destination === "") {
+    if (!itineraryRequest.destination || itineraryRequest.destination === "") {
       isFormValid = false
       setFormError({
         isInvalid: true,
@@ -51,8 +41,10 @@ export function MyForm({ data, setData }: MyFormType) {
     const isFormValid = validateInput()
     if (isFormValid) {
       // Check destination type - city or country
-      const destinationType = determineDestinationType(data.destination)
-      navigate(`/result/${encodeURIComponent(data.destination)}`)
+      const destinationType = determineDestinationType(
+        itineraryRequest.destination
+      )
+      navigate(`/result/${encodeURIComponent(itineraryRequest.destination)}`)
       // if (destinationType === "city") {
       //   navigate(`/result/${data.days}/${data.destination}`)
       // } else if (destinationType === "country") {
@@ -66,12 +58,9 @@ export function MyForm({ data, setData }: MyFormType) {
       <form className="form" onSubmit={handleSubmit}>
         <div className="input-grid-section">
           <DestinationInput
-            // googleScript={scriptStatus}
             inputName="destination"
             placeholder="Where can we take you?"
             autocompleteOptions={destinationAutocompleteOptions}
-            data={data}
-            setData={setData}
           ></DestinationInput>
 
           {formError.isInvalid ? (

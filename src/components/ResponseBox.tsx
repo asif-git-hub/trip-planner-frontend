@@ -1,23 +1,21 @@
 import React from "react"
 import { DailyActivitiesList } from "./DailyActivitiesList"
-import { ItineraryResponseType } from "../types/response.types"
+import { useGlobalContext } from "../context"
+import { TechnicalError } from "../pages/errors/TechnicalError"
 
-type ResponsePropType = {
-  destination: string
-  itineraryData: ItineraryResponseType
-}
+export function ResponseBox() {
+  const { itineraryResponse } = useGlobalContext()
 
-export function ResponseBox({ destination, itineraryData }: ResponsePropType) {
-  return (
+  return itineraryResponse ? (
     <div className="response-container">
-      {itineraryData.map((dailyActivities, id) => {
+      {itineraryResponse.map((dailyActivities, id) => {
         let isDifferentCityNextDay = false
         let nextCity = undefined
 
-        if (id !== itineraryData.length - 1) {
+        if (id !== itineraryResponse.length - 1) {
           isDifferentCityNextDay =
-            dailyActivities.city !== itineraryData[id + 1].city
-          nextCity = itineraryData[id + 1].city
+            dailyActivities.city !== itineraryResponse[id + 1].city
+          nextCity = itineraryResponse[id + 1].city
         }
 
         return (
@@ -25,7 +23,6 @@ export function ResponseBox({ destination, itineraryData }: ResponsePropType) {
             key={id}
             id={id}
             day={dailyActivities.day}
-            destination={destination}
             activities={dailyActivities.activities}
             city={dailyActivities.city}
             geocode={dailyActivities.geocode}
@@ -35,5 +32,7 @@ export function ResponseBox({ destination, itineraryData }: ResponsePropType) {
         )
       })}
     </div>
+  ) : (
+    <TechnicalError></TechnicalError>
   )
 }

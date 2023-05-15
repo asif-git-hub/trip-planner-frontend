@@ -1,16 +1,10 @@
-import React, { useState } from "react"
+import React from "react"
 import { MyForm } from "../components/Form"
 import { Header } from "../components/Header"
-import { ItineraryRequestType } from "../types/request.types"
 import homeImg from "../assets/great-ocean-road.png"
 import { PresetTrips } from "../components/PresetTrips"
 
 export function Home() {
-  // data to be sent
-  const [data, setData] = useState<ItineraryRequestType>({
-    destination: "",
-  })
-
   return (
     <div className="home">
       <div className="block img-background">
@@ -27,9 +21,9 @@ export function Home() {
             description="Explore the world at the speed of thought"
           ></Header>
 
-          <MyForm data={data} setData={setData}></MyForm>
+          <MyForm></MyForm>
 
-          <PresetTrips setData={setData}></PresetTrips>
+          <PresetTrips></PresetTrips>
         </div>
       </div>
     </div>

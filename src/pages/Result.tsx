@@ -1,20 +1,26 @@
 import React, { useEffect, useRef, useState } from "react"
 import { ResponseBox } from "../components/ResponseBox"
 import { Header } from "../components/Header"
-import { PhotoApi, PhotoRetrieverResponseType } from "../api/photo.api"
+import { PhotoApi } from "../api/photo.api"
 import { UnsplashCredit } from "../components/UnsplashCredit"
 import { useParams } from "react-router-dom"
 import { DataAggregator } from "../data/data.aggregator"
-import { ItineraryResponseType } from "../types/response.types"
 import { Loading } from "../components/Loading"
 import { TechnicalError } from "./errors/TechnicalError"
+import { useGlobalContext } from "../context"
 
 export function Result() {
   const responseBoxRef = useRef<HTMLInputElement>(null)
   const [loading, setLoading] = useState(false)
-  const [itinerary, setItinerary] = useState<ItineraryResponseType>()
-  const [resultPhoto, setResultPhoto] = useState<PhotoRetrieverResponseType>()
   const [errored, setErrored] = useState(false)
+
+  const {
+    itineraryResponse,
+    setItineraryResponse,
+    itineraryPagePhoto,
+    setItineraryPagePhoto,
+  } = useGlobalContext()
+
   const { destination } = useParams()
 
   useEffect(() => {
@@ -39,9 +45,9 @@ export function Result() {
         }
         //
         if (itineraryResult.status === "fulfilled") {
-          setItinerary(itineraryResult.value)
+          setItineraryResponse(itineraryResult.value)
           if (photoResult.status === "fulfilled") {
-            setResultPhoto(photoResult.value)
+            setItineraryPagePhoto(photoResult.value)
           }
           setLoading(false)
         }
@@ -63,24 +69,24 @@ export function Result() {
 
   return (
     <div>
-      {!destination || !itinerary || errored ? (
+      {!destination || !itineraryResponse || errored ? (
         // Invalid params or Error
         <TechnicalError></TechnicalError>
       ) : (
         <div className="response-window" ref={responseBoxRef}>
           <div className="block img-background">
-            {resultPhoto ? (
+            {itineraryPagePhoto ? (
               <div className="credited-img">
                 <img
-                  src={resultPhoto[0].photo.url}
+                  src={itineraryPagePhoto[0].photo.url}
                   className="background-img"
-                  alt={resultPhoto[0].photo.alt}
+                  alt={itineraryPagePhoto[0].photo.alt}
                   loading="lazy"
                 />
                 <UnsplashCredit
-                  image={resultPhoto[0].photo.url}
-                  profile={resultPhoto[0].photographer.profile}
-                  photographer={resultPhoto[0].photographer.name}
+                  image={itineraryPagePhoto[0].photo.url}
+                  profile={itineraryPagePhoto[0].photographer.profile}
+                  photographer={itineraryPagePhoto[0].photographer.name}
                 ></UnsplashCredit>
               </div>
             ) : (
@@ -93,10 +99,7 @@ export function Result() {
                 heading="Get Excited!"
                 description={`You are going to ${destination.split(",")[0]}`}
               ></Header>
-              <ResponseBox
-                destination={destination}
-                itineraryData={itinerary}
-              ></ResponseBox>
+              <ResponseBox />
             </div>
           </div>
         </div>

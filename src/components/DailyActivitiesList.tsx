@@ -51,7 +51,7 @@ export function DailyActivitiesList({
     <div className="activitieslist-container">
       <div className="day-container">
         <h2>
-          Day {day}
+          Day {id + 1}
           {city ? `: ${city}` : ""}
         </h2>
       </div>
@@ -105,25 +105,23 @@ export function DailyActivitiesList({
         setDailyActivities={setDailyActivities}
       ></AddActivityModal>
 
-      {
-        mapsUrl? 
+      {mapsUrl ? (
         <div className="google-map-code" key={parseInt(`2${day}${id}`)}>
-        <iframe
-          src={mapsUrl}
-          className="google-map"
-          loading="lazy"
-          title={`Day ${day} activities for ${itineraryRequest.destination}`}
-          referrerPolicy="no-referrer-when-downgrade"
-          width="100%"
-          height="100%"
-          aria-hidden="false"
-          tabIndex={0}
-        ></iframe>
-      </div>
-      : 
-      ""
-      }
-
+          <iframe
+            src={mapsUrl}
+            className="google-map"
+            loading="lazy"
+            title={`Day ${day} activities for ${itineraryRequest.destination}`}
+            referrerPolicy="no-referrer-when-downgrade"
+            width="100%"
+            height="100%"
+            aria-hidden="false"
+            tabIndex={0}
+          ></iframe>
+        </div>
+      ) : (
+        ""
+      )}
 
       {isDifferentCityNextDay && nextCity && city ? (
         <CityTransferMode

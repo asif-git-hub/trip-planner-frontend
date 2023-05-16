@@ -936,8 +936,6 @@ ul {
 .expandable-btn-container button:first-child {
   border-top-right-radius: var(--borderRadius);
   border-top-left-radius: var(--borderRadius);
-
-  /* margin-bottom: 5px; */
 }
 
 .expandable-btn-container button:last-child {
@@ -957,6 +955,17 @@ ul {
 
 .expandable-btn-text {
   float: left;
+}
+
+.expandable-secondlevel-btn-container {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  /* margin-top: 30px; */
+  width: 100px;
+  margin-left: 117px;
+  border-radius: var(--borderRadius);
 }
 
 /* POI */

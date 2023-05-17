@@ -25,8 +25,8 @@ export type AppContextType = {
   expandEditMoveTo: number | undefined
   setExpandEditMoveTo: Dispatch<SetStateAction<number | undefined>>
   expandDayEditMenu: number | undefined
-
-  handleExpandEditMenuToggle: (id: number) => void
+  selectedDay: number | undefined
+  handleExpandEditMenuToggle: (id: number, dayId: number) => void
   handleExpandEditMoveToToggle: (id: number) => void
   handleExpandDayEditMenuToggle: (id: number) => void
 
@@ -51,8 +51,8 @@ const defaultState: AppContextType = {
   expandEditMoveTo: undefined,
   setExpandEditMoveTo: () => {},
   expandDayEditMenu: undefined,
-
-  handleExpandEditMenuToggle: (id: number) => {},
+  selectedDay: undefined,
+  handleExpandEditMenuToggle: (id: number, dayId: number) => {},
   handleExpandEditMoveToToggle: (id: number) => {},
   handleExpandDayEditMenuToggle: (id: number) => {},
 
@@ -78,6 +78,8 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const [itineraryPagePhoto, setItineraryPagePhoto] =
     useState<PhotoRetrieverResponseType>()
 
+  const [selectedDay, setSelectedDay] = useState<number | undefined>(undefined)
+
   const [expandEditMenu, setExpandEditMenu] = useState<number | undefined>(
     undefined
   )
@@ -89,8 +91,14 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     number | undefined
   >(undefined)
 
-  function handleExpandEditMenuToggle(id: number) {
+  function handleExpandEditMenuToggle(id: number, dayId: number) {
+
+    if (selectedDay !== dayId) {
+      setSelectedDay(selectedDay !== dayId ? dayId : undefined)
+    }
+
     setExpandEditMenu(expandEditMenu !== id ? id : undefined)
+
   }
 
   function handleExpandEditMoveToToggle(id: number) {
@@ -193,6 +201,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         expandEditMoveTo,
         setExpandEditMoveTo,
         expandDayEditMenu,
+        selectedDay,
         handleExpandEditMenuToggle,
         handleExpandEditMoveToToggle,
         handleExpandDayEditMenuToggle,

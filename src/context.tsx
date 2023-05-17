@@ -24,14 +24,17 @@ export type AppContextType = {
   setExpandEditMenu: Dispatch<SetStateAction<number | undefined>>
   expandEditMoveTo: number | undefined
   setExpandEditMoveTo: Dispatch<SetStateAction<number | undefined>>
+  expandDayEditMenu: number | undefined
 
   handleExpandEditMenuToggle: (id: number) => void
   handleExpandEditMoveToToggle: (id: number) => void
+  handleExpandDayEditMenuToggle: (id: number) => void
 
   addActivityToDay: (addToIndex: number, activity: ActivityType) => void
   moveUp: (dayId: number, activityId: number) => void
   moveDown: (dayId: number, activityId: number) => void
   remove: (dayId: number, activityId: number) => void
+  removeDay: (dayId: number) => void
 }
 
 const defaultState: AppContextType = {
@@ -47,12 +50,17 @@ const defaultState: AppContextType = {
   setExpandEditMenu: () => {},
   expandEditMoveTo: undefined,
   setExpandEditMoveTo: () => {},
+  expandDayEditMenu: undefined,
+
   handleExpandEditMenuToggle: (id: number) => {},
   handleExpandEditMoveToToggle: (id: number) => {},
+  handleExpandDayEditMenuToggle: (id: number) => {},
+
   addActivityToDay: (addToIndex: number, activity: ActivityType) => {},
   moveUp: () => {},
   moveDown: () => {},
   remove: () => {},
+  removeDay: () => {},
 }
 
 export const AppContext = createContext<AppContextType>(defaultState)
@@ -77,6 +85,10 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     undefined
   )
 
+  const [expandDayEditMenu, setExpandDayEditMenu] = useState<
+    number | undefined
+  >(undefined)
+
   function handleExpandEditMenuToggle(id: number) {
     setExpandEditMenu(expandEditMenu !== id ? id : undefined)
   }
@@ -85,9 +97,12 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     setExpandEditMoveTo(expandEditMoveTo !== id ? id : undefined)
   }
 
+  function handleExpandDayEditMenuToggle(id: number) {
+    setExpandDayEditMenu(expandDayEditMenu !== id ? id : undefined)
+  }
+
   function addActivityToDay(addToIndex: number, activity: ActivityType): void {
     if (itineraryResponse && itineraryResponse.length > 0) {
-
       let updatedItinerary: ItineraryResponseType = []
       Object.assign(updatedItinerary, itineraryResponse)
       updatedItinerary[addToIndex].activities =
@@ -154,6 +169,16 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     }
   }
 
+  function removeDay(dayId: number) {
+    let updatedItinerary: ItineraryResponseType = []
+    Object.assign(updatedItinerary, itineraryResponse)
+
+    if (itineraryResponse && itineraryResponse.length !== 0) {
+      updatedItinerary.splice(dayId, 1)
+      setItineraryResponse(updatedItinerary)
+    }
+  }
+
   return (
     <AppContext.Provider
       value={{
@@ -167,12 +192,15 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         setExpandEditMenu,
         expandEditMoveTo,
         setExpandEditMoveTo,
+        expandDayEditMenu,
         handleExpandEditMenuToggle,
         handleExpandEditMoveToToggle,
+        handleExpandDayEditMenuToggle,
         addActivityToDay,
         moveUp,
         moveDown,
         remove,
+        removeDay,
       }}
     >
       {children}

@@ -29,12 +29,13 @@ export function EditActivity({
     moveUp,
     moveDown,
     remove,
+    selectedDay
   } = useGlobalContext()
 
   const days = itineraryResponse?.length
 
   function toggleMenu() {
-    handleExpandEditMenuToggle(currentOrder)
+    handleExpandEditMenuToggle(currentOrder, dayId)
     handleExpandEditMoveToToggle(currentOrder)
   }
 
@@ -50,21 +51,21 @@ export function EditActivity({
       <button
         className="edit-activity-btn"
         onClick={() => {
-          handleExpandEditMenuToggle(currentOrder)
+          handleExpandEditMenuToggle(currentOrder, dayId)
           if (expandEditMenu === undefined) {
             setExpandEditMoveTo(undefined)
           }
         }}
       >
         <FiEdit className="edit-icon"></FiEdit> Edit{" "}
-        {expandEditMenu === currentOrder ? (
+        {expandEditMenu === currentOrder && selectedDay === dayId ? (
           <AiOutlineUp className="edit-toggle-icon" />
         ) : (
           <AiOutlineDown className="edit-toggle-icon"></AiOutlineDown>
         )}
       </button>
 
-      {expandEditMenu === currentOrder ? (
+      {expandEditMenu === currentOrder && selectedDay === dayId ? (
         <div className="expandable-btn-container">
           <button
             className=""

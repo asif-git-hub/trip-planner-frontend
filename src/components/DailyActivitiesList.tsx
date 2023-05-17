@@ -4,7 +4,7 @@ import { createMapQuery } from "../utils/google.utils"
 import { options } from "../data/activity.options"
 import { RoundButton } from "./RoundButton"
 import { LinkedActivityDetails } from "./LinkedActivityDetails"
-import { BiMessageAdd } from "react-icons/bi"
+import { MdFormatListBulletedAdd } from "react-icons/md"
 import { AddActivityModal } from "./AddActivityModal"
 import {
   determineDestinationType,
@@ -12,6 +12,7 @@ import {
 } from "../utils/destination.utils"
 import { CityTransferMode } from "./CityTransferMode"
 import { useGlobalContext } from "../context"
+import { FaTrashAlt } from "react-icons/fa"
 
 type DailyActivitiesListPropType = DailyActivitiesType & {
   dayId: number
@@ -35,7 +36,7 @@ export function DailyActivitiesList({
     custom: true,
   })
 
-  const { itineraryRequest } = useGlobalContext()
+  const { itineraryRequest, removeDay } = useGlobalContext()
 
   let mapsUrl = createMapQuery(activities, city, itineraryRequest.destination)
 
@@ -86,7 +87,21 @@ export function DailyActivitiesList({
             className="btn-5"
             onClick={() => setShowActivityForm(!showActivityForm)}
           >
-            Add Activity <BiMessageAdd className="add-icon"></BiMessageAdd>
+            <div className="expandable-btn-content">
+              <div className="expandable-btn-icon">
+                <MdFormatListBulletedAdd></MdFormatListBulletedAdd>
+              </div>
+              <div className="expandable-btn-text">Add Activity</div>
+            </div>
+          </button>
+          <button className="btn-5" onClick={() => removeDay(dayId)}>
+            <div className="expandable-btn-content">
+              <div className="expandable-btn-icon">
+                <FaTrashAlt></FaTrashAlt>
+              </div>
+              <div className="expandable-btn-text">Remove Day</div>
+            </div>
+            
           </button>
         </div>
       </div>

@@ -33,6 +33,6 @@ export function ResponseBox() {
       })}
     </div>
   ) : (
-    <TechnicalError></TechnicalError>
+    <div></div>
   )
 }

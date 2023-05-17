@@ -58,6 +58,8 @@
   --thistle: #d8bfd8;
   --violet: #ee82ee;
   --blue-selected: #48abe0;
+  --clr-red-light: #e66b6b;
+
   /* fonts  */
 
   --small-text: 0.6rem;
@@ -69,6 +71,7 @@
   --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   --borderRadius: 0.25rem;
   --border-radius-2: 0.4rem;
+  --border-radius-3: 0.5rem;
   --response-menu-button-radius: 0.75rem;
   --fact-border-radius: 0.3rem;
   --preset-trips-radius: 0.25rem;
@@ -483,6 +486,22 @@ ul {
   border-radius: var(--borderRadius); */
 }
 
+.day-edit-btn {
+  cursor: pointer;
+  border: transparent;
+  border-radius: var(--border-radius-3);
+  padding: 0.375rem 0.75rem;
+  background-color: rgb(97, 97, 97);
+  color: white;
+}
+
+.day-delete-btn {
+  cursor: pointer;
+  border: transparent;
+  background-color: transparent;
+  color: white;
+}
+
 /* Underline */
 
 .underline {
@@ -770,8 +789,17 @@ ul {
   background: var(--egg-shell);
   color: white;
   margin: 1rem auto;
-  padding: 15px;
+  padding: 10px;
   border-radius: var(--borderRadius);
+}
+
+.day-edit-container {
+  right: 0;
+  top: 0;
+  /* padding-top: 35px;
+  padding-right: 22px;
+  position: absolute; */
+  /* padding-right: 10px; */
 }
 
 .city-transfer-container {
@@ -824,6 +852,10 @@ ul {
 
 .add-activity-container {
   text-align: center;
+}
+
+.add-activity-container button {
+ margin: 5px;
 }
 
 .activity-modal-overlay {
@@ -1308,6 +1340,21 @@ nav {
 
 .edit-toggle-icon {
   margin-left: 25px;
+}
+
+.day-edit-arrow-icon {
+  margin-left: 5px;
+}
+
+.day-delete-icon {
+  font-size: 1.2rem;
+  color: var(--clr-red-light);
+  font-weight: 12rem;
+}
+
+.day-edit-icon {
+  font-size: 1.1rem;
+  /* color: var(--dark-teal); */
 }
 
 /* Fun Fact */

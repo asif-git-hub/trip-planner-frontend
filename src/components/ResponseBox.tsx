@@ -6,7 +6,7 @@ import { TechnicalError } from "../pages/errors/TechnicalError"
 export function ResponseBox() {
   const { itineraryResponse } = useGlobalContext()
 
-  return itineraryResponse ? (
+  return itineraryResponse && itineraryResponse.length > 0 ? (
     <div className="response-container">
       {itineraryResponse.map((dailyActivities, id) => {
         let isDifferentCityNextDay = false
@@ -21,7 +21,7 @@ export function ResponseBox() {
         return (
           <DailyActivitiesList
             key={id}
-            id={id}
+            dayId={id}
             day={dailyActivities.day}
             activities={dailyActivities.activities}
             city={dailyActivities.city}

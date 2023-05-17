@@ -2,6 +2,7 @@ import React, { Dispatch, SetStateAction, useMemo } from "react"
 import { FaTimes } from "react-icons/fa"
 import { ActivityType } from "../types/response.types"
 import { ActivityLocationInput } from "./ActivityLocationInput"
+import { useGlobalContext } from "../context"
 
 type AddActivityModalPropType = {
   day: number
@@ -10,7 +11,6 @@ type AddActivityModalPropType = {
   countrycode: string | null
   setShowActivityForm: Dispatch<SetStateAction<boolean>>
   setNewActivity: Dispatch<SetStateAction<ActivityType>>
-  setDailyActivities: Dispatch<SetStateAction<ActivityType[]>>
 }
 
 export function AddActivityModal({
@@ -20,12 +20,13 @@ export function AddActivityModal({
   countrycode,
   setShowActivityForm,
   setNewActivity,
-  setDailyActivities,
 }: AddActivityModalPropType) {
+  const { addActivityToDay } = useGlobalContext()
+
   function handleSubmit(e: React.ChangeEvent<HTMLFormElement>) {
     e.preventDefault()
     // Add new activity to the activities list
-    setDailyActivities((prev) => prev.concat(newActivity))
+    addActivityToDay(day - 1, newActivity)
     setNewActivity({
       location: "",
       description: "",
@@ -42,7 +43,6 @@ export function AddActivityModal({
     () => ({
       componentRestrictions: { country: countrycode },
       fields: ["name"],
-      //   types: ["cafe","point_of_interest","establishment","landmark"],
     }),
     []
   )

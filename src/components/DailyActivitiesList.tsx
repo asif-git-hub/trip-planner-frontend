@@ -14,13 +14,13 @@ import { CityTransferMode } from "./CityTransferMode"
 import { useGlobalContext } from "../context"
 
 type DailyActivitiesListPropType = DailyActivitiesType & {
-  id: number
+  dayId: number
   isDifferentCityNextDay: boolean
   nextCity?: string
 }
 
 export function DailyActivitiesList({
-  id,
+  dayId,
   day,
   activities,
   city,
@@ -34,15 +34,10 @@ export function DailyActivitiesList({
     description: "",
     custom: true,
   })
-  const [dailyActivities, setDailyActivities] = useState(activities)
 
   const { itineraryRequest } = useGlobalContext()
 
-  let mapsUrl = createMapQuery(
-    dailyActivities,
-    city,
-    itineraryRequest.destination
-  )
+  let mapsUrl = createMapQuery(activities, city, itineraryRequest.destination)
 
   // country code for geo restriction for google search
   const countrycode = getCountryCode(itineraryRequest.destination)
@@ -51,12 +46,12 @@ export function DailyActivitiesList({
     <div className="activitieslist-container">
       <div className="day-container">
         <h2>
-          Day {id + 1}
+          Day {dayId + 1}
           {city ? `: ${city}` : ""}
         </h2>
       </div>
 
-      <div className="meal-links-container" key={parseInt(`1${day}${id}`)}>
+      <div className="meal-links-container" key={parseInt(`1${day}${dayId}`)}>
         {options.map((option, id) => {
           const link = `https://www.google.com/maps/search/${option.name}/@${geocode.latitude},${geocode.longitude},15z`
           return (
@@ -69,7 +64,8 @@ export function DailyActivitiesList({
         })}
       </div>
 
-      {dailyActivities.map((activity, id) => {
+      {activities.map((activity, id) => {
+        // daily list of activities per day
         return (
           <LinkedActivityDetails
             key={parseInt(`${day}${id}`)}
@@ -77,14 +73,14 @@ export function DailyActivitiesList({
             destination={itineraryRequest.destination}
             description={activity.description}
             custom={activity.custom}
-            dailyActivities={dailyActivities}
-            setDailyActivities={setDailyActivities}
-            currentOrder={id}
+            dailyActivities={activities}
+            activityId={id}
+            dayId={dayId}
           ></LinkedActivityDetails>
         )
       })}
 
-      <div key={id} className="daily-activity-control-container">
+      <div key={dayId} className="daily-activity-control-container">
         <div className="add-activity-container">
           <button
             className="btn-5"
@@ -102,11 +98,10 @@ export function DailyActivitiesList({
         countrycode={countrycode}
         setShowActivityForm={setShowActivityForm}
         setNewActivity={setNewActivity}
-        setDailyActivities={setDailyActivities}
       ></AddActivityModal>
 
       {mapsUrl ? (
-        <div className="google-map-code" key={parseInt(`2${day}${id}`)}>
+        <div className="google-map-code" key={parseInt(`2${day}${dayId}`)}>
           <iframe
             src={mapsUrl}
             className="google-map"

@@ -1,4 +1,4 @@
-import React, { Dispatch, useState } from "react"
+import React, { MouseEvent } from "react"
 import { FiEdit } from "react-icons/fi"
 import { ActivityType } from "../types/response.types"
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai"
@@ -9,16 +9,15 @@ import { useGlobalContext } from "../context"
 
 type EditActivityPropType = {
   dailyActivities: ActivityType[]
-  setDailyActivities: Dispatch<React.SetStateAction<ActivityType[]>>
   currentOrder: number
+  dayId: number
 }
 
 export function EditActivity({
   dailyActivities,
-  setDailyActivities,
   currentOrder,
+  dayId,
 }: EditActivityPropType) {
-
   const {
     itineraryResponse,
     expandEditMenu,
@@ -26,55 +25,24 @@ export function EditActivity({
     setExpandEditMoveTo,
     handleExpandEditMenuToggle,
     handleExpandEditMoveToToggle,
+    addActivityToDay,
+    moveUp,
+    moveDown,
+    remove,
   } = useGlobalContext()
 
   const days = itineraryResponse?.length
 
-  function moveUp() {
-    let newDailyActivities: ActivityType[] = []
-
-    Object.assign(newDailyActivities, dailyActivities)
-
-    if (currentOrder !== 0) {
-      const previousActivity = dailyActivities[currentOrder - 1] // Make copy
-
-      newDailyActivities[currentOrder] = previousActivity
-      newDailyActivities[currentOrder - 1] = dailyActivities[currentOrder]
-
-      setDailyActivities(newDailyActivities)
-    }
+  function toggleMenu() {
     handleExpandEditMenuToggle(currentOrder)
     handleExpandEditMoveToToggle(currentOrder)
   }
 
-  function moveDown() {
-    let newDailyActivities: ActivityType[] = []
-
-    Object.assign(newDailyActivities, dailyActivities)
-
-    if (currentOrder !== dailyActivities.length - 1) {
-      const previousActivity = dailyActivities[currentOrder + 1] // Make copy
-
-      newDailyActivities[currentOrder] = previousActivity
-      newDailyActivities[currentOrder + 1] = dailyActivities[currentOrder]
-
-      setDailyActivities(newDailyActivities)
-    }
-    handleExpandEditMenuToggle(currentOrder)
-    handleExpandEditMoveToToggle(currentOrder)
-  }
-
-  function remove() {
-    let newDailyActivities: ActivityType[] = []
-
-    Object.assign(newDailyActivities, dailyActivities)
-
-    if (dailyActivities.length !== 0 && newDailyActivities.length !== 0) {
-      newDailyActivities.splice(currentOrder, 1)
-      setDailyActivities(newDailyActivities)
-    }
-    handleExpandEditMenuToggle(currentOrder)
-    handleExpandEditMoveToToggle(currentOrder)
+  function moveTo(e: MouseEvent<HTMLElement>) {
+    const moveToIndex = parseInt(e.currentTarget.id)
+    addActivityToDay(moveToIndex, dailyActivities[currentOrder])
+    remove(dayId, currentOrder)
+    toggleMenu()
   }
 
   return (
@@ -98,7 +66,13 @@ export function EditActivity({
 
       {expandEditMenu === currentOrder ? (
         <div className="expandable-btn-container">
-          <button className="" onClick={moveUp}>
+          <button
+            className=""
+            onClick={() => {
+              moveUp(dayId, currentOrder)
+              toggleMenu()
+            }}
+          >
             <div className="expandable-btn-content">
               <div className="expandable-btn-icon">
                 <AiOutlineUp></AiOutlineUp>
@@ -107,7 +81,13 @@ export function EditActivity({
             </div>
           </button>
 
-          <button className="" onClick={moveDown}>
+          <button
+            className=""
+            onClick={() => {
+              moveDown(dayId, currentOrder)
+              toggleMenu()
+            }}
+          >
             <div className="expandable-btn-content">
               <div className="expandable-btn-icon">
                 <AiOutlineDown></AiOutlineDown>
@@ -133,23 +113,31 @@ export function EditActivity({
           {expandEditMoveTo === currentOrder && days ? (
             <div className="expandable-secondlevel-btn-container">
               {Array.from(Array(days), (value, id) => {
-                return (
-                  <button key={id}>
-                    <div className="expandable-btn-content">
-                      <div className="expandable-btn-icon">
-                        <FcCalendar></FcCalendar>
+                if (id !== dayId) {
+                  return (
+                    <button key={id} onClick={moveTo} id={id.toString()}>
+                      <div className="expandable-btn-content">
+                        <div className="expandable-btn-icon">
+                          <FcCalendar></FcCalendar>
+                        </div>
+                        <div className="expandable-btn-text">Day {id + 1}</div>
                       </div>
-                      <div className="expandable-btn-text">Day {id + 1}</div>
-                    </div>
-                  </button>
-                )
+                    </button>
+                  )
+                }
               })}
             </div>
           ) : (
             ""
           )}
 
-          <button className="delete-activity-btn" onClick={remove}>
+          <button
+            className="delete-activity-btn"
+            onClick={() => {
+              remove(dayId, currentOrder)
+              toggleMenu()
+            }}
+          >
             <div className="expandable-btn-content">
               <div className="expandable-btn-icon">
                 <MdOutlineDeleteForever></MdOutlineDeleteForever>

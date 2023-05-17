@@ -1,4 +1,4 @@
-import React, { Dispatch } from "react"
+import React from "react"
 import { ActivityType } from "../types/response.types"
 import { EditActivity } from "./EditActivity"
 
@@ -8,8 +8,8 @@ type LinkedActivityDetailPropType = {
   description: string
   custom?: boolean | undefined
   dailyActivities: ActivityType[]
-  setDailyActivities: Dispatch<React.SetStateAction<ActivityType[]>>
-  currentOrder: number
+  activityId: number
+  dayId: number
 }
 
 export function LinkedActivityDetails({
@@ -18,8 +18,8 @@ export function LinkedActivityDetails({
   description,
   custom,
   dailyActivities,
-  setDailyActivities,
-  currentOrder,
+  activityId,
+  dayId,
 }: LinkedActivityDetailPropType) {
   return (
     <div className="activty-container">
@@ -30,8 +30,8 @@ export function LinkedActivityDetails({
 
       <EditActivity
         dailyActivities={dailyActivities}
-        setDailyActivities={setDailyActivities}
-        currentOrder={currentOrder}
+        currentOrder={activityId}
+        dayId={dayId}
       ></EditActivity>
 
       {custom ? (

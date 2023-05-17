@@ -50,16 +50,6 @@ export function DailyActivitiesList({
           Day {dayId + 1}
           {city ? `: ${city}` : ""}
         </h2>
-        {/* <div className="day-edit-container">
-          <button className="day-delete-btn">
-            <RxCrossCircled
-              className="day-delete-icon"
-              onClick={() => {
-                removeDay(dayId)
-              }}
-            ></RxCrossCircled>
-          </button>
-        </div> */}
       </div>
 
       <div className="meal-links-container" key={parseInt(`1${day}${dayId}`)}>

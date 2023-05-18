@@ -1,4 +1,4 @@
-import React, { MouseEvent } from "react"
+import React, { Dispatch, MouseEvent, SetStateAction } from "react"
 import { FiEdit } from "react-icons/fi"
 import { ActivityType } from "../types/response.types"
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai"
@@ -11,12 +11,14 @@ type EditActivityPropType = {
   dailyActivities: ActivityType[]
   currentOrder: number
   dayId: number
+  setAnimateExit: Dispatch<SetStateAction<string>>
 }
 
 export function EditActivity({
   dailyActivities,
   currentOrder,
   dayId,
+  setAnimateExit
 }: EditActivityPropType) {
   const {
     itineraryResponse,
@@ -28,8 +30,8 @@ export function EditActivity({
     addActivityToDay,
     moveUp,
     moveDown,
-    remove,
-    selectedDay
+    removeActivity,
+    selectedDay,
   } = useGlobalContext()
 
   const days = itineraryResponse?.length
@@ -42,7 +44,7 @@ export function EditActivity({
   function moveTo(e: MouseEvent<HTMLElement>) {
     const moveToIndex = parseInt(e.currentTarget.id)
     addActivityToDay(moveToIndex, dailyActivities[currentOrder])
-    remove(dayId, currentOrder)
+    removeActivity(dayId, currentOrder)
     toggleMenu()
   }
 
@@ -135,8 +137,14 @@ export function EditActivity({
           <button
             className="delete-activity-btn"
             onClick={() => {
-              remove(dayId, currentOrder)
-              toggleMenu()
+              setAnimateExit("animate-exit")
+              setTimeout(() => {
+                removeActivity(dayId, currentOrder)
+                toggleMenu()
+                setAnimateExit("")
+
+              }, 500)
+
             }}
           >
             <div className="expandable-btn-content">

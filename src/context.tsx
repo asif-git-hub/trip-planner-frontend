@@ -33,7 +33,7 @@ export type AppContextType = {
   addActivityToDay: (addToIndex: number, activity: ActivityType) => void
   moveUp: (dayId: number, activityId: number) => void
   moveDown: (dayId: number, activityId: number) => void
-  remove: (dayId: number, activityId: number) => void
+  removeActivity: (dayId: number, activityId: number) => void
   removeDay: (dayId: number) => void
 }
 
@@ -59,7 +59,7 @@ const defaultState: AppContextType = {
   addActivityToDay: (addToIndex: number, activity: ActivityType) => {},
   moveUp: () => {},
   moveDown: () => {},
-  remove: () => {},
+  removeActivity: () => {},
   removeDay: () => {},
 }
 
@@ -92,13 +92,11 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   >(undefined)
 
   function handleExpandEditMenuToggle(id: number, dayId: number) {
-
     if (selectedDay !== dayId) {
       setSelectedDay(selectedDay !== dayId ? dayId : undefined)
     }
 
     setExpandEditMenu(expandEditMenu !== id ? id : undefined)
-
   }
 
   function handleExpandEditMoveToToggle(id: number) {
@@ -163,7 +161,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     }
   }
 
-  function remove(dayId: number, activityId: number) {
+  function removeActivity(dayId: number, activityId: number) {
     let updatedItinerary: ItineraryResponseType = []
     Object.assign(updatedItinerary, itineraryResponse)
 
@@ -208,7 +206,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         addActivityToDay,
         moveUp,
         moveDown,
-        remove,
+        removeActivity: removeActivity,
         removeDay,
       }}
     >

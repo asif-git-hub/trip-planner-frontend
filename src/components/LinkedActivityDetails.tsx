@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { ActivityType } from "../types/response.types"
 import { EditActivity } from "./EditActivity"
 
@@ -21,8 +21,11 @@ export function LinkedActivityDetails({
   activityId,
   dayId,
 }: LinkedActivityDetailPropType) {
+
+  const [animateExit, setAnimateExit] = useState("")
+
   return (
-    <div className="activty-container">
+    <div className={`activity-container ${animateExit}`}>
       <p>
         <strong>{location}</strong>
       </p>
@@ -32,6 +35,7 @@ export function LinkedActivityDetails({
         dailyActivities={dailyActivities}
         currentOrder={activityId}
         dayId={dayId}
+        setAnimateExit={setAnimateExit}
       ></EditActivity>
 
       {custom ? (

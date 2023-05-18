@@ -1,7 +1,6 @@
 import React from "react"
 import { DailyActivitiesList } from "./DailyActivitiesList"
 import { useGlobalContext } from "../context"
-import { TechnicalError } from "../pages/errors/TechnicalError"
 
 export function ResponseBox() {
   const { itineraryResponse } = useGlobalContext()

@@ -1,4 +1,4 @@
-import { getEnvVar } from '../utils/common.utils';
+import { getEnvVar } from "../utils/common.utils"
 
 const callbackUrl = getEnvVar("REACT_APP_CALLBACK_URL")
 const env = getEnvVar("REACT_APP_ENVIRONMENT")
@@ -11,12 +11,12 @@ export const links = [
   {
     id: 1,
     url: loginUrl,
-    text: 'login',
+    text: "login",
   },
   {
     id: 2,
     url: signupUrl,
-    text: 'sign up',
+    text: "sign up",
   },
   {
     id: 3,

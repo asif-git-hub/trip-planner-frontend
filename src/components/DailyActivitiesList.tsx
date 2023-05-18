@@ -101,7 +101,6 @@ export function DailyActivitiesList({
               </div>
               <div className="expandable-btn-text">Remove Day</div>
             </div>
-            
           </button>
         </div>
       </div>

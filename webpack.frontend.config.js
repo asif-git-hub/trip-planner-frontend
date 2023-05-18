@@ -66,10 +66,15 @@ module.exports = {
           process.env.REACT_APP_POPCITY_API
         ),
         REACT_APP_SERVID: JSON.stringify(process.env.REACT_APP_SERVID),
-        REACT_APP_CALLBACK_URL: JSON.stringify(process.env.REACT_APP_CALLBACK_URL),
-        REACT_APP_ENVIRONMENT: JSON.stringify(process.env.REACT_APP_ENVIRONMENT),
-        REACT_APP_COGNITO_CLIENT_ID: JSON.stringify(process.env.REACT_APP_COGNITO_CLIENT_ID)
-
+        REACT_APP_CALLBACK_URL: JSON.stringify(
+          process.env.REACT_APP_CALLBACK_URL
+        ),
+        REACT_APP_ENVIRONMENT: JSON.stringify(
+          process.env.REACT_APP_ENVIRONMENT
+        ),
+        REACT_APP_COGNITO_CLIENT_ID: JSON.stringify(
+          process.env.REACT_APP_COGNITO_CLIENT_ID
+        ),
       },
     }),
   ],

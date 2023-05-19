@@ -1368,14 +1368,13 @@ nav {
 
 .facts {
   width: 90vw;
-  margin: 1em auto;
+  margin: 5rem auto;
   max-width: var(--max-width);
 }
 
 .facts-container {
   margin: 0 auto;
   margin-top: 4px;
-  width: 80vw;
   height: 300px;
   max-width: var(--max-width);
   display: flex;
@@ -1392,6 +1391,10 @@ nav {
   background: var(--light-mint);
   border-radius: var(--fact-border-radius);
   transition: var(--fact-transition);
+  top: 0;
+  left: 0;
+  text-align: center;
+  width: 100%;
 }
 
 .activeFact {

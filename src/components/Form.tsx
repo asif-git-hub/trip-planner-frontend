@@ -43,16 +43,13 @@ export function MyForm() {
   const handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault()
     const isFormValid = validateInput()
-    const maxUseCount = 2
-    const currentCount = getUseCountFromLocalStorage()
-    console.log(currentCount)
-    if (currentCount > maxUseCount) {
-      // You need to sign in/up
-      console.log("You have used this so many times time to login")
-    } else {
-      updateUseCountInLocalStorage(currentCount + 1)
-    }
-
+    // const maxUseCount = 2
+    // const currentCount = getUseCountFromLocalStorage()
+    // if (currentCount > maxUseCount) {
+    //   // You need to sign in/up
+    // } else {
+    //   updateUseCountInLocalStorage(currentCount + 1)
+    // }
     if (isFormValid) {
       // Check destination type - city or country
       const destinationType = determineDestinationType(

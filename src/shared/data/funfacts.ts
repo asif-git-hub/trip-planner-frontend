@@ -1,7 +1,7 @@
 export const funfacts = [
   `About a quarter of all overseas nurses come from the Philippines, making it the world's top supplier of nurses.`,
   `Turkey is known for its delicious desserts like baklava, but it also has a pudding called tavuk gogsu that's made from, among other things, milk, sugar, cinnamon and shredded chicken breasts. `,
-  `There's an annual festival in this Southeast Asian nation that pays homage to its many monkeys. During the Monkey Buffet Festival, residents of Lopburi provide 4.5 tons of fruits, veggies and candies to the 3,000 monkeys that live around the ancient temple of Phra Prang Sam Yot.`,
+  `Norway is home to the Midnight Sun phenomenon, where the sun doesn't set for several weeks during the summer in certain parts of the country.`,
   "Thailand is known as the 'Land of Smiles' because of the friendly and welcoming nature of its people.",
   `In Bangladesh, the Sundarbans Mangrove Forest is the world's largest mangrove forest, covering an area of 539 square miles. The inhabitants of this forest include the Bengal Tiger, more than 300 bird species, the Indian python, estuarine crocodiles, and much more.`,
   "Germany shares borders with 9 countries. Denmark in the north, Poland and the Czech Republic in the east, Switzerland and Austria in the south, France in the southwest and Belgium, Luxembourg and the Netherlands in the west.",
@@ -14,6 +14,8 @@ export const funfacts = [
   "The happiest language in the world is Spanish - containing the largest number of positive words.",
   "In Italy, there's a fountain that flows red wine24 hours a day. Anybody can drink from the wine fountain, but it is primarily to quench the thirst of those taking the Camino di San Tommaso pilgrimage.",
   "Estonia is considered one of the most tech-savvy countries in the world, and has the highest number of startups per capita in Europe.",
+  `In China, there is a building shaped like a giant teapot, known as the "Meitan Tea Museum.`,
   "Portugal is known to have the highest number of sunshine hours in Europe. With some parts having almost 300 sunny days a year, you can enjoy over 3000 sunshine hours per year.",
   "Belgium is known for its waffles, but did you know that there are two types of Belgian waffles - Brussels waffles and Liege waffles?",
+  `In Scotland, there is a town called Dull, and they have a sister city relationship with Boring, Oregon, USA`
 ]

@@ -3,6 +3,10 @@ import { DestinationInput } from "./DestinationInput"
 import { useNavigate } from "react-router-dom"
 import { determineDestinationType } from "../utils/destination.utils"
 import { useGlobalContext } from "../context"
+import {
+  getUseCountFromLocalStorage,
+  updateUseCountInLocalStorage,
+} from "../utils/storage.utils"
 
 export function MyForm() {
   const { itineraryRequest } = useGlobalContext()
@@ -39,6 +43,13 @@ export function MyForm() {
   const handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault()
     const isFormValid = validateInput()
+    // const maxUseCount = 2
+    // const currentCount = getUseCountFromLocalStorage()
+    // if (currentCount > maxUseCount) {
+    //   // You need to sign in/up
+    // } else {
+    //   updateUseCountInLocalStorage(currentCount + 1)
+    // }
     if (isFormValid) {
       // Check destination type - city or country
       const destinationType = determineDestinationType(

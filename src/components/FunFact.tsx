@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import { funfacts } from "../shared/data/funfacts"
 import { FaQuoteRight, FaQuoteLeft } from "react-icons/fa"
 import { shuffleArray } from "../utils/common.utils"
+
 export function FunFact() {
   const [facts] = useState(shuffleArray(funfacts))
   const [index, setIndex] = useState(0)

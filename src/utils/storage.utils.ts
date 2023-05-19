@@ -1,7 +1,6 @@
 const cacheKey = "enchantrekUseCount"
 
 export function updateUseCountInLocalStorage(newCount: number): number {
-
   localStorage.setItem(cacheKey, `${newCount}`)
 
   return parseInt(localStorage.getItem(cacheKey) as string)

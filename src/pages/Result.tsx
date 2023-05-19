@@ -52,11 +52,13 @@ export function Result() {
           setLoading(false)
         }
       }
-      
-      getData()
-      
-      responseBoxRef.current?.scrollIntoView({ block: "start", behavior: "smooth" });
 
+      getData()
+
+      responseBoxRef.current?.scrollIntoView({
+        block: "start",
+        behavior: "smooth",
+      })
     } catch (e) {
       setLoading(false)
       setErrored(true)

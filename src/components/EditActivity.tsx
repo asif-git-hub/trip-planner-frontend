@@ -18,7 +18,7 @@ export function EditActivity({
   dailyActivities,
   currentOrder,
   dayId,
-  setAnimateExit
+  setAnimateExit,
 }: EditActivityPropType) {
   const {
     itineraryResponse,
@@ -142,9 +142,7 @@ export function EditActivity({
                 removeActivity(dayId, currentOrder)
                 toggleMenu()
                 setAnimateExit("")
-
               }, 500)
-
             }}
           >
             <div className="expandable-btn-content">

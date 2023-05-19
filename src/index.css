@@ -1327,14 +1327,14 @@ nav {
 /* Icons */
 
 .quote-icon {
+  padding: 2px;
   margin: 3px;
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: var(--clr-grey-3);
 }
 
 .add-icon {
   font-size: 1rem;
-  /* margin-top: 2px; */
 }
 
 .marker-icon {
@@ -1383,6 +1383,7 @@ nav {
   overflow: hidden;
   position: relative;
   width: 60vw;
+  padding: 10px;
   text-align: center;
   align-items: center;
 }
@@ -1397,8 +1398,9 @@ nav {
 
 .activeFact {
   opacity: 1;
-  padding: 3px;
+  padding: 5px;
   transform: translateX(0);
+
 }
 
 .nextFact {

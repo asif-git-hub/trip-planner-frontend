@@ -35,6 +35,9 @@ export type AppContextType = {
   moveDown: (dayId: number, activityId: number) => void
   removeActivity: (dayId: number, activityId: number) => void
   removeDay: (dayId: number) => void
+
+  containerToDisplay: string
+  setContainerToDisplay: Dispatch<SetStateAction<string>>
 }
 
 const defaultState: AppContextType = {
@@ -61,6 +64,9 @@ const defaultState: AppContextType = {
   moveDown: () => {},
   removeActivity: () => {},
   removeDay: () => {},
+
+  containerToDisplay: "itinerary",
+  setContainerToDisplay: () => {},
 }
 
 export const AppContext = createContext<AppContextType>(defaultState)
@@ -90,6 +96,8 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const [expandDayEditMenu, setExpandDayEditMenu] = useState<
     number | undefined
   >(undefined)
+
+  const [containerToDisplay, setContainerToDisplay] = useState("itinerary")
 
   function handleExpandEditMenuToggle(id: number, dayId: number) {
     if (selectedDay !== dayId) {
@@ -208,6 +216,9 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         moveDown,
         removeActivity: removeActivity,
         removeDay,
+
+        containerToDisplay,
+        setContainerToDisplay,
       }}
     >
       {children}

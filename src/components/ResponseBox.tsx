@@ -1,12 +1,15 @@
-import React from "react"
+import React, { useState } from "react"
 import { DailyActivitiesList } from "./DailyActivitiesList"
 import { useGlobalContext } from "../context"
+import { ResponseMenu } from "./ResponseMenu"
 
 export function ResponseBox() {
   const { itineraryResponse } = useGlobalContext()
 
   return itineraryResponse && itineraryResponse.length > 0 ? (
     <div className="response-container">
+      <ResponseMenu></ResponseMenu>
+
       {itineraryResponse.map((dailyActivities, id) => {
         let isDifferentCityNextDay = false
         let nextCity = undefined

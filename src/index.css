@@ -677,9 +677,8 @@ ul {
   background: var(--white);
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
   position: relative;
-  gap: 2rem;
+  /* gap: 2rem; */
   margin: 1rem auto;
   width: 45vw;
   max-width: var(--max-width);
@@ -718,7 +717,7 @@ ul {
   justify-content: center;
   max-width: var(--max-width);
   text-align: center;
-  margin: auto;
+  flex-direction: column;
 }
 
 .response-menu {
@@ -729,32 +728,40 @@ ul {
   text-align: center;
   text-transform: uppercase;
   letter-spacing: var(--spacing);
-  display: block;
   transition: var(--transition);
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-items: flex-end;
 }
 
-/* .response-menu-item {
+.response-menu-item {
   cursor: pointer;
-  margin: 0.25rem;
-  border-radius: var(--response-menu-button-radius);
+  margin-right: 0.25rem;
+  border-top-right-radius: var(--response-menu-button-radius);
+  border-top-left-radius: var(--response-menu-button-radius);
   box-shadow: var(--shadow-1);
-  border: transparent;
+  border-color: var(--tangerine-light);
+  border-style: solid;
   padding: 0.5rem 1rem;
-  background-color: var(--grey-200);
+  background-color: var(--white);
   letter-spacing: var(--spacing);
   font-size: 1rem;
   text-transform: uppercase;
   display: inline-block;
-  color: var(--clr-grey-3);
   transition: var(--transition);
-} */
+  flex-basis: 25%;
+  height: 50px;
+}
 
 .response-menu-selected {
-  background: var(--clr-primary-8);
-  color: var(--primary-600);
-  background-color: var(--egg-shell);
+  background: var(--tangerine);
   color: var(--white);
-  padding: 1rem 1rem;
+  padding-top: 2rem;
+  border: transparent;
+  text-align: center;
+  flex-basis: 30%;
+  height: 100px;
 }
 
 /* Links */
@@ -798,6 +805,10 @@ ul {
   margin: 1rem auto;
   padding: 10px;
   border-radius: var(--borderRadius);
+}
+
+.day-container.first-child {
+  margin-top: 0;
 }
 
 .day-edit-container {
@@ -1362,6 +1373,11 @@ nav {
 .day-edit-icon {
   font-size: 1.1rem;
   /* color: var(--dark-teal); */
+}
+
+.response-menu-icon {
+  margin-top: 4px;
+  font-size: 2rem;
 }
 
 /* Fun Fact */

@@ -78,6 +78,9 @@
   --letterSpacing: 1px;
   --home-page-picture-height: 60vh;
   --transition: 0.3s ease-in-out all;
+  --transition-menu-item: 0.1s linear all;
+  /* --transition-menu-item: width 0.2s linear; */
+
   --transition-modal: all 0.3s linear;
   --transition-activity: 0.5s linear all;
 
@@ -195,6 +198,15 @@ ul {
   display: block;
   object-fit: cover;
   opacity: 40%;
+}
+
+.info-img {
+  width: 100%;
+  height: var(--home-page-picture-height);
+  display: block;
+  object-fit: cover;
+  border-radius: var(--borderRadius);
+  margin-top: 10px;
 }
 
 /* Preset Trips */
@@ -627,6 +639,7 @@ ul {
   .dotted-line {
     width: 65%;
   }
+
 }
 
 /* Loading */
@@ -703,6 +716,11 @@ ul {
   display: inline-block;
 }
 
+.itinerary-display-container,
+.info-display-container {
+  width: 100%;
+}
+
 /* Meal Container */
 
 .meal-links-container {
@@ -715,9 +733,9 @@ ul {
   display: flex;
   align-items: center;
   justify-content: center;
-  max-width: var(--max-width);
   text-align: center;
   flex-direction: column;
+  /* max-width: 700px; */
 }
 
 .response-menu {
@@ -728,7 +746,6 @@ ul {
   text-align: center;
   text-transform: uppercase;
   letter-spacing: var(--spacing);
-  transition: var(--transition);
   display: flex;
   flex-wrap: nowrap;
   flex-direction: row;
@@ -743,14 +760,12 @@ ul {
   box-shadow: var(--shadow-1);
   border-color: var(--tangerine-light);
   border-style: solid;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem;
   background-color: var(--white);
   letter-spacing: var(--spacing);
-  font-size: 1rem;
   text-transform: uppercase;
   display: inline-block;
-  transition: var(--transition);
-  flex-basis: 25%;
+  transition: var(--transition-menu-item);
   height: 50px;
 }
 
@@ -762,6 +777,19 @@ ul {
   text-align: center;
   flex-basis: 30%;
   height: 100px;
+}
+
+.response-menu-item p {
+  align-items: center;
+  text-align: center;
+  font-size: 10px;
+  margin: 5px;
+}
+
+.response-menu-selected p {
+  font-size: 12px;
+  align-items: center;
+  text-align: center;
 }
 
 /* Links */
@@ -778,7 +806,8 @@ ul {
 /* Itinerary */
 
 .activitieslist-container {
-  width: var(--max-width);
+  /* width: var(--max-width); */
+  width: 100%;
 }
 
 .activity-container {
@@ -1032,6 +1061,14 @@ ul {
   text-align: left;
 }
 
+.content-container-red {
+  background: var(--red-light);
+  color: black;
+  margin: 1rem auto;
+  padding: 10px;
+  border-radius: var(--borderRadius);
+}
+
 /* Food Recommendations */
 
 .meal-type-container {
@@ -1056,9 +1093,8 @@ ul {
 
 @media screen and (max-width: 800px) {
   .response-container,
-  .response-menu-container,
   .response-menu,
-  .activity-modal-container,
+  .response-menu-container .activity-modal-container,
   .poi-container {
     width: 95%;
   }
@@ -1067,6 +1103,12 @@ ul {
   }
   .response-menu-item {
     width: 40%;
+  }
+
+  .response-menu-btn-text p {
+    align-items: center;
+    text-align: center;
+    font-size: 11px;
   }
 }
 

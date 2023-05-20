@@ -6,12 +6,17 @@ import React, {
   useState,
 } from "react"
 import { ItineraryRequestType } from "./types/request.types"
-import { ActivityType, ItineraryResponseType } from "./types/response.types"
+import {
+  ActivityType,
+  ItineraryResponseType,
+  InfoResponseType,
+} from "./types/response.types"
 import { PhotoRetrieverResponseType } from "./api/photo.api"
 
 export type AppContextType = {
   itineraryRequest: ItineraryRequestType
   setItineraryRequest: Dispatch<SetStateAction<ItineraryRequestType>>
+
   itineraryResponse: ItineraryResponseType | undefined
   setItineraryResponse: Dispatch<
     SetStateAction<ItineraryResponseType | undefined>
@@ -20,6 +25,9 @@ export type AppContextType = {
   setItineraryPagePhoto: Dispatch<
     SetStateAction<PhotoRetrieverResponseType | undefined>
   >
+
+  destinationInfo: InfoResponseType | undefined
+  setDestinationInfo: Dispatch<SetStateAction<InfoResponseType | undefined>>
   expandEditMenu: number | undefined
   setExpandEditMenu: Dispatch<SetStateAction<number | undefined>>
   expandEditMoveTo: number | undefined
@@ -36,19 +44,26 @@ export type AppContextType = {
   removeActivity: (dayId: number, activityId: number) => void
   removeDay: (dayId: number) => void
 
-  containerToDisplay: string
-  setContainerToDisplay: Dispatch<SetStateAction<string>>
+  containerToDisplay: "itinerary" | "info" | "accomodation"
+  setContainerToDisplay: Dispatch<
+    SetStateAction<"itinerary" | "info" | "accomodation">
+  >
 }
 
 const defaultState: AppContextType = {
   itineraryRequest: {
     destination: "",
   },
+
   setItineraryRequest: () => {},
   itineraryResponse: undefined,
   setItineraryResponse: () => {},
   itineraryPagePhoto: undefined,
   setItineraryPagePhoto: () => {},
+
+  destinationInfo: undefined,
+  setDestinationInfo: () => {},
+
   expandEditMenu: undefined,
   setExpandEditMenu: () => {},
   expandEditMoveTo: undefined,
@@ -84,6 +99,10 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const [itineraryPagePhoto, setItineraryPagePhoto] =
     useState<PhotoRetrieverResponseType>()
 
+  const [destinationInfo, setDestinationInfo] = useState<
+    InfoResponseType | undefined
+  >()
+
   const [selectedDay, setSelectedDay] = useState<number | undefined>(undefined)
 
   const [expandEditMenu, setExpandEditMenu] = useState<number | undefined>(
@@ -97,7 +116,9 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     number | undefined
   >(undefined)
 
-  const [containerToDisplay, setContainerToDisplay] = useState("itinerary")
+  const [containerToDisplay, setContainerToDisplay] = useState<
+    "itinerary" | "info" | "accomodation"
+  >("itinerary")
 
   function handleExpandEditMenuToggle(id: number, dayId: number) {
     if (selectedDay !== dayId) {
@@ -197,11 +218,16 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     <AppContext.Provider
       value={{
         itineraryRequest,
+
         setItineraryRequest,
         itineraryResponse,
         setItineraryResponse,
         itineraryPagePhoto,
         setItineraryPagePhoto,
+
+        destinationInfo,
+        setDestinationInfo,
+
         expandEditMenu,
         setExpandEditMenu,
         expandEditMoveTo,

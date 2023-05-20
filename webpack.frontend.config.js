@@ -65,6 +65,7 @@ module.exports = {
         REACT_APP_POPCITY_API: JSON.stringify(
           process.env.REACT_APP_POPCITY_API
         ),
+        REACT_APP_INFO_API: JSON.stringify(process.env.REACT_APP_INFO_API),
         REACT_APP_SERVID: JSON.stringify(process.env.REACT_APP_SERVID),
         REACT_APP_CALLBACK_URL: JSON.stringify(
           process.env.REACT_APP_CALLBACK_URL

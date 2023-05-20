@@ -21,7 +21,6 @@ export function LinkedActivityDetails({
   activityId,
   dayId,
 }: LinkedActivityDetailPropType) {
-
   const [animateExit, setAnimateExit] = useState("")
 
   return (

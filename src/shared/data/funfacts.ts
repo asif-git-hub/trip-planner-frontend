@@ -17,5 +17,5 @@ export const funfacts = [
   `In China, there is a building shaped like a giant teapot, known as the "Meitan Tea Museum.`,
   "Portugal is known to have the highest number of sunshine hours in Europe. With some parts having almost 300 sunny days a year, you can enjoy over 3000 sunshine hours per year.",
   "Belgium is known for its waffles, but did you know that there are two types of Belgian waffles - Brussels waffles and Liege waffles?",
-  `In Scotland, there is a town called Dull, and they have a sister city relationship with Boring, Oregon, USA`
+  `In Scotland, there is a town called Dull, and they have a sister city relationship with Boring, Oregon, USA`,
 ]

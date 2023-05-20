@@ -1,37 +1,24 @@
 import React from "react"
-import { DailyActivitiesList } from "./DailyActivitiesList"
+import { ResponseMenu } from "./ResponseMenu"
+import { ItineraryDisplay } from "./ItineraryDisplay"
 import { useGlobalContext } from "../context"
+import { InfoDisplay } from "./InfoDisplay"
+import { AccomodationDisplay } from "./AccomodationDisplay"
 
 export function ResponseBox() {
-  const { itineraryResponse } = useGlobalContext()
+  const { containerToDisplay } = useGlobalContext()
 
-  return itineraryResponse && itineraryResponse.length > 0 ? (
+  return (
     <div className="response-container">
-      {itineraryResponse.map((dailyActivities, id) => {
-        let isDifferentCityNextDay = false
-        let nextCity = undefined
+      <ResponseMenu></ResponseMenu>
+      {containerToDisplay === "itinerary" ? (
+        <ItineraryDisplay></ItineraryDisplay>
+      ) : (
+        ""
+      )}
+      {containerToDisplay === "info" ? <InfoDisplay></InfoDisplay> : ""}
+      {containerToDisplay === "accomodation" ? <AccomodationDisplay></AccomodationDisplay> : ""}
 
-        if (id !== itineraryResponse.length - 1) {
-          isDifferentCityNextDay =
-            dailyActivities.city !== itineraryResponse[id + 1].city
-          nextCity = itineraryResponse[id + 1].city
-        }
-
-        return (
-          <DailyActivitiesList
-            key={id}
-            dayId={id}
-            day={dailyActivities.day}
-            activities={dailyActivities.activities}
-            city={dailyActivities.city}
-            geocode={dailyActivities.geocode}
-            isDifferentCityNextDay={isDifferentCityNextDay}
-            nextCity={nextCity}
-          ></DailyActivitiesList>
-        )
-      })}
     </div>
-  ) : (
-    <div></div>
   )
 }

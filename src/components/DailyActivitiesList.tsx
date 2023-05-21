@@ -95,13 +95,16 @@ export function DailyActivitiesList({
               <div className="expandable-btn-text">Add Activity</div>
             </div>
           </button>
-          <button className="btn-5" onClick={() => {
-            setAnimateDayRemoval("day-removed")
-            setTimeout(() => {
-              removeDay(dayId)
-              setAnimateDayRemoval("")
-            }, 800)
-            }}>
+          <button
+            className="btn-5"
+            onClick={() => {
+              setAnimateDayRemoval("day-removed")
+              setTimeout(() => {
+                removeDay(dayId)
+                setAnimateDayRemoval("")
+              }, 800)
+            }}
+          >
             <div className="expandable-btn-content">
               <div className="expandable-btn-icon">
                 <FaTrashAlt></FaTrashAlt>

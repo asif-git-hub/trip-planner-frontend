@@ -1,10 +1,5 @@
-import React from "react";
+import React from "react"
 
 export function AccomodationDisplay() {
-
-    return (
-        <div className="info-display-container">
-            Coming soon
-        </div>
-    )
+  return <div className="accomodation-display-container">Coming soon</div>
 }

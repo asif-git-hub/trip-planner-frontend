@@ -8,7 +8,6 @@ import { DataAggregator } from "../data/data.aggregator"
 import { Loading } from "../components/Loading"
 import { TechnicalError } from "./errors/TechnicalError"
 import { useGlobalContext } from "../context"
-import { InfoAPI } from "../api/info.api"
 
 export function Result() {
   const responseBoxRef = useRef<HTMLInputElement>(null)
@@ -20,7 +19,6 @@ export function Result() {
     setItineraryResponse,
     itineraryPagePhoto,
     setItineraryPagePhoto,
-    setDestinationInfo,
   } = useGlobalContext()
 
   const { destination } = useParams()
@@ -30,13 +28,13 @@ export function Result() {
       setLoading(true)
 
       async function getData() {
-        if (!destination) {
+        if (!destination && !destination) {
+          setLoading(false)
           throw new Error("mandatory params missing")
         }
         //
         const dataAggregator = new DataAggregator()
         const photoApi = new PhotoApi()
-        // const infoApi = new InfoAPI()
 
         const [itineraryResult, photoResult] = await Promise.allSettled([
           dataAggregator.getItinerary(decodeURIComponent(destination)),
@@ -52,13 +50,6 @@ export function Result() {
           if (photoResult.status === "fulfilled") {
             setItineraryPagePhoto(photoResult.value)
           }
-
-          // try {
-          //   const infoResult = await infoApi.getInfo(
-          //     decodeURIComponent(destination)
-          //   )
-          //   setDestinationInfo(infoResult)
-          // } catch (e) {}
 
           setLoading(false)
         }

@@ -30,6 +30,7 @@ export function DailyActivitiesList({
   nextCity,
 }: DailyActivitiesListPropType) {
   const [showActivityForm, setShowActivityForm] = useState(false)
+  const [animateDayRemoval, setAnimateDayRemoval] = useState("")
   const [newActivity, setNewActivity] = useState<ActivityType>({
     location: "",
     description: "",
@@ -44,7 +45,7 @@ export function DailyActivitiesList({
   const countrycode = getCountryCode(itineraryRequest.destination)
 
   return (
-    <div className="activitieslist-container">
+    <div className={`activitieslist-container ${animateDayRemoval}`}>
       <div className="day-container">
         <h2>
           Day {dayId + 1}
@@ -94,7 +95,16 @@ export function DailyActivitiesList({
               <div className="expandable-btn-text">Add Activity</div>
             </div>
           </button>
-          <button className="btn-5" onClick={() => removeDay(dayId)}>
+          <button
+            className="btn-5"
+            onClick={() => {
+              setAnimateDayRemoval("day-removed")
+              setTimeout(() => {
+                removeDay(dayId)
+                setAnimateDayRemoval("")
+              }, 800)
+            }}
+          >
             <div className="expandable-btn-content">
               <div className="expandable-btn-icon">
                 <FaTrashAlt></FaTrashAlt>

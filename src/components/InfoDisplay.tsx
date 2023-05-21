@@ -1,33 +1,12 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { useGlobalContext } from "../context"
 import { UnsplashCredit } from "./UnsplashCredit"
-import { InfoAPI } from "../api/info.api"
 
 export function InfoDisplay() {
-  const {
-    destinationInfo,
-    itineraryRequest,
-    itineraryPagePhoto,
-    setDestinationInfo,
-  } = useGlobalContext()
+  const { destinationInfo, itineraryRequest, itineraryPagePhoto } =
+    useGlobalContext()
+
   const destination = itineraryRequest.destination.split(",")[0]
-
-  useEffect(() => {
-    try {
-      async function getData() {
-        const infoApi = new InfoAPI()
-
-        try {
-          const infoResult = await infoApi.getInfo(
-            decodeURIComponent(destination)
-          )
-          setDestinationInfo(infoResult)
-        } catch (e) {}
-      }
-
-      getData()
-    } catch (e) {}
-  }, [])
 
   return (
     <div className="info-display-container">

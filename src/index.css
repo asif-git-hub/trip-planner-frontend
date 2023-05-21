@@ -639,7 +639,6 @@ ul {
   .dotted-line {
     width: 65%;
   }
-
 }
 
 /* Loading */
@@ -760,7 +759,8 @@ ul {
   box-shadow: var(--shadow-1);
   border-color: var(--tangerine-light);
   border-style: solid;
-  padding: 0.5rem;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
   background-color: var(--white);
   letter-spacing: var(--spacing);
   text-transform: uppercase;
@@ -772,11 +772,11 @@ ul {
 .response-menu-selected {
   background: var(--tangerine);
   color: var(--white);
-  padding-top: 2rem;
+  padding-top: 5px;
   border: transparent;
   text-align: center;
   flex-basis: 30%;
-  height: 100px;
+  height: 80px;
 }
 
 .response-menu-item p {

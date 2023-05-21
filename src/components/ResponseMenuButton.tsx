@@ -41,12 +41,8 @@ export function ResponseMenuButton({ buttonId }: ResponseMenuButtonPropType) {
       } response-menu-item`}
       onClick={handleMenuToggle}
     >
-      <div>
-        <p>{buttonTextMap[buttonId]}</p>
-        <div>
-          {containerToDisplay === buttonId ? buttonIconMap[buttonId] : ""}
-        </div>
-      </div>
+      <p>{buttonTextMap[buttonId]}</p>
+      {containerToDisplay === buttonId ? buttonIconMap[buttonId] : ""}
     </button>
   )
 }

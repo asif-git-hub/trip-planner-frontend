@@ -849,6 +849,10 @@ ul {
   transition: 0.3s linear all;
 }
 
+.expand-activity-btn:hover {
+  color: var(--darker-teal);
+}
+
 .day-container {
   background: var(--egg-shell);
   color: white;

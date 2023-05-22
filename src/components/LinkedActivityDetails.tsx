@@ -48,8 +48,8 @@ export function LinkedActivityDetails({
       <button
         className={`expand-activity-btn`}
         onClick={() => {
-          handleExpandActivityControlToggle(activityId, dayId)
           setExpandFirstActivity(false)
+          handleExpandActivityControlToggle(activityId, dayId)
         }}
       >
         <FaChevronCircleDown

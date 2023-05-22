@@ -1,7 +1,7 @@
 import React from "react"
 import { useGlobalContext } from "../context"
 import { UnsplashCredit } from "./UnsplashCredit"
-import {HiOutlineInformationCircle} from "react-icons/hi"
+import { HiOutlineInformationCircle } from "react-icons/hi"
 import { IoPeopleCircleOutline } from "react-icons/io5"
 import { FaMapSigns, FaMoneyCheckAlt, FaRegGrinStars } from "react-icons/fa"
 import { TiWeatherPartlySunny } from "react-icons/ti"
@@ -18,8 +18,8 @@ export function InfoDisplay() {
   return (
     <div className="info-display-container">
       <div className="day-container">
-      <HiOutlineInformationCircle className="info-icon"></HiOutlineInformationCircle>
-      <h5>Get to know {destination}</h5>
+        <HiOutlineInformationCircle className="info-icon"></HiOutlineInformationCircle>
+        <h5>Get to know {destination}</h5>
       </div>
       <p>{destinationInfo?.introduction}</p>
 

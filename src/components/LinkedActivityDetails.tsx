@@ -1,6 +1,8 @@
 import React, { useState } from "react"
 import { ActivityType } from "../types/response.types"
 import { EditActivity } from "./EditActivity"
+import { useGlobalContext } from "../context"
+import { FaChevronCircleDown } from "react-icons/fa"
 
 type LinkedActivityDetailPropType = {
   location: string
@@ -21,7 +23,20 @@ export function LinkedActivityDetails({
   activityId,
   dayId,
 }: LinkedActivityDetailPropType) {
+  const {
+    selectedDay,
+    expandActivityControl,
+    handleExpandActivityControlToggle,
+  } = useGlobalContext()
+
+  const [expandFirstActivity, setExpandFirstActivity] = useState(
+    dayId === 0 && activityId === 0
+  )
   const [animateExit, setAnimateExit] = useState("")
+
+  const expandActivity =
+    (selectedDay === dayId && expandActivityControl === activityId) ||
+    expandFirstActivity
 
   return (
     <div className={`activity-container ${animateExit}`}>
@@ -30,30 +45,48 @@ export function LinkedActivityDetails({
       </p>
       <i>{description}</i>
 
-      <EditActivity
-        dailyActivities={dailyActivities}
-        currentOrder={activityId}
-        dayId={dayId}
-        setAnimateExit={setAnimateExit}
-      ></EditActivity>
+      <button
+        className={`expand-activity-btn`}
+        onClick={() => {
+          setExpandFirstActivity(false)
+          handleExpandActivityControlToggle(activityId, dayId)
+        }}
+      >
+        <FaChevronCircleDown
+          className={`expand-activity-icon ${expandActivity ? "clicked" : ""}`}
+        ></FaChevronCircleDown>
+      </button>
 
-      {custom ? (
-        ""
+      {expandActivity ? (
+        <div>
+          <EditActivity
+            dailyActivities={dailyActivities}
+            currentOrder={activityId}
+            dayId={dayId}
+            setAnimateExit={setAnimateExit}
+          ></EditActivity>
+
+          {custom ? (
+            ""
+          ) : (
+            <button
+              className="details-link btn-4"
+              onClick={() => {
+                window.open(
+                  `/poi/${encodeURIComponent(location)}/${encodeURIComponent(
+                    destination
+                  )}`,
+                  "_blank",
+                  "noopener,noreferrer"
+                )
+              }}
+            >
+              Discover more
+            </button>
+          )}
+        </div>
       ) : (
-        <button
-          className="details-link btn-4"
-          onClick={() => {
-            window.open(
-              `/poi/${encodeURIComponent(location)}/${encodeURIComponent(
-                destination
-              )}`,
-              "_blank",
-              "noopener,noreferrer"
-            )
-          }}
-        >
-          Discover more
-        </button>
+        ""
       )}
     </div>
   )

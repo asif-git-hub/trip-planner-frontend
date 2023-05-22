@@ -835,6 +835,24 @@ ul {
   transform: translateX(200px);
 }
 
+.activity-container .expand-activity-btn {
+  cursor: pointer;
+  background: transparent;
+  border: transparent;
+  display: block;
+  text-align: center;
+  right: 0;
+  position: relative;
+  margin-top: 1px;
+  margin-left: auto;
+  color: var(--dark-teal);
+  transition: 0.3s linear all;
+}
+
+.expand-activity-btn:hover {
+  color: var(--darker-teal);
+}
+
 .day-container {
   background: var(--egg-shell);
   color: white;
@@ -1436,6 +1454,24 @@ nav {
 .response-menu-icon {
   margin-top: 4px;
   font-size: 2rem;
+}
+
+.expand-activity-icon {
+  font-size: 1.3rem;
+  transition: transform 0.3s ease;
+}
+
+.expand-activity-icon::before {
+  transform: rotate(-45deg);
+  transition: transform 0.3s ease;
+}
+
+.expand-activity-icon.clicked {
+  transform: rotate(180deg);
+}
+
+.expand-activity-icon.clicked::before {
+  transform: rotate(45deg);
 }
 
 /* Fun Fact */

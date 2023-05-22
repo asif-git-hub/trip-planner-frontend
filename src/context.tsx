@@ -28,12 +28,17 @@ export type AppContextType = {
 
   destinationInfo: InfoResponseType | undefined
   setDestinationInfo: Dispatch<SetStateAction<InfoResponseType | undefined>>
+
+  expandActivityControl: number | undefined
+  setExpandActivityControl: Dispatch<SetStateAction<number | undefined>>
   expandEditMenu: number | undefined
   setExpandEditMenu: Dispatch<SetStateAction<number | undefined>>
   expandEditMoveTo: number | undefined
   setExpandEditMoveTo: Dispatch<SetStateAction<number | undefined>>
   expandDayEditMenu: number | undefined
   selectedDay: number | undefined
+
+  handleExpandActivityControlToggle: (id: number, dayId: number) => void
   handleExpandEditMenuToggle: (id: number, dayId: number) => void
   handleExpandEditMoveToToggle: (id: number) => void
   handleExpandDayEditMenuToggle: (id: number) => void
@@ -64,12 +69,16 @@ const defaultState: AppContextType = {
   destinationInfo: undefined,
   setDestinationInfo: () => {},
 
+  expandActivityControl: 0,
+  setExpandActivityControl: () => {},
   expandEditMenu: undefined,
   setExpandEditMenu: () => {},
   expandEditMoveTo: undefined,
   setExpandEditMoveTo: () => {},
   expandDayEditMenu: undefined,
-  selectedDay: undefined,
+  selectedDay: 0,
+
+  handleExpandActivityControlToggle: (id: number, dayId: number) => {},
   handleExpandEditMenuToggle: (id: number, dayId: number) => {},
   handleExpandEditMoveToToggle: (id: number) => {},
   handleExpandDayEditMenuToggle: (id: number) => {},
@@ -105,9 +114,14 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
 
   const [selectedDay, setSelectedDay] = useState<number | undefined>(undefined)
 
+  const [expandActivityControl, setExpandActivityControl] = useState<
+    number | undefined
+  >(undefined)
+
   const [expandEditMenu, setExpandEditMenu] = useState<number | undefined>(
     undefined
   )
+
   const [expandEditMoveTo, setExpandEditMoveTo] = useState<number | undefined>(
     undefined
   )
@@ -120,11 +134,17 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     "itinerary" | "info" | "accomodation"
   >("itinerary")
 
+  function handleExpandActivityControlToggle(id: number, dayId: number) {
+    if (selectedDay !== dayId) {
+      setSelectedDay(selectedDay !== dayId ? dayId : undefined)
+    }
+    setExpandActivityControl(expandActivityControl !== id ? id : undefined)
+  }
+
   function handleExpandEditMenuToggle(id: number, dayId: number) {
     if (selectedDay !== dayId) {
       setSelectedDay(selectedDay !== dayId ? dayId : undefined)
     }
-
     setExpandEditMenu(expandEditMenu !== id ? id : undefined)
   }
 
@@ -228,12 +248,16 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         destinationInfo,
         setDestinationInfo,
 
+        expandActivityControl,
+        setExpandActivityControl,
         expandEditMenu,
         setExpandEditMenu,
         expandEditMoveTo,
         setExpandEditMoveTo,
         expandDayEditMenu,
         selectedDay,
+
+        handleExpandActivityControlToggle,
         handleExpandEditMenuToggle,
         handleExpandEditMoveToToggle,
         handleExpandDayEditMenuToggle,

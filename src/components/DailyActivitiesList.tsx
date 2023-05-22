@@ -102,7 +102,7 @@ export function DailyActivitiesList({
               setTimeout(() => {
                 removeDay(dayId)
                 setAnimateDayRemoval("")
-              }, 800)
+              }, 500)
             }}
           >
             <div className="expandable-btn-content">

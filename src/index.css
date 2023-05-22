@@ -812,7 +812,7 @@ ul {
 }
 
 .activitieslist-container.day-removed {
-  transform: translateY(100%);
+  transform: translateX(-100%);
   opacity: 0;
   pointer-events: none;
 }
@@ -1417,6 +1417,15 @@ nav {
   font-size: 1.2rem;
   color: var(--clr-red-light);
   font-weight: 12rem;
+}
+
+.info-icon {
+  float: left;
+  margin-right: 5px;
+  text-align: center;
+  justify-content: center;
+  margin-top: 5px;
+  font-size: 1.5rem;
 }
 
 .day-edit-icon {

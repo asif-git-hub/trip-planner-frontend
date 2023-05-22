@@ -116,7 +116,7 @@ export function DailyActivitiesList({
       </div>
 
       <AddActivityModal
-        day={dayId+1}
+        day={dayId + 1}
         showActivityForm={showActivityForm}
         newActivity={newActivity}
         countrycode={countrycode}

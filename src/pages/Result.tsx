@@ -14,6 +14,8 @@ export function Result() {
   const [loading, setLoading] = useState(false)
   const [errored, setErrored] = useState(false)
 
+  // const { setUsageCount } = useGlobalContext()
+
   const {
     itineraryResponse,
     setItineraryResponse,
@@ -47,6 +49,8 @@ export function Result() {
         //
         if (itineraryResult.status === "fulfilled") {
           setItineraryResponse(itineraryResult.value)
+          //
+          // setUsageCount((prev) => prev + 1)
           if (photoResult.status === "fulfilled") {
             setItineraryPagePhoto(photoResult.value)
           }

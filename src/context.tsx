@@ -12,6 +12,8 @@ import {
   InfoResponseType,
 } from "./types/response.types"
 import { PhotoRetrieverResponseType } from "./api/photo.api"
+import { getUseCountFromLocalStorage } from "./utils/storage.utils"
+import { ClientJS } from "clientjs"
 
 export type AppContextType = {
   itineraryRequest: ItineraryRequestType
@@ -37,6 +39,9 @@ export type AppContextType = {
   setExpandEditMoveTo: Dispatch<SetStateAction<number | undefined>>
   expandDayEditMenu: number | undefined
   selectedDay: number | undefined
+
+  usageCount: number
+  setUsageCount: Dispatch<SetStateAction<number>>
 
   handleExpandActivityControlToggle: (id: number, dayId: number) => void
   handleExpandEditMenuToggle: (id: number, dayId: number) => void
@@ -78,6 +83,9 @@ const defaultState: AppContextType = {
   expandDayEditMenu: undefined,
   selectedDay: 0,
 
+  usageCount: getUseCountFromLocalStorage(),
+  setUsageCount: () => {},
+
   handleExpandActivityControlToggle: (id: number, dayId: number) => {},
   handleExpandEditMenuToggle: (id: number, dayId: number) => {},
   handleExpandEditMoveToToggle: (id: number) => {},
@@ -96,6 +104,12 @@ const defaultState: AppContextType = {
 export const AppContext = createContext<AppContextType>(defaultState)
 
 export function AppProvider({ children }: { children: React.ReactNode }) {
+  const client = new ClientJS()
+
+  const [fingerprint, setFingerPrint] = useState(client.getFingerprint())
+
+  console.log(fingerprint)
+
   const [itineraryRequest, setItineraryRequest] =
     useState<ItineraryRequestType>({
       destination: "",
@@ -111,6 +125,8 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const [destinationInfo, setDestinationInfo] = useState<
     InfoResponseType | undefined
   >()
+
+  const [usageCount, setUsageCount] = useState(getUseCountFromLocalStorage())
 
   const [selectedDay, setSelectedDay] = useState<number | undefined>(undefined)
 
@@ -256,6 +272,9 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         setExpandEditMoveTo,
         expandDayEditMenu,
         selectedDay,
+
+        usageCount,
+        setUsageCount,
 
         handleExpandActivityControlToggle,
         handleExpandEditMenuToggle,

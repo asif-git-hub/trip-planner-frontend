@@ -42,6 +42,7 @@
   --dark-teal: #008080;
   --darker-teal: #016b6b;
   --egg-shell: #f6d052;
+  --dark-egg-shell: #eec644;
   --tangerine-light: #f69c2e;
   --tangerine: #f28500;
   --tangerine-darker: #d37a0d;
@@ -286,7 +287,7 @@ ul {
   border: transparent;
   border-radius: var(--borderRadius);
   letter-spacing: var(--letterSpacing);
-  padding: 0.375rem 0.75rem;
+  padding: 0.5rem 1rem;
   margin: 1rem 1rem;
   box-shadow: var(--shadow-1);
   transition: var(--transition);
@@ -1474,6 +1475,14 @@ nav {
   transform: rotate(45deg);
 }
 
+.token-icon {
+  font-size: 1.2rem;
+  color: var(--dark-egg-shell);
+  align-items: center;
+  align-content: center;
+  text-align: center;
+}
+
 /* Fun Fact */
 
 .facts {
@@ -1595,4 +1604,11 @@ nav {
   justify-content: center;
   text-align: center;
   padding: 15px;
+}
+
+/* Token */
+.token-container {
+  margin-top: 10px;
+  text-align: center;
+  align-items: center;
 }

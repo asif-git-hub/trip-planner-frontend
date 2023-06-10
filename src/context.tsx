@@ -108,8 +108,6 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
 
   const [fingerprint, setFingerPrint] = useState(client.getFingerprint())
 
-  console.log(fingerprint)
-
   const [itineraryRequest, setItineraryRequest] =
     useState<ItineraryRequestType>({
       destination: "",
